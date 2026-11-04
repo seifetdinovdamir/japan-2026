@@ -160,12 +160,44 @@ li.now .t::after{content:" · сейчас";color:var(--accent)}
 .taxi .say{font-family:var(--jp);font-size:20px;color:var(--accent)}
 .taxi .ru{font-size:14px;color:var(--muted)}
 </style>
+<style>.wx{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
+@media (max-width:520px){.wx{grid-template-columns:1fr}}
+.wxc{background:var(--bg);border-radius:12px;padding:10px 12px}
+.wxh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.wxh b{font-family:var(--display);font-size:20px}
+.wxbig{display:flex;align-items:baseline;gap:6px;margin:4px 0}
+.wxbig b{font-family:var(--display);font-size:30px;color:var(--accent);font-variant-numeric:tabular-nums}
+.wxbig span{font-size:12px;color:var(--muted);margin-right:8px}
+.wxd{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0;font-variant-numeric:tabular-nums;font-size:13px}
+.wxd i{display:block;font-style:normal;font-size:11px;color:var(--muted)}
+.wxd b{color:var(--accent)}
+.tabs2{display:flex;gap:6px;margin:4px 0 10px}
+.t2{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.t2.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.wq,.mform input,.mform select,#m-rate,#m-budget,#m-conv{font:inherit;font-size:16px;width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);margin-top:4px}
+.gl{margin:10px 0 0}
+.gi{padding:9px 0;border-bottom:1px solid var(--line)}
+.gi:last-child{border-bottom:0}
+.gi dt{font-weight:600}
+.gi dt .jp{font-weight:500;color:var(--accent);margin-left:6px}
+.gi dd{margin:2px 0 0;color:var(--muted);font-size:14px}
+.mrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:end;margin-bottom:10px}
+.mform label,.panel label{display:block;font-size:12px;color:var(--muted)}
+.mform>label{margin-bottom:10px}
+.bar{display:grid;grid-template-columns:110px 1fr auto;gap:8px;align-items:center;font-size:13px;margin:6px 0}
+.bar i{height:10px;border-radius:5px;background:var(--accent);display:block}
+.bar b{font-variant-numeric:tabular-nums;font-weight:600}
+.mi{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.mi:last-child{border-bottom:0}
+.x{font:inherit;font-size:18px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;flex:none}
+@media (max-width:430px){nav.tabs a{padding:6px 7px;font-size:13px}.brand{font-size:18px}.brand .bn{display:none}nav.tabs{gap:2px}}
+</style>
 <style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:19px}nav.tabs a{padding:6px 8px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
 </head>
 <body>
 <header class="top"><div class="topin">
-  <a class="brand" href="#route"><span class="dot"></span>Наша Япония <span class="jp">日本</span></a>
-  <nav class="tabs" aria-label="Разделы"><a href="#route" id="tab-route">Маршрут</a><a href="#info" id="tab-info">Полезное</a></nav>
+  <a class="brand" href="#route"><span class="dot"></span><span class="bn">Наша </span>Япония <span class="jp">日本</span></a>
+  <nav class="tabs" aria-label="Разделы"><a href="#route" id="tab-route">Маршрут</a><a href="#info" id="tab-info">Полезное</a><a href="#money" id="tab-money">Траты</a></nav>
 </div></header>
 
 <div class="wrap">
@@ -252,6 +284,24 @@ li.now .t::after{content:" · сейчас";color:var(--accent)}
     <div id="hotel-list"></div>
   </div>
 
+  <div class="panel" id="weather">
+    <h3>Погода</h3>
+    <p class="src" id="wx-note">Средние за декабрь — ориентир. За две недели до поездки здесь появится живой прогноз на наши дни.</p>
+    <div class="wx" id="wx"></div>
+    <p class="src">Что взять: тёплую куртку и шапку на утро у Фудзи, удобную обувь на 10–14 км в день, складной зонт. В отелях, поездах и музеях тепло — удобнее одеваться слоями.</p>
+  </div>
+
+  <div class="panel" id="words">
+    <h3>Словарик</h3>
+    <div class="tabs2" role="tablist">
+      <button type="button" class="t2 on" data-w="terms">Слова</button>
+      <button type="button" class="t2" data-w="phrases">Фразы</button>
+      <button type="button" class="t2" data-w="food">Еда</button>
+    </div>
+    <input id="wq" class="wq" type="search" placeholder="Найти слово" aria-label="Поиск по словарику">
+    <dl class="gl" id="gl"></dl>
+  </div>
+
   <div class="panel">
     <h3>Виза</h3>
     <ul>
@@ -323,6 +373,57 @@ li.now .t::after{content:" · сейчас";color:var(--accent)}
       <a href="https://www.vjw.digital.go.jp/">Visit Japan Web</a><br>
       <a href="https://www.trvlogue.com/ja/fuji-excursion-tokyo-kawaguchiko">Fuji Excursion: расписание и билеты</a>
     </p>
+  </div>
+</section>
+
+<section id="view-money" hidden>
+  <div class="eyebrow">Кошелёк поездки</div>
+  <h2>Траты</h2>
+  <p class="sub">Записи хранятся только на этом телефоне. У каждого — свой список.</p>
+
+  <div class="stats" id="m-stats">
+    <div class="stat"><b id="m-yen">0</b><span>¥ потрачено</span></div>
+    <div class="stat"><b id="m-rub">0</b><span>₽ по курсу</span></div>
+    <div class="stat"><b id="m-left">—</b><span>₽ осталось от бюджета на месте</span></div>
+    <div class="stat"><b id="m-day">0</b><span>¥ сегодня</span></div>
+  </div>
+
+  <form class="panel mform" id="m-form" autocomplete="off">
+    <h3>Добавить</h3>
+    <div class="mrow">
+      <label>Сумма<input id="m-amt" type="number" inputmode="decimal" min="0" step="any" required placeholder="1200"></label>
+      <label>Валюта<select id="m-cur"><option value="JPY">¥</option><option value="RUB">₽</option></select></label>
+    </div>
+    <div class="mrow">
+      <label>Что<select id="m-cat">
+        <option value="food">Еда</option><option value="transport">Транспорт</option><option value="tickets">Билеты и входы</option><option value="shop">Покупки</option><option value="hotel">Жильё</option><option value="other">Другое</option>
+      </select></label>
+      <label>Дата<input id="m-date" type="date" min="2026-11-30" max="2026-12-11"></label>
+    </div>
+    <label>Заметка<input id="m-note" type="text" maxlength="60" placeholder="Такояки на Дотонбори"></label>
+    <div class="mrow"><button class="btn" type="submit">Записать</button><span class="src" id="m-msg" aria-live="polite"></span></div>
+  </form>
+
+  <div class="panel">
+    <h3>По категориям</h3>
+    <div id="m-cats"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Записи</h3>
+    <div id="m-list"><p class="src">Пока пусто. Первая запись появится здесь.</p></div>
+  </div>
+
+  <div class="panel">
+    <h3>Настройки</h3>
+    <div class="mrow">
+      <label>Курс, ₽ за 100 ¥<input id="m-rate" type="number" inputmode="decimal" step="0.01" min="1"></label>
+      <label>Бюджет на месте, ₽<input id="m-budget" type="number" inputmode="numeric" step="1000" min="0"></label>
+    </div>
+    <p class="src">Бюджет на месте по плану — еда, транспорт и входы, около 90 000 ₽ на двоих. Курс ЦБ на 4 ноября — около 51 ₽ за 100 ¥.</p>
+    <div class="mrow"><label>Конвертер<input id="m-conv" type="number" inputmode="decimal" placeholder="¥"></label><span id="m-conv-out" class="src"></span></div>
+    <button class="btn ghost" type="button" id="m-clear">Удалить все записи</button>
+    <span class="src" id="m-clear-msg"></span>
   </div>
 </section>
 
@@ -480,11 +581,122 @@ function today(){const box=document.getElementById('today'),txt=document.getElem
  btn.onclick=()=>{el.scrollIntoView({behavior:'smooth',block:'start'})};}
 host.querySelector('details').open=true;today();
 document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'});}}));
-function route(){const info=location.hash==='#info'||location.hash==='#hotels';document.getElementById('view-route').hidden=info;document.getElementById('view-info').hidden=!info;
- const r=document.getElementById('tab-route'),i=document.getElementById('tab-info');r.removeAttribute('aria-current');i.removeAttribute('aria-current');(info?i:r).setAttribute('aria-current','page');
- if(location.hash==='#hotels')setTimeout(()=>document.getElementById('hotels').scrollIntoView(),50);else window.scrollTo(0,0);}
+function route(){const h=location.hash;const view=(h==='#info'||h==='#hotels'||h==='#weather'||h==='#words')?'info':(h==='#money'?'money':'route');
+ ['route','info','money'].forEach(v=>{document.getElementById('view-'+v).hidden=v!==view;const t=document.getElementById('tab-'+v);t.removeAttribute('aria-current');if(v===view)t.setAttribute('aria-current','page');});
+ if(['#hotels','#weather','#words'].includes(h))setTimeout(()=>document.querySelector(h).scrollIntoView(),50);else window.scrollTo(0,0);}
 window.addEventListener('hashchange',route);route();
 document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
+
+
+// ===== Словарик =====
+const WORDS={
+terms:[
+["Онсэн","温泉","Горячий источник и купальня с его водой. Моются сначала сидя под душем, в воду заходят без одежды и без полотенца; мужская и женская половины раздельно."],
+["Ротэмбуро","露天風呂","Открытая купальня на улице. В Kogetsu — общие купальни, часть под открытым небом."],
+["Касикири-буро","貸切風呂","Купальня, которую бронируют только для себя на 40–50 минут. Выход, если в общий онсэн нельзя с татуировками."],
+["Рёкан","旅館","Традиционная японская гостиница: татами, футоны, юката, ужин и завтрак обычно включены."],
+["Кайсэки","懐石","Ужин из множества маленьких сезонных блюд, подают по очереди. В рёкане — главное событие вечера."],
+["Юката","浴衣","Лёгкое хлопковое кимоно, его выдают в рёкане. Запахивают левую полу поверх правой — наоборот надевают только на покойных."],
+["Татами","畳","Плетёные циновки на полу. На них не ступают в обуви и даже в тапочках."],
+["Футон","布団","Матрас и одеяло, которые раскладывают на татами на ночь."],
+["Окамисан","女将","Хозяйка рёкана, встречает гостей."],
+["Тории","鳥居","Ворота на входе в синтоистское святилище. Проходят чуть сбоку: середина — путь богов."],
+["Дзиндзя","神社","Синтоистское святилище: тории, верёвка с колоколом, два поклона, два хлопка, поклон."],
+["Тэра, -дзи","寺","Буддийский храм: Киёмидзу-дэра, Тодай-дзи, Кинкаку-дзи. Здесь не хлопают, а просто складывают ладони."],
+["Омамори","お守り","Амулет из храма или святилища: на удачу, здоровье, учёбу, безопасную дорогу."],
+["Госюин","御朱印","Каллиграфическая печать храма в специальной книжке. Хороший сувенир, стоит 300–500 ¥."],
+["Синкансэн","新幹線","Скоростной поезд. Nozomi и Hikari — быстрые, Kodama останавливается везде."],
+["Сюдэн","終電","Последний поезд вечера, обычно около полуночи."],
+["IC-карта","ICOCA / Suica","Транспортная карта: прикладываете на турникете, ею же платят в конбини и автоматах."],
+["Конбини","コンビニ","Магазины у дома: 7-Eleven, Lawson, FamilyMart. Еда, банкоматы, круглосуточно."],
+["Идзакая","居酒屋","Японский бар-ресторан с закусками к напиткам. Часто берут небольшую плату за столик и закуску — отоси."],
+["Таксфри","免税","Покупки без налога для туристов от 5 000 ¥ в одном магазине за день; нужен паспорт."],
+["Эки","駅","Станция. Higashi — восток, nishi — запад, kita — север, minami — юг: так называются выходы."],
+["Гути","口","Выход со станции: Kita-guchi — северный выход."]],
+phrases:[
+["Здравствуйте","こんにちは","Коннитива"],
+["Спасибо","ありがとうございます","Аригато: годзаймас"],
+["Извините / простите","すみません","Сумимасэн — и чтобы позвать официанта"],
+["Это, пожалуйста","これをください","Корэ о кудасай — показывая на меню"],
+["Счёт, пожалуйста","お会計お願いします","Окайкэй онэгай симас"],
+["Есть меню на английском?","英語のメニューはありますか","Эйго но мэню: ва аримас ка"],
+["Где туалет?","トイレはどこですか","Тоирэ ва доко дэс ка"],
+["Сколько стоит?","いくらですか","Икура дэс ка"],
+["Можно картой?","カードで払えますか","Ка:до дэ хараэмас ка"],
+["Без мяса, пожалуйста","肉なしでお願いします","Нику наси дэ онэгай симас"],
+["Очень вкусно","とてもおいしいです","Тотэмо оисий дэс"],
+["Приятного аппетита","いただきます","Итадакимас — перед едой"],
+["Спасибо за угощение","ごちそうさまでした","Готисо:сама дэсита — после еды"],
+["Ваше здоровье!","乾杯","Кампай"],
+["Отвезите по этому адресу","この住所までお願いします","Коно дзю:сё мадэ онэгай симас — для такси"],
+["Двое, пожалуйста","二人です","Футари дэс — у входа в ресторан"],
+["Не говорю по-японски","日本語は話せません","Нихонго ва ханасэмасэн"],
+["Всё в порядке, не нужно","大丈夫です","Дайдзё:бу дэс"]],
+food:[
+["Окономияки","お好み焼き","Лепёшка из теста и капусты с начинкой, жарят на плите прямо на столе. Осакский символ."],
+["Такояки","たこ焼き","Шарики из теста с осьминогом, соус и стружка тунца. Внутри очень горячие."],
+["Кусикацу","串カツ","Шашлычки в панировке во фритюре. Общий соус — макать один раз."],
+["Хото","ほうとう","Густой суп с широкой лапшой и тыквой — блюдо префектуры Яманаси, у Фудзи."],
+["Юдофу","湯豆腐","Тофу, сваренный в горячем бульоне — классика Киото, особенно у Нандзэн-дзи и в Арасияме."],
+["Тэндон","天丼","Рис с темпурой и соусом."],
+["Рамэн","ラーメン","Лапша в бульоне. Тонкоцу — свиной, сёю — соевый, мисо — мисо."],
+["Цукэмэн","つけ麺","Лапшу макают в отдельный густой бульон."],
+["Якитори","焼き鳥","Шашлычки из курицы. Сио — с солью, тарэ — с соусом."],
+["Гюкацу","牛カツ","Говяжья котлета в панировке, дожаривают сами на камне."],
+["Экибэн","駅弁","Ланч-бокс на вокзале — для синкансэна."],
+["Моти","餅","Рисовые колобки, часто с бобовой пастой."],
+["Маття","抹茶","Порошковый зелёный чай; маття-мороженое — обязательно в Киото."],
+["Сакэ","酒","Рисовое вино. Нихонсю — так его называют в Японии."],
+["Отоси","お通し","Закуска, которую в идзакая приносят без заказа и включают в счёт — это нормально."]]};
+let wtab='terms';
+function renderWords(){const q=(document.getElementById('wq').value||'').toLowerCase();
+ document.getElementById('gl').innerHTML=WORDS[wtab].filter(w=>!q||w.join(' ').toLowerCase().includes(q)).map(w=>`<div class="gi"><dt>${w[0]} <span class="jp">${w[1]}</span></dt><dd>${w[2]}</dd></div>`).join('')||'<p class="src">Ничего не нашлось.</p>';}
+document.querySelectorAll('.t2').forEach(b=>b.addEventListener('click',()=>{wtab=b.dataset.w;document.querySelectorAll('.t2').forEach(x=>x.classList.toggle('on',x===b));renderWords();}));
+document.getElementById('wq').addEventListener('input',renderWords);renderWords();
+
+// ===== Погода =====
+const CITIES=[
+ {n:"Осака",d:"1–4.12",lat:34.6687,lon:135.5013,hi:12,lo:4,sun:"16:50",tip:"Днём комфортно, вечером у канала прохладно."},
+ {n:"Киото",d:"4–7.12",lat:35.0116,lon:135.7681,hi:12,lo:2,sun:"16:45",tip:"Утром в Арасияме около нуля — шапка не лишняя."},
+ {n:"Кавагутико",d:"7–8.12",lat:35.5171,lon:138.7516,hi:8,lo:-4,sun:"16:30",tip:"На рассвете у озера мороз; Фудзи чаще видна утром."},
+ {n:"Токио",d:"8–11.12",lat:35.6812,lon:139.7671,hi:12,lo:4,sun:"16:30",tip:"Обычно сухо и солнечно."}];
+function wxRender(live){document.getElementById('wx').innerHTML=CITIES.map((c,i)=>{const L=live&&live[i];
+ const body=L?`<div class="wxd">${L.map(x=>`<span><i>${x.d}</i><b>${x.hi}°</b>/${x.lo}°</span>`).join('')}</div>`:`<div class="wxbig"><b>${c.hi}°</b><span>днём</span><b>${c.lo}°</b><span>ночью</span></div>`;
+ return `<div class="wxc"><div class="wxh"><b>${c.n}</b><span class="src">${c.d} · закат ≈ ${c.sun}</span></div>${body}<p class="src">${c.tip}</p></div>`}).join('');}
+wxRender(null);
+(async()=>{try{const now=new Date();const start=new Date('2026-11-30');if((start-now)/864e5>14)return;
+ const live=await Promise.all(CITIES.map(async c=>{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=16`);const j=await r.json();
+  const [a,b]=c.d.split('–');const y=2026;const s=a.includes('.')?a:a+'.'+b.split('.')[1];const from=s.split('.'),to=b.split('.');
+  const f=`${y}-${from[1].padStart(2,'0')}-${from[0].padStart(2,'0')}`,t=`${y}-${to[1].padStart(2,'0')}-${to[0].padStart(2,'0')}`;
+  return j.daily.time.map((d,k)=>({date:d,d:d.slice(8)+'.'+d.slice(5,7),hi:Math.round(j.daily.temperature_2m_max[k]),lo:Math.round(j.daily.temperature_2m_min[k])})).filter(x=>x.date>=f&&x.date<=t);}));
+ if(live.some(x=>x.length)){wxRender(live.map((x,i)=>x.length?x:null));document.getElementById('wx-note').textContent='Живой прогноз Open-Meteo на наши дни; обновляется при открытии сайта с интернетом.';}}catch(e){}})();
+
+// ===== Траты =====
+const CAT={food:"Еда",transport:"Транспорт",tickets:"Билеты и входы",shop:"Покупки",hotel:"Жильё",other:"Другое"};
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let exp=LS.get('exp',[]);let rate=LS.get('rate',51);let budget=LS.get('budget',90000);
+const $=id=>document.getElementById(id);const fmt=n=>Math.round(n).toLocaleString('ru-RU');
+const toYen=e=>e.cur==='JPY'?e.amt:e.amt/rate*100;const toRub=e=>e.cur==='RUB'?e.amt:e.amt*rate/100;
+function jpToday(){const n=new Date();const j=new Date(n.getTime()+(n.getTimezoneOffset()+540)*60000);return j.toISOString().slice(0,10)}
+function mRender(){const yen=exp.reduce((s,e)=>s+toYen(e),0),rub=exp.reduce((s,e)=>s+toRub(e),0);const td=jpToday();
+ $('m-yen').textContent=fmt(yen);$('m-rub').textContent=fmt(rub);$('m-left').textContent=fmt(budget-rub);$('m-day').textContent=fmt(exp.filter(e=>e.date===td).reduce((s,e)=>s+toYen(e),0));
+ const by={};exp.forEach(e=>{by[e.cat]=(by[e.cat]||0)+toRub(e)});const max=Math.max(1,...Object.values(by));
+ $('m-cats').innerHTML=Object.keys(CAT).filter(k=>by[k]).map(k=>`<div class="bar"><span>${CAT[k]}</span><i style="width:${Math.max(4,by[k]/max*100)}%"></i><b>${fmt(by[k])} ₽</b></div>`).join('')||'<p class="src">Появится после первых записей.</p>';
+ const list=[...exp].sort((a,b)=>b.date.localeCompare(a.date)||b.ts-a.ts);
+ $('m-list').innerHTML=list.length?list.map(e=>`<div class="mi"><div><b>${e.cur==='JPY'?fmt(e.amt)+' ¥':fmt(e.amt)+' ₽'}</b> <span class="src">≈ ${e.cur==='JPY'?fmt(toRub(e))+' ₽':fmt(toYen(e))+' ¥'}</span><div class="src">${e.date.slice(8)}.${e.date.slice(5,7)} · ${CAT[e.cat]}${e.note?' · '+e.note.replace(/</g,'&lt;'):''}</div></div><button type="button" class="x" data-del="${e.ts}" aria-label="Удалить запись">×</button></div>`).join(''):'<p class="src">Пока пусто. Первая запись появится здесь.</p>';
+ $('m-list').querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{exp=exp.filter(e=>String(e.ts)!==b.dataset.del);LS.set('exp',exp);mRender();}));}
+$('m-rate').value=rate;$('m-budget').value=budget;
+const td0=jpToday();$('m-date').value=(td0>='2026-11-30'&&td0<='2026-12-11')?td0:'2026-12-01';
+$('m-form').addEventListener('submit',ev=>{ev.preventDefault();const amt=parseFloat($('m-amt').value);if(!(amt>0)){$('m-msg').textContent='Введите сумму больше нуля.';return}
+ exp.push({ts:Date.now(),amt,cur:$('m-cur').value,cat:$('m-cat').value,date:$('m-date').value||jpToday(),note:$('m-note').value.trim()});LS.set('exp',exp);
+ $('m-amt').value='';$('m-note').value='';$('m-msg').textContent='Записано.';setTimeout(()=>$('m-msg').textContent='',2000);mRender();});
+$('m-rate').addEventListener('change',()=>{const v=parseFloat($('m-rate').value);if(v>0){rate=v;LS.set('rate',rate);mRender();conv();}});
+$('m-budget').addEventListener('change',()=>{const v=parseFloat($('m-budget').value);if(v>=0){budget=v;LS.set('budget',budget);mRender();}});
+function conv(){const v=parseFloat($('m-conv').value);$('m-conv-out').textContent=v>0?`${fmt(v)} ¥ ≈ ${fmt(v*rate/100)} ₽`:''}
+$('m-conv').addEventListener('input',conv);
+let armed=false;$('m-clear').addEventListener('click',()=>{if(!armed){armed=true;$('m-clear').textContent='Точно удалить? Нажмите ещё раз';setTimeout(()=>{armed=false;$('m-clear').textContent='Удалить все записи'},4000);return}
+ exp=[];LS.set('exp',exp);armed=false;$('m-clear').textContent='Удалить все записи';$('m-clear-msg').textContent=' Записи удалены.';mRender();});
+mRender();
 
 </script>
 
