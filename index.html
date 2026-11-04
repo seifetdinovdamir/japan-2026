@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Наша Япония · Декабрь 2026</title>
+<meta name="description" content="Маршрут по Японии 30.11–11.12.2026: Осака, Киото, Кавагутико, Токио">
+<meta name="theme-color" content="#22382f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Golos+Text:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&text=%E6%97%A5%E6%9C%AC%E5%A4%A7%E9%98%AA%E4%BA%AC%E9%83%BD%E5%A5%88%E8%89%AF%E7%A5%9E%E6%88%B8%E5%AF%8C%E5%A3%AB%E6%9D%B1%E5%86%AC%E3%81%AE%E6%97%85%E6%B9%96%E6%B2%B3%E5%8F%A3%E4%B8%80%E6%9C%9F%E4%BC%9A%E8%AA%9E%E5%90%89%E7%94%B0%E6%B2%B3%E5%8F%A3%E6%B9%96&display=swap">
+<style>
+/* Layout: narrow travel-journal column; hero scene, stop strip, day-by-day accordions with timelines; second tab with practical notes */
+:root{
+  --bg:#f3efe5; --paper:#fbf8f1; --ink:#22382f; --muted:#5f6f66; --line:#ddd5c4;
+  --accent:#b63a2b; --accent-soft:#f1ddd5; --gold:#a8873f; --chip:#e9e2d2;
+  --sky1:#f6c9a3; --sky2:#e9877a; --sky3:#4b5d7a; --mount:#2f3d58; --snow:#fbf3ea; --hill:#1f2a3a;
+  --display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body:"Golos Text", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --jp:"Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141b18; --paper:#1b2420; --ink:#ece6d8; --muted:#a3ab9f; --line:#2f3b35;
+  --accent:#e0705d; --accent-soft:#3a2420; --gold:#cfae66; --chip:#26302b;
+  --sky1:#e2a57d; --sky2:#b8615a; --sky3:#2b3550; --mount:#1d2638; --snow:#e8dfd2; --hill:#0f151f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b18; --paper:#1b2420; --ink:#ece6d8; --muted:#a3ab9f; --line:#2f3b35;
+  --accent:#e0705d; --accent-soft:#3a2420; --gold:#cfae66; --chip:#26302b;
+  --sky1:#e2a57d; --sky2:#b8615a; --sky3:#2b3550; --mount:#1d2638; --snow:#e8dfd2; --hill:#0f151f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.jp{font-family:var(--jp)}
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:14px;padding-block:12px;max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;font-weight:600;text-decoration:none;color:var(--ink);white-space:nowrap}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.brand .jp{font-size:13px;color:var(--muted);font-weight:500}
+nav.tabs{margin-left:auto;display:flex;gap:4px}
+nav.tabs a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:999px}
+nav.tabs a[aria-current="page"]{color:var(--ink);background:var(--chip);font-weight:600}
+/* hero */
+.hero{position:relative;margin-top:18px;border-radius:22px;overflow:hidden;background:var(--hill);color:#fbf3ea;min-height:360px;display:flex;flex-direction:column;justify-content:space-between;padding:22px}
+.hero svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.hero>*:not(svg){position:relative}
+.hero .row{display:flex;justify-content:space-between;gap:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(56px,14vw,92px);line-height:.92;margin:10px 0 8px;text-wrap:balance}
+.hero .lede{max-width:30ch;font-size:15px;opacity:.92}
+.hero .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.hero .foot .jp{font-size:20px;letter-spacing:.3em;text-transform:none}
+.dates{font-size:12px;letter-spacing:.14em;margin-top:24px}
+/* stops */
+.stops{display:flex;gap:6px;overflow-x:auto;padding:14px 2px 4px;scrollbar-width:none}
+.stops a{flex:1 0 auto;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-size:13px}
+.stops .n{width:26px;height:26px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-size:11px;font-variant-numeric:tabular-nums}
+.stops small{display:block;color:var(--muted);font-size:10px}
+.stops .sep{flex:1 1 12px;min-width:10px;height:1px;background:var(--line);align-self:center}
+/* section heads */
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:34px 0 4px}
+h2{font-family:var(--display);font-weight:600;font-size:38px;line-height:1.05;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 6px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{display:block;font-family:var(--display);font-size:30px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}}
+.note{font-size:13px;color:var(--muted);margin:8px 0 18px}
+/* days */
+details.day{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin-bottom:10px}
+details.day[open]{border-color:var(--gold)}
+details.day>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:14px 16px}
+details.day>summary::-webkit-details-marker{display:none}
+.dnum{text-align:center;border-right:1px solid var(--line);padding-right:10px}
+.dnum b{display:block;font-family:var(--display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.dnum span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.dmeta{min-width:0}
+.dcity{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.dtitle{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.15}
+.dline{font-size:13px;color:var(--muted)}
+.plus{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;color:var(--muted);transition:transform .2s}
+details.day[open] .plus{transform:rotate(45deg);color:var(--accent);border-color:var(--accent)}
+.dbody{padding:2px 16px 16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chip{font-size:12px;background:var(--chip);border-radius:999px;padding:4px 10px;color:var(--ink);text-decoration:none}
+a.chip{color:var(--accent)}
+ol.tl{list-style:none;margin:0;padding:0;border-left:1px solid var(--line);margin-left:6px}
+ol.tl li{position:relative;padding:0 0 14px 18px}
+ol.tl li::before{content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.t{font-size:12px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+ol.tl p{margin:2px 0 0}
+details.guide{margin-top:8px;background:var(--bg);border-radius:12px;padding:10px 12px}
+details.guide summary{cursor:pointer;font-size:13px;color:var(--muted);list-style:none}
+details.guide summary::-webkit-details-marker{display:none}
+details.guide summary .jp{color:var(--accent);margin-right:6px}
+details.guide summary b{display:block;color:var(--ink);font-family:var(--display);font-size:18px;font-weight:600}
+details.guide p{margin:8px 0 0;font-size:14px;max-width:65ch}
+.tip{margin-top:10px;font-size:13px;border-top:1px dashed var(--line);padding-top:10px;color:var(--muted)}
+.tip b{color:var(--ink)}
+/* info */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.panel h3{font-family:var(--display);font-size:24px;margin:0 0 8px;font-weight:600}
+.panel ul{margin:6px 0 0;padding-left:18px}
+.panel li{margin:4px 0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--line);padding:6px 8px}
+td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top}
+td.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:600;border-bottom:none;color:var(--accent);font-size:15px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.flight{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+.flight:last-child{border-bottom:none}
+.flight .tm{font-family:var(--display);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.flight .rt{font-size:13px;color:var(--muted)}
+.check li{list-style:none}
+.check{padding-left:0!important}
+.check input{accent-color:var(--accent);margin-right:6px}
+.when{font-weight:600;color:var(--accent)}
+.src{font-size:12px;color:var(--muted)}
+.src a{word-break:break-word}
+footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:19px}nav.tabs a{padding:6px 8px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <a class="brand" href="#route"><span class="dot"></span>Наша Япония <span class="jp">日本</span></a>
+  <nav class="tabs" aria-label="Разделы"><a href="#route" id="tab-route">Маршрут</a><a href="#info" id="tab-info">Полезное</a></nav>
+</div></header>
+
+<div class="wrap">
+
+<section id="view-route">
+  <div class="hero">
+    <svg class="scene" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky3)"/><stop offset=".55" stop-color="var(--sky2)"/><stop offset="1" stop-color="var(--sky1)"/></linearGradient>
+      <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
+      <rect width="400" height="360" fill="url(#sky)"/>
+      <circle cx="292" cy="150" r="34" fill="var(--accent)" opacity=".85"/>
+      <path d="M40 300 L170 150 Q200 120 230 150 L360 300 Z" fill="var(--mount)"/>
+      <path d="M170 150 Q200 120 230 150 L214 168 L204 160 L196 172 L186 162 Z" fill="var(--snow)"/>
+      <path d="M0 300 Q90 250 180 285 T400 270 L400 360 L0 360 Z" fill="var(--hill)" opacity=".85"/>
+      <g fill="var(--hill)"><rect x="66" y="196" width="6" height="110"/><path d="M48 206h42l-8 -8h-26z M52 230h34l-7 -7h-20z M55 252h28l-6 -6h-16z M58 272h22l-5 -5h-12z"/><rect x="62" y="206" width="14" height="24"/><rect x="63" y="230" width="12" height="22"/><rect x="64" y="252" width="10" height="20"/></g>
+      <rect width="400" height="360" fill="url(#shade)"/>
+    </svg>
+    <div class="row"><span>Наш отпуск вдвоём</span><span class="jp">冬の旅 · Зимнее путешествие</span></div>
+    <div>
+      <div class="dates">30 ноября — 11 декабря 2026</div>
+      <h1>Наша<br>Япония.</h1>
+      <div class="lede">От неона Дотонбори и храмов Киото до Фудзи над озером Кавагутико.</div>
+    </div>
+    <div class="foot"><span>12 дней / вдвоём</span><span class="jp">一期一会</span></div>
+  </div>
+
+  <div class="stops" aria-label="Остановки">
+    <a href="#d1"><span class="n">01</span><span>Осака<small class="jp">大阪</small></span></a><span class="sep"></span>
+    <a href="#d4"><span class="n">02</span><span>Киото<small class="jp">京都</small></span></a><span class="sep"></span>
+    <a href="#d7"><span class="n">03</span><span>Кавагутико<small class="jp">河口湖</small></span></a><span class="sep"></span>
+    <a href="#d8"><span class="n">04</span><span>Токио<small class="jp">東京</small></span></a>
+  </div>
+
+  <div class="eyebrow">Один день за другим</div>
+  <h2>Наш маршрут</h2>
+  <p class="sub">Три ночи в Осаке, три в Киото, ночь в рёкане Kogetsu у Фудзи и три ночи в Токио.</p>
+  <div class="stats">
+    <div class="stat"><b>12</b><span>дней с перелётом</span></div>
+    <div class="stat"><b>4</b><span>отеля, один из них рёкан</span></div>
+    <div class="stat"><b>10</b><span>ночей в Японии</span></div>
+    <div class="stat"><b>≈386</b><span>тыс. ₽ на двоих</span></div>
+  </div>
+  <p class="note">Время местное. Переезды и билеты уточняем ближе к поездке. Открывайте «Рассказ гида» под днями.</p>
+
+  <div id="days"></div>
+
+  <div class="eyebrow">Если захочется иначе</div>
+  <h2>Что ещё можно</h2>
+  <div class="panel">
+    <ul>
+      <li><b>Кобе</b> вместо Нары 3.12: район Китано, обед с говядиной Кобе, сакэварни Нада. Электричка Hanshin от Намбы около 40 минут.</li>
+      <li><b>Universal Studios Japan</b> в Осаке: квартал Wizarding World of Harry Potter и Super Nintendo World. Целый день и отдельный билет.</li>
+      <li><b>teamLab Planets</b> в Токио — вечером 9.12 после Гиндзы, билеты на время онлайн.</li>
+      <li><b>Хаконэ</b> вместо Кавагутико: онсэны и рёканы вроде Mizunoto, но Фудзи видна хуже.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="view-info" hidden>
+  <div class="eyebrow">Всё под рукой</div>
+  <h2>Полезное</h2>
+  <p class="sub">Билеты, отели, виза и бюджет. Цены на двоих, проверены 4 ноября 2026.</p>
+
+  <div class="panel">
+    <h3>Перелёт <span class="badge">China Southern · один билет</span></h3>
+    <div class="flight"><span class="tm">14:50</span><span>Москва SVO → Гуанчжоу CAN<br><span class="rt">пн 30.11 · прилёт 05:10, пересадка 4 ч 30 мин</span></span><span class="rt">9 ч 20 мин</span></div>
+    <div class="flight"><span class="tm">09:40</span><span>Гуанчжоу CAN → Осака KIX<br><span class="rt">вт 1.12 · прилёт 14:10</span></span><span class="rt">3 ч 30 мин</span></div>
+    <div class="flight"><span class="tm">10:45</span><span>Токио HND → Гуанчжоу CAN<br><span class="rt">пт 11.12 · прилёт 15:00, пересадка 1 ч</span></span><span class="rt">5 ч 15 мин</span></div>
+    <div class="flight"><span class="tm">16:00</span><span>Гуанчжоу CAN → Москва SVO<br><span class="rt">пт 11.12 · прилёт 21:15</span></span><span class="rt">10 ч 15 мин</span></div>
+    <ul>
+      <li><b>131 999 ₽ за двоих</b> напрямую у Авиасейлс на 4 ноября; 3 ноября было 121 782 ₽, цена растёт. 4 места багажа на двоих, обмен и возврат платные.</li>
+      <li>Сравните с приложением Т-Банка: там кэшбэк до 7% при оплате их картой.</li>
+      <li>Пересадка в Гуанчжоу на обратном пути всего час. Билет единый: при опоздании авиакомпания пересаживает на следующий рейс.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>Отели</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Ночи</th><th>Где</th><th class="n">Цена</th></tr></thead>
+      <tbody>
+        <tr><td>1–4.12<br><span class="src">3 ночи</span></td><td><b>Dormy Inn Premium Namba</b>, Осака · свой онсэн, 430 м до метро Ниппомбаси, 10 минут пешком до Дотонбори<br><span class="src">Booking: отмена до 30.11, оплата 28.11</span></td><td class="n">24 858 ₽</td></tr>
+        <tr><td>4–7.12<br><span class="src">3 ночи</span></td><td><b>Keio Prelia Hotel Kyoto Karasuma-Gojo</b>, Киото · 9,1 на Booking, у станции метро Годзё<br><span class="src">Booking: отмена до 2.12, оплата в отеле. Вариант ближе к Гиону — HOTEL RINGS KYOTO, 9,2, 46 137 ₽</span></td><td class="n">39 836 ₽</td></tr>
+        <tr><td>7–8.12<br><span class="src">1 ночь</span></td><td><b>Shuhokaku Kogetsu</b>, Кавагутико · рёкан на северном берегу, Фудзи через озеро; японский номер 20 м², ужин кайсэки и завтрак, онсэн, бесплатный трансфер от станции<br><span class="src">Klook: €586, без возврата, остался 1 номер. Бронировать после визы и подтвердить письмом в рёкан. Заселение 15:00–19:00, ужин до 19:00</span></td><td class="n">≈ 54 000 ₽</td></tr>
+        <tr><td>8–11.12<br><span class="src">3 ночи</span></td><td><b>KOKO Hotel Premier Nihonbashi Hamacho</b>, Токио · 17 м², 470 м до Нингётё, прямые поезда в Ханэду<br><span class="src">Booking: отмена до 1.12, оплата 29.11</span></td><td class="n">39 186 ₽</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="panel">
+    <h3>Виза</h3>
+    <ul>
+      <li>Подаём в визовый центр Японии (VFS) в Москве; сбор 970 ₽ с человека, сама виза бесплатная. Срок — от 5 рабочих дней, подать лучше до 10–13 ноября.</li>
+      <li>Нужно: загранпаспорт и копии внутреннего, анкета на английском, фото 35×45 мм, справка из российского банка с мокрой печатью (ориентир около $150 в день на человека), справка с работы, билеты туда и обратно, программа пребывания по шаблону.</li>
+      <li>Брони отелей в Москве не сдают, но отели указываем в программе, а первый — в анкете.</li>
+      <li>В программе пребывания пишем конкретные места на каждый день, без слова «sightseeing».</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>Билеты и транспорт</h3>
+    <ul>
+      <li><b>Студия «Гарри Поттер»</b>, 9.12 в 10:00: 6 600 ¥ на взрослого, только онлайн на официальном сайте, иностранной картой.</li>
+      <li><b>Fuji Excursion</b> на 8.12: продажа открывается за месяц, 8.11 в 10:00 по Токио.</li>
+      <li><b>Синкансэн</b> 7.12 Киото → Мисима: можно купить в приложении smartEX иностранной картой. Автобус Мисима → Кавагутико лучше забронировать.</li>
+      <li><b>Багаж</b> 7.12 утром — курьером Yamato из отеля в Киото в KOKO, обычно 2 500–3 500 ¥ за чемодан. В рёкан едем с рюкзаками.</li>
+      <li><b>Из аэропорта Кансай</b> — поезд Nankai до Намбы, около 45 минут.</li>
+      <li><b>Токио:</b> Tokyo Subway Ticket на 72 часа — 2 000 ¥, покрывает и дорогу к студии.</li>
+      <li><b>ICOCA или Suica</b> — для электричек в Нару и Киото.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>Бюджет на двоих</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Статья</th><th class="n">₽</th></tr></thead>
+      <tbody>
+        <tr><td>Перелёт China Southern</td><td class="n">131 999</td></tr>
+        <tr><td>Осака, Dormy Inn, 3 ночи</td><td class="n">24 858</td></tr>
+        <tr><td>Киото, Keio Prelia, 3 ночи</td><td class="n">39 836</td></tr>
+        <tr><td>Рёкан Kogetsu, ужин и завтрак</td><td class="n">≈ 54 000</td></tr>
+        <tr><td>Токио, KOKO, 3 ночи</td><td class="n">39 186</td></tr>
+        <tr><td>Еда, около 72 000 ¥</td><td class="n">36 800</td></tr>
+        <tr><td>Транспорт по Японии, около 60 000 ¥</td><td class="n">30 600</td></tr>
+        <tr><td>Билеты и развлечения, около 43 000 ¥ (студия — 13 200 ¥)</td><td class="n">22 100</td></tr>
+        <tr><td>Виза, страховка, связь</td><td class="n">7 000</td></tr>
+        <tr class="total"><td>Итого</td><td class="n">≈ 386 000</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">Без покупок. Курс ЦБ около 51 ₽ за 100 ¥, евро около 92 ₽.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Что сделать</h3>
+    <p class="src">Отметки сохраняются только на этом устройстве.</p>
+    <ul class="check" id="todo">
+      <li><label><input type="checkbox" id="t1"> <span class="when">Сейчас.</span> Купить билеты China Southern — цена растёт.</label></li>
+      <li><label><input type="checkbox" id="t2"> <span class="when">На этой неделе.</span> Записаться в визовый центр, справки из банка и с работы.</label></li>
+      <li><label><input type="checkbox" id="t3"> <span class="when">8 ноября, 10:00 по Токио.</span> Билеты Fuji Excursion на 8.12.</label></li>
+      <li><label><input type="checkbox" id="t4"> <span class="when">До 10 ноября.</span> Подать документы на визу.</label></li>
+      <li><label><input type="checkbox" id="t5"> <span class="when">До 28 ноября.</span> Забронировать отели в Осаке, Киото и Токио с бесплатной отменой.</label></li>
+      <li><label><input type="checkbox" id="t6"> <span class="when">После визы.</span> Kogetsu на Klook и студия «Гарри Поттер» на 9.12, 10:00.</label></li>
+      <li><label><input type="checkbox" id="t7"> <span class="when">За 2–3 дня.</span> Visit Japan Web: аккаунт на каждого, QR для границы. Первый отель — Dormy Inn Premium Namba.</label></li>
+      <li><label><input type="checkbox" id="t8"> <span class="when">7 декабря утром.</span> Отправить чемоданы из Киото в Токио.</label></li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>Ссылки</h3>
+    <p class="src">
+      <a href="https://www.aviasales.ru/search/MOW3011OSA-TYO11122">Авиасейлс: Москва → Осака, Токио → Москва</a><br>
+      <a href="https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html?checkin=2026-12-01&amp;checkout=2026-12-04&amp;group_adults=2&amp;no_rooms=1">Booking: Dormy Inn Premium Namba</a><br>
+      <a href="https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html?checkin=2026-12-04&amp;checkout=2026-12-07&amp;group_adults=2&amp;no_rooms=1">Booking: Keio Prelia Kyoto Karasuma-Gojo</a><br>
+      <a href="https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/?room_num=1&amp;adult_num=2&amp;child_num=0&amp;check_in=2026-12-07&amp;check_out=2026-12-08">Klook: Shuhokaku Kogetsu</a><br>
+      <a href="https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html?checkin=2026-12-08&amp;checkout=2026-12-11&amp;group_adults=2&amp;no_rooms=1">Booking: KOKO Premier Hamacho</a><br>
+      <a href="https://book.wbstudiotour.com/?event_type_id=30&amp;journey_id=10&amp;site_id=3&amp;language_id=1">Warner Bros. Studio Tour Tokyo: билеты</a><br>
+      <a href="https://wrenjapan.com/essentials/japan-visa-complete-guide-ru/">WrenJapan: виза в Японию</a><br>
+      <a href="https://www.vjw.digital.go.jp/">Visit Japan Web</a><br>
+      <a href="https://www.trvlogue.com/ja/fuji-excursion-tokyo-kawaguchiko">Fuji Excursion: расписание и билеты</a>
+    </p>
+  </div>
+</section>
+
+<footer>Наша Япония · 30.11–11.12.2026 · цены на 4 ноября<br><span id="offline"></span></footer>
+</div>
+
+<script>
+const DAYS=[
+{id:"d30",n:"30",m:"НОЯ · ПН",city:"В пути",title:"Курс на восток",line:"Шереметьево · перелёт через Гуанчжоу",km:"",chips:[],tl:[
+ ["11:50","Шереметьево, регистрация на China Southern."],["14:50","Вылет в Гуанчжоу, ночь в самолёте."]]},
+{id:"d1",n:"01",m:"ДЕК · ВТ",city:"Осака",title:"Привет, Япония",line:"Прилёт · Dormy Inn · Дотонбори",km:"3–5 км",chips:[["Dormy Inn Premium Namba","https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html"]],tl:[
+ ["05:10","Гуанчжоу, пересадка 4,5 часа. В 09:40 — рейс в Осаку."],
+ ["14:10","Прилёт в Кансай. Паспорт и QR Visit Japan Web на границе и таможне, около часа."],
+ ["15:30","Поезд Nankai до Намбы, около 45 минут. Или Rapi:t с местами по отдельному билету."],
+ ["16:30","Заселение в Dormy Inn, онсэн после дороги."],
+ ["18:30","Дотонбори: канал, мост Эбисубаси, бегущий человек Glico, такояки и окономияки.",{g:["Дотонбори: улица, где принято объедаться","Канал прокопали в начале XVII века на деньги купца Ясуи Дотона; его имя и осталось за районом. Рядом были театры, а вокруг них — бесконечные лавки с едой. Отсюда осакская поговорка «куйдаорэ» — есть до упаду. Светящийся бегун Glico висит над каналом с 1935 года и за это время сменил несколько поколений."]}],
+ ["20:30","Синсайбаси — только если остались силы."]],
+ tip:"День длинный: в самолёте лучше выспаться, а вечером не планировать ничего обязательного."},
+{id:"d2",n:"02",m:"ДЕК · СР",city:"Осака",title:"Замок и огни большого города",line:"Куромон · замок Осаки · Синсэкай · Umeda Sky",km:"9–12 км",chips:[],tl:[
+ ["09:00","Рынок Куромон: завтрак морепродуктами и клубникой на палочке."],
+ ["10:30","Замок Осаки и парк вокруг.",{g:["Замок, который строили трижды","Первый замок поставил Тоётоми Хидэёси в 1583 году как символ объединения страны. Его сожгли в 1615-м, затем отстроили и снова потеряли от пожара. Нынешняя башня — бетонная реконструкция 1931 года, внутри музей. Самое впечатляющее снаружи — гигантские камни стен и рвы."]}],
+ ["14:00","Синсэкай и башня Цутэнкаку, обед — кусикацу. Соус общий, макать дважды нельзя."],
+ ["16:15","Umeda Sky Building: закат с открытой площадки на 173 метрах."],
+ ["19:00","Ужин в Умэде или обратно в Намбу."]]},
+{id:"d3",n:"03",m:"ДЕК · ЧТ",city:"Нара",title:"Олени и Большой Будда",line:"Парк Нара · Тодай-дзи · Касуга",km:"10–13 км",chips:[],tl:[
+ ["09:00","Электричка Kintetsu от Намбы, около 40 минут."],
+ ["10:00","Парк Нара и Тодай-дзи.",{g:["Будда под самой большой крышей","Бронзового Будду высотой около 15 метров открыли в 752 году. Зал Дайбуцудэн много раз горел, нынешний меньше первоначального, но всё равно один из крупнейших деревянных залов мира. Олени здесь считаются посланниками богов. Им продают печенье сика-сэмбэй, и многие олени кланяются, выпрашивая угощение."]}],
+ ["13:00","Касуга-тайся и тысячи каменных фонарей."],
+ ["15:30","Нигацу-до: закат над Нарой с деревянной веранды."],
+ ["18:00","Обратно в Осаку, последний вечер в Намбе."]]},
+{id:"d4",n:"04",m:"ДЕК · ПТ",city:"Киото",title:"Сквозь красные тории",line:"Переезд · Фусими-Инари · Понтотё",km:"8–11 км",chips:[["Keio Prelia Kyoto Karasuma-Gojo","https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html"]],tl:[
+ ["09:30","Выселение. Метро до станции Осака и JR Special Rapid до Киото, около 30 минут; затем метро одну остановку до Годзё."],
+ ["11:00","Оставить чемоданы в отеле, обед."],
+ ["13:00","Фусими-Инари — электричка JR Nara line от станции Киото, 5 минут.",{g:["Тысячи ворот бога риса","Это главное святилище Инари — бога урожая и торговли. Каждые красные ворота подарила компания или семья: на обороте вырезано имя дарителя и дата. Тропа уходит в гору на 2–3 часа, но самые красивые коридоры начинаются в первые 20 минут. Лисы у входов — посланники Инари, в зубах у них ключ от амбара."]}],
+ ["16:30","Заселение и отдых."],
+ ["18:30","Ужин в переулке Понтотё вдоль реки Камо."]]},
+{id:"d5",n:"05",m:"ДЕК · СБ",city:"Киото",title:"Старые улицы в свете фонарей",line:"Киёмидзу · Санэнзака · Гион · Эйкан-до",km:"10–13 км",chips:[],tl:[
+ ["08:00","Киёмидзу-дэра до толп — в субботу особенно важно прийти рано.",{g:["Храм на деревянной сцене","Храм основан в 778 году. Его знаменитая веранда стоит на высоких деревянных опорах, собранных без единого гвоздя. Японцы говорят «прыгнуть со сцены Киёмидзу», когда решаются на что-то отчаянное. Внизу — водопад Отова: три струи, из которых пьют на здоровье, любовь и учёбу, но только из одной."]}],
+ ["10:00","Санэнзака и Нинэндзака, пагода Ясака."],
+ ["12:30","Обед, затем Кодай-дзи."],
+ ["14:30","Нандзэн-дзи и Эйкан-до — клёны в начале декабря ещё красные."],
+ ["17:30","Гион и улица Ханамикодзи в сумерках, святилище Ясака с фонарями."]]},
+{id:"d6",n:"06",m:"ДЕК · ВС",city:"Киото",title:"Бамбук и золото",line:"Арасияма · Тэнрю-дзи · Кинкаку-дзи · Нисики",km:"9–12 км",chips:[],tl:[
+ ["07:30","JR Sagano line до Сага-Арасиямы."],
+ ["08:15","Бамбуковая роща, сад Тэнрю-дзи, мост Тогэцукё.",{g:["Мост, по которому идёт луна","Тэнрю-дзи основан в 1339 году, его сад с прудом — один из старейших в Японии. Название моста Тогэцукё переводят как «мост, по которому переходит луна»: так его назвал император, любуясь луной над рекой. Бамбуковая роща лучше всего рано утром, пока нет людей."]}],
+ ["13:00","Кинкаку-дзи, Золотой павильон — такси или автобус.",{g:["Павильон, сгоревший и вернувшийся","Это бывшая вилла сёгуна Асикаги Ёсимицу конца XIV века. В 1950 году павильон сжёг молодой монах, история легла в основу романа Мисимы. Нынешнее здание построено в 1955 году, два верхних этажа покрыты сусальным золотом."]}],
+ ["14:30","Каменный сад Рёан-дзи."],
+ ["17:00","Рынок Нисики, вечером собрать чемоданы для отправки в Токио."]]},
+{id:"d7",n:"07",m:"ДЕК · ПН",city:"Кавагутико",title:"Ночь с видом на Фудзи",line:"Синкансэн · Мисима · рёкан Kogetsu",km:"3–5 км",chips:[["Shuhokaku Kogetsu","https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/"]],tl:[
+ ["08:30","Чемоданы — курьером Yamato из отеля в KOKO в Токио; с собой рюкзаки на ночь."],
+ ["09:30","Синкансэн Hikari Киото → Мисима, около 2 часов."],
+ ["12:00","Автобус Мисима → станция Кавагутико, около 1,5–2 часов."],
+ ["14:30","Обед у станции — местная лапша хото. Затем бесплатный трансфер рёкана."],
+ ["15:30","Заселение в Kogetsu, юката, онсэн.",{g:["Как вести себя в рёкане","Обувь снимают у входа, в номере ходят босиком по татами. Юкату запахивают левой полой поверх правой. В онсэн заходят после душа, без полотенца в воде. Вечером, пока вы на ужине, персонал раскладывает футоны."]}],
+ ["18:00","Ужин кайсэки — до 19:00, опаздывать нельзя."]],
+ tip:"<b>Важно:</b> в Kogetsu ужин подают только до 19:00, поэтому выезжаем из Киото не позже 10 утра."},
+{id:"d8",n:"08",m:"ДЕК · ВТ",city:"Кавагутико → Токио",title:"Пагода и Фудзи на рассвете",line:"Рассвет над озером · Тюрэйто · Fuji Excursion",km:"7–10 км + 398 ступеней",chips:[["KOKO Premier Hamacho","https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html"]],tl:[
+ ["06:30","Рассвет: Фудзи отражается в озере — в декабре гора чаще всего видна утром."],
+ ["09:30","Такси до пагоды Тюрэйто в Симоёсиде.",{g:["Пятиярусная пагода над городом","Пагода стоит у святилища Аракура Сэнгэн и построена в 1963 году в память о погибших. К площадке ведут 398 ступеней. Отсюда снимают знаменитый кадр: красная пагода, город и Фудзи."]}],
+ ["12:30","Поезд Fuji Excursion от станции Фудзисан до Синдзюку, около 2 часов."],
+ ["15:30","Метро до Хамачё, заселение в KOKO — чемоданы уже ждут."],
+ ["18:00","Синдзюку вечером: переулок Омоидэ-Ёкотё, якитори."]]},
+{id:"d9",n:"09",m:"ДЕК · СР",city:"Токио",title:"По ту сторону экрана",line:"Warner Bros. Studio Tour Tokyo · Гиндза",km:"5–8 км",chips:[["Билеты на студию","https://book.wbstudiotour.com/?event_type_id=30&journey_id=10&site_id=3&language_id=1"]],tl:[
+ ["09:00","Метро до станции Тосимаэн, около 50 минут, по Tokyo Subway Ticket."],
+ ["10:00","Студия «The Making of Harry Potter».",{g:["Студия на месте старого парка","Студия открылась в июне 2023 года там, где почти сто лет работал парк аттракционов Тосимаэн. Это крупнейший крытый центр, посвящённый «Гарри Поттеру». Внутри Большой зал, Косой переулок, платформа 9¾ с поездом и огромный макет Хогвартса, по которому снимали фильмы."]}],
+ ["14:30","Обед в кафе студии, магазин."],
+ ["17:00","Гиндза: покупки и ужин."]]},
+{id:"d10",n:"10",m:"ДЕК · ЧТ",city:"Токио",title:"От древнего храма к Сибуе",line:"Асакуса · Мэйдзи · Харадзюку · Сибуя",km:"11–14 км",chips:[],tl:[
+ ["08:30","Асакуса и Сэнсо-дзи до толп.",{g:["Самый старый храм Токио","По легенде, в 628 году два брата-рыбака вытащили из реки Сумида статуэтку богини Каннон. Для неё и построили храм. Огромный фонарь висит в воротах Каминаримон — Громовых воротах. Улица Накамисэ ведёт к храму и кормит сладостями уже несколько веков."]}],
+ ["12:00","Обед: соба или тэндон."],
+ ["13:30","Святилище Мэйдзи и Такэсита-дори в Харадзюку."],
+ ["16:00","Shibuya Sky на закате, перекрёсток Сибуя."],
+ ["20:00","В отель, собрать вещи: утром ранний выезд."]]},
+{id:"d11",n:"11",m:"ДЕК · ПТ",city:"Токио → Москва",title:"До встречи, Япония",line:"Ханэда · CZ через Гуанчжоу",km:"День вылета",chips:[],tl:[
+ ["07:45","Выезд из KOKO. От Нингётё прямой поезд в Ханэду, около 40 минут."],
+ ["08:45","Ханэда, терминал 3: регистрация и граница."],
+ ["10:45","Вылет в Гуанчжоу, пересадка 1 час."],
+ ["21:15","Прилёт в Шереметьево."]]}
+];
+const host=document.getElementById('days');
+host.innerHTML=DAYS.map(d=>`
+<details class="day" id="${d.id}">
+ <summary><div class="dnum"><b>${d.n}</b><span>${d.m}</span></div>
+ <div class="dmeta"><div class="dcity">${d.city}</div><div class="dtitle">${d.title}</div><div class="dline">${d.line}${d.km?' · '+d.km:''}</div></div>
+ <span class="plus" aria-hidden="true">+</span></summary>
+ <div class="dbody">
+  ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${c[1]}" target="_blank" rel="noopener">${c[0]} ↗</a>`).join('')}</div>`:''}
+  <ol class="tl">${d.tl.map(t=>`<li><span class="t">${t[0]}</span><p>${t[1]}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')}</ol>
+  ${d.tip?`<div class="tip">${d.tip}</div>`:''}
+ </div>
+</details>`).join('');
+host.querySelector('details').open=true;
+document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'});}}));
+function route(){const info=location.hash==='#info';document.getElementById('view-route').hidden=info;document.getElementById('view-info').hidden=!info;
+ const r=document.getElementById('tab-route'),i=document.getElementById('tab-info');r.removeAttribute('aria-current');i.removeAttribute('aria-current');(info?i:r).setAttribute('aria-current','page');}
+window.addEventListener('hashchange',()=>{route();window.scrollTo(0,0)});route();
+document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
+</script>
+
+<script>
+const off=document.getElementById('offline');
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{off.textContent='Готово без интернета: страница сохранена на этом устройстве.'}).catch(()=>{})}
+</script>
+</body>
+</html>
