@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Golos+Text:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&text=%E6%97%A5%E6%9C%AC%E5%A4%A7%E9%98%AA%E4%BA%AC%E9%83%BD%E5%A5%88%E8%89%AF%E7%A5%9E%E6%88%B8%E5%AF%8C%E5%A3%AB%E6%9D%B1%E5%86%AC%E3%81%AE%E6%97%85%E6%B9%96%E6%B2%B3%E5%8F%A3%E4%B8%80%E6%9C%9F%E4%BC%9A%E8%AA%9E%E5%90%89%E7%94%B0%E6%B2%B3%E5%8F%A3%E6%B9%96&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap">
 <style>
 /* Layout: narrow travel-journal column; hero scene, stop strip, day-by-day accordions with timelines; second tab with practical notes */
 :root{
@@ -128,6 +128,38 @@ tr.total td{font-weight:600;border-bottom:none;color:var(--accent);font-size:15p
 footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<style>:root{--sea:#dfe8e6;--land:#ece4d2;--coast:#b8a98a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sea:#1c2a2e;--land:#26302b;--coast:#4a5a52}}
+:root[data-theme="dark"]{--sea:#1c2a2e;--land:#26302b;--coast:#4a5a52}
+.hero.map{background:var(--sea);color:var(--ink);min-height:440px;justify-content:flex-start}
+.hero.map .row{opacity:.75}
+.hero.map h1{font-size:clamp(52px,13vw,84px)}
+.hero.map .lede{max-width:24ch}
+.hero.map .foot{position:absolute;left:22px;right:22px;bottom:18px}
+.hero.map svg.scene text{fill:var(--ink)}
+.today{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--paper);border:1px solid var(--gold);border-radius:14px;padding:12px 14px;margin-top:12px}
+.today b{font-family:var(--display);font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
+.today button,.btn{font:inherit;font-size:13px;background:var(--accent);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+li.now::before{background:var(--accent)!important}
+li.now .t::after{content:" · сейчас";color:var(--accent)}
+.maplink{font-size:12px;margin-left:6px;white-space:nowrap}
+.block{margin-top:12px;background:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
+.block h4{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.block ol{margin:0;padding-left:20px}.block ol li{margin:3px 0}
+.food{display:grid;gap:6px}
+.food div{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.food .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:62px}
+.hotel{border-top:1px solid var(--line);padding:12px 0}
+.hotel:first-of-type{border-top:0;padding-top:4px}
+.hotel .jpname{font-family:var(--jp);font-size:14px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:13px;margin:6px 0}
+.kv span:nth-child(odd){color:var(--muted)}
+.taxi{position:fixed;inset:0;z-index:20;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:18px;padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.taxi .big{font-family:var(--jp);font-size:clamp(26px,8vw,44px);line-height:1.35;word-break:break-all}
+.taxi .say{font-family:var(--jp);font-size:20px;color:var(--accent)}
+.taxi .ru{font-size:14px;color:var(--muted)}
+</style>
 <style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:19px}nav.tabs a{padding:6px 8px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
 </head>
 <body>
@@ -139,26 +171,30 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
 <div class="wrap">
 
 <section id="view-route">
-  <div class="hero">
-    <svg class="scene" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky3)"/><stop offset=".55" stop-color="var(--sky2)"/><stop offset="1" stop-color="var(--sky1)"/></linearGradient>
-      <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
-      <rect width="400" height="360" fill="url(#sky)"/>
-      <circle cx="292" cy="150" r="34" fill="var(--accent)" opacity=".85"/>
-      <path d="M40 300 L170 150 Q200 120 230 150 L360 300 Z" fill="var(--mount)"/>
-      <path d="M170 150 Q200 120 230 150 L214 168 L204 160 L196 172 L186 162 Z" fill="var(--snow)"/>
-      <path d="M0 300 Q90 250 180 285 T400 270 L400 360 L0 360 Z" fill="var(--hill)" opacity=".85"/>
-      <g fill="var(--hill)"><rect x="66" y="196" width="6" height="110"/><path d="M48 206h42l-8 -8h-26z M52 230h34l-7 -7h-20z M55 252h28l-6 -6h-16z M58 272h22l-5 -5h-12z"/><rect x="62" y="206" width="14" height="24"/><rect x="63" y="230" width="12" height="22"/><rect x="64" y="252" width="10" height="20"/></g>
-      <rect width="400" height="360" fill="url(#shade)"/>
-    </svg>
-    <div class="row"><span>Наш отпуск вдвоём</span><span class="jp">冬の旅 · Зимнее путешествие</span></div>
+  <div class="hero map">
+    <svg class="scene" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="400" height="420" fill="var(--sea)"/>
+      <g stroke="var(--coast)" stroke-opacity=".35" fill="none"><path d="M0 120 Q100 110 200 120 T400 115"/><path d="M0 150 Q100 140 200 150 T400 145"/></g>
+      <g transform="translate(0,34)"><path d="M10 380 C55 345 85 325 118 318 C150 311 168 296 196 284 C224 272 242 266 268 248 C294 230 314 206 334 172 C350 146 366 128 392 104 L400 112 L400 168 C376 190 356 218 330 240 C304 262 278 280 246 296 C214 312 182 324 150 340 C118 356 84 380 52 396Z" fill="var(--land)" stroke="var(--coast)" stroke-width="1.5"/>
+      <path d="M110 352 L128 330 L262 290 L318 230" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <g font-family="Golos Text, sans-serif" font-size="12">
+        <circle cx="110" cy="352" r="7" fill="var(--accent)"/><text x="82" y="378">Осака</text>
+        <circle cx="128" cy="330" r="7" fill="var(--accent)"/><text x="122" y="316">Киото</text>
+        <circle cx="262" cy="290" r="7" fill="var(--accent)"/><text x="214" y="318">Кавагутико</text>
+        <circle cx="318" cy="230" r="7" fill="var(--accent)"/><text x="306" y="216" text-anchor="end">Токио</text>
+      </g>
+      <path d="M249 282 l13 -20 l13 20z" fill="var(--ink)"/><path d="M257 270 l5 -8 l5 8z" fill="var(--paper)"/>
+      <g transform="translate(332,312) rotate(-12)"><rect x="-38" y="-22" width="76" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="0" y="7" text-anchor="middle" font-family="Noto Serif JP, serif" font-size="19" fill="var(--accent)" style="fill:var(--accent)">日本</text></g>
+      
+    </g></svg>
+    <div class="row"><span>12 дней · вдвоём</span><span class="jp">一期一会</span></div>
     <div>
       <div class="dates">30 ноября — 11 декабря 2026</div>
       <h1>Наша<br>Япония.</h1>
-      <div class="lede">От неона Дотонбори и храмов Киото до Фудзи над озером Кавагутико.</div>
+      <div class="lede">Осака, Киото, Фудзи и Токио — четыре остановки по Хонсю.</div>
     </div>
-    <div class="foot"><span>12 дней / вдвоём</span><span class="jp">一期一会</span></div>
-  </div>
+    </div>
+  <div class="today" id="today" hidden><span id="today-text"></span><button type="button" id="today-btn" hidden>Открыть день</button></div>
 
   <div class="stops" aria-label="Остановки">
     <a href="#d1"><span class="n">01</span><span>Осака<small class="jp">大阪</small></span></a><span class="sep"></span>
@@ -176,7 +212,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
     <div class="stat"><b>10</b><span>ночей в Японии</span></div>
     <div class="stat"><b>≈386</b><span>тыс. ₽ на двоих</span></div>
   </div>
-  <p class="note">Время местное. Переезды и билеты уточняем ближе к поездке. Открывайте «Рассказ гида» под днями.</p>
+  <p class="note">Время местное. В каждом дне — «Как добраться», «Где поесть» и ссылки на карту. Часы работы мест проверяем ближе к поездке.</p>
 
   <div id="days"></div>
 
@@ -210,17 +246,10 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
     </ul>
   </div>
 
-  <div class="panel">
+  <div class="panel" id="hotels">
     <h3>Отели</h3>
-    <div class="tbl"><table>
-      <thead><tr><th>Ночи</th><th>Где</th><th class="n">Цена</th></tr></thead>
-      <tbody>
-        <tr><td>1–4.12<br><span class="src">3 ночи</span></td><td><b>Dormy Inn Premium Namba</b>, Осака · свой онсэн, 430 м до метро Ниппомбаси, 10 минут пешком до Дотонбори<br><span class="src">Booking: отмена до 30.11, оплата 28.11</span></td><td class="n">24 858 ₽</td></tr>
-        <tr><td>4–7.12<br><span class="src">3 ночи</span></td><td><b>Keio Prelia Hotel Kyoto Karasuma-Gojo</b>, Киото · 9,1 на Booking, у станции метро Годзё<br><span class="src">Booking: отмена до 2.12, оплата в отеле. Вариант ближе к Гиону — HOTEL RINGS KYOTO, 9,2, 46 137 ₽</span></td><td class="n">39 836 ₽</td></tr>
-        <tr><td>7–8.12<br><span class="src">1 ночь</span></td><td><b>Shuhokaku Kogetsu</b>, Кавагутико · рёкан на северном берегу, Фудзи через озеро; японский номер 20 м², ужин кайсэки и завтрак, онсэн, бесплатный трансфер от станции<br><span class="src">Klook: €586, без возврата, остался 1 номер. Бронировать после визы и подтвердить письмом в рёкан. Заселение 15:00–19:00, ужин до 19:00</span></td><td class="n">≈ 54 000 ₽</td></tr>
-        <tr><td>8–11.12<br><span class="src">3 ночи</span></td><td><b>KOKO Hotel Premier Nihonbashi Hamacho</b>, Токио · 17 м², 470 м до Нингётё, прямые поезда в Ханэду<br><span class="src">Booking: отмена до 1.12, оплата 29.11</span></td><td class="n">39 186 ₽</td></tr>
-      </tbody>
-    </table></div>
+    <p class="src">Кнопка «Показать водителю» открывает адрес по-японски на весь экран — для такси.</p>
+    <div id="hotel-list"></div>
   </div>
 
   <div class="panel">
@@ -300,97 +329,163 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
 <footer>Наша Япония · 30.11–11.12.2026 · цены на 4 ноября<br><span id="offline"></span></footer>
 </div>
 
+<div class="taxi" id="taxi" hidden role="dialog" aria-label="Адрес для водителя">
+  <div class="say">この住所までお願いします</div>
+  <div class="ru">«Отвезите, пожалуйста, по этому адресу» — коно дзю:сё мадэ онэгай симас</div>
+  <div class="big" id="taxi-name"></div>
+  <div class="big" id="taxi-addr" style="font-size:clamp(22px,6.5vw,36px)"></div>
+  <div class="ru" id="taxi-ru"></div>
+  <div><button class="btn" type="button" id="taxi-close">Закрыть</button></div>
+</div>
 <script>
+const M=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const HOTELS=[
+ {id:"h1",nights:"1–4.12 · 3 ночи",name:"Dormy Inn Premium Namba",jp:"天然温泉 夕霧の湯 ドーミーインPREMIUMなんば",addr:"大阪府大阪市中央区島之内2-14-23",en:"2-14-23 Shimanouchi, Chuo-ku, Osaka",inout:"заезд с 15:00 · выезд до 11:00",price:"24 858 ₽",note:"Свой онсэн. Booking: бесплатная отмена до 30.11, оплата 28.11.",link:"https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html?checkin=2026-12-01&checkout=2026-12-04&group_adults=2&no_rooms=1",q:"Dormy Inn Premium Namba"},
+ {id:"h2",nights:"4–7.12 · 3 ночи",name:"Keio Prelia Hotel Kyoto Karasuma-Gojo",jp:"京王プレリアホテル京都烏丸五条",addr:"京都府京都市下京区烏丸通松原下る五条烏丸町396",en:"396 Gojo Karasumacho, Shimogyo-ku, Kyoto",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 836 ₽",note:"9,1 на Booking, у станции метро Годзё. Бесплатная отмена до 2.12, оплата в отеле. Вариант ближе к Гиону — HOTEL RINGS KYOTO, 46 137 ₽.",link:"https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html?checkin=2026-12-04&checkout=2026-12-07&group_adults=2&no_rooms=1",q:"Keio Prelia Hotel Kyoto Karasuma Gojo"},
+ {id:"h3",nights:"7–8.12 · 1 ночь",name:"Shuhokaku Kogetsu",jp:"秀峰閣 湖月",addr:"山梨県南都留郡富士河口湖町河口2312",en:"2312 Kawaguchi, Fujikawaguchiko",inout:"заезд 15:00–19:00 · выезд до 10:00 · ужин не позже 19:00",price:"≈ 54 000 ₽",note:"Японский номер 20 м², ужин кайсэки и завтрак, онсэн. Бесплатный трансфер от станции Кавагутико. Klook: €586, без возврата — бронировать после визы и подтвердить письмом в рёкан.",link:"https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/?room_num=1&adult_num=2&child_num=0&check_in=2026-12-07&check_out=2026-12-08",q:"Shuhokaku Kogetsu Kawaguchiko"},
+ {id:"h4",nights:"8–11.12 · 3 ночи",name:"KOKO Hotel Premier Nihonbashi Hamacho",jp:"KOKO HOTEL Premier 日本橋浜町",addr:"東京都中央区日本橋浜町2-30-4",en:"2-30-4 Nihonbashi Hamacho, Chuo-ku, Tokyo",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 186 ₽",note:"Номер 17 м², 470 м до Нингётё, прямые поезда в Ханэду. Booking: бесплатная отмена до 1.12, оплата 29.11. Сюда же приедут чемоданы из Киото.",link:"https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html?checkin=2026-12-08&checkout=2026-12-11&group_adults=2&no_rooms=1",q:"KOKO HOTEL Premier Nihonbashi Hamacho"}
+];
 const DAYS=[
-{id:"d30",n:"30",m:"НОЯ · ПН",city:"В пути",title:"Курс на восток",line:"Шереметьево · перелёт через Гуанчжоу",km:"",chips:[],tl:[
- ["11:50","Шереметьево, регистрация на China Southern."],["14:50","Вылет в Гуанчжоу, ночь в самолёте."]]},
-{id:"d1",n:"01",m:"ДЕК · ВТ",city:"Осака",title:"Привет, Япония",line:"Прилёт · Dormy Inn · Дотонбори",km:"3–5 км",chips:[["Dormy Inn Premium Namba","https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html"]],tl:[
- ["05:10","Гуанчжоу, пересадка 4,5 часа. В 09:40 — рейс в Осаку."],
- ["14:10","Прилёт в Кансай. Паспорт и QR Visit Japan Web на границе и таможне, около часа."],
- ["15:30","Поезд Nankai до Намбы, около 45 минут. Или Rapi:t с местами по отдельному билету."],
- ["16:30","Заселение в Dormy Inn, онсэн после дороги."],
- ["18:30","Дотонбори: канал, мост Эбисубаси, бегущий человек Glico, такояки и окономияки.",{g:["Дотонбори: улица, где принято объедаться","Канал прокопали в начале XVII века на деньги купца Ясуи Дотона; его имя и осталось за районом. Рядом были театры, а вокруг них — бесконечные лавки с едой. Отсюда осакская поговорка «куйдаорэ» — есть до упаду. Светящийся бегун Glico висит над каналом с 1935 года и за это время сменил несколько поколений."]}],
- ["20:30","Синсайбаси — только если остались силы."]],
+{id:"d30",date:"2026-11-30",n:"30",m:"НОЯ · ПН",city:"В пути",title:"Курс на восток",line:"Шереметьево · перелёт через Гуанчжоу",km:"",chips:[],tl:[
+ ["11:50","Шереметьево, регистрация на China Southern.",null,"Sheremetyevo Airport"],["14:50","Вылет в Гуанчжоу, ночь в самолёте."]],
+ how:["Приехать в Шереметьево за 3 часа: международный рейс, сдаём 4 места багажа.","Проверить, что у обоих распечатаны или сохранены маршрутные квитанции и есть виза в паспорте.","В Гуанчжоу 4,5 часа пересадки в транзитной зоне: следовать указателям International Transfer, выходить в город не нужно."]},
+{id:"d1",date:"2026-12-01",n:"01",m:"ДЕК · ВТ",city:"Осака",title:"Привет, Япония",line:"Прилёт · Dormy Inn · Дотонбори",km:"3–5 км",chips:[["Dormy Inn Premium Namba","#hotels"]],tl:[
+ ["09:40","Вылет из Гуанчжоу в Осаку."],
+ ["14:10","Прилёт в Кансай. Паспорт и QR Visit Japan Web на границе и таможне, около часа.",null,"Kansai International Airport Terminal 1"],
+ ["15:30","Поезд Nankai до Намбы, около 45 минут.",null,"Nankai Namba Station"],
+ ["16:30","Заселение в Dormy Inn, онсэн после дороги.",null,"Dormy Inn Premium Namba"],
+ ["18:30","Дотонбори: канал, мост Эбисубаси, бегущий человек Glico.",{g:["Дотонбори: улица, где принято объедаться","Канал прокопали в начале XVII века на деньги купца Ясуи Дотона; его имя и осталось за районом. Рядом были театры, а вокруг них — бесконечные лавки с едой. Отсюда осакская поговорка «куйдаорэ» — есть до упаду. Светящийся бегун Glico висит над каналом с 1935 года и за это время сменил несколько поколений."]},"Dotonbori Glico sign"],
+ ["20:30","Синсайбаси — только если остались силы.",null,"Shinsaibashi-suji Shopping Street"]],
+ how:["В аэропорту: из зоны прилёта терминала 1 идти по указателям Railways на 2-й этаж, к станции Kansai Airport.","Выбрать турникеты Nankai (не JR). Купить ICOCA в автомате или кассе и пополнить, либо обычный билет до Namba.","Nankai Airport Express до Namba — около 45 минут, места свободные. Rapi:t быстрее и с местами, но нужен дополнительный билет.","От Nankai Namba до отеля около 15 минут пешком или одна остановка метро до Ниппомбаси."],
+ food:[["Mizuno — окономияки на Дотонбори, бывает очередь","Mizuno Okonomiyaki Dotonbori"],["Kukuru — такояки там же, быстро и без очереди","Kukuru Takoyaki Dotonbori"]],
  tip:"День длинный: в самолёте лучше выспаться, а вечером не планировать ничего обязательного."},
-{id:"d2",n:"02",m:"ДЕК · СР",city:"Осака",title:"Замок и огни большого города",line:"Куромон · замок Осаки · Синсэкай · Umeda Sky",km:"9–12 км",chips:[],tl:[
- ["09:00","Рынок Куромон: завтрак морепродуктами и клубникой на палочке."],
- ["10:30","Замок Осаки и парк вокруг.",{g:["Замок, который строили трижды","Первый замок поставил Тоётоми Хидэёси в 1583 году как символ объединения страны. Его сожгли в 1615-м, затем отстроили и снова потеряли от пожара. Нынешняя башня — бетонная реконструкция 1931 года, внутри музей. Самое впечатляющее снаружи — гигантские камни стен и рвы."]}],
- ["14:00","Синсэкай и башня Цутэнкаку, обед — кусикацу. Соус общий, макать дважды нельзя."],
- ["16:15","Umeda Sky Building: закат с открытой площадки на 173 метрах."],
- ["19:00","Ужин в Умэде или обратно в Намбу."]]},
-{id:"d3",n:"03",m:"ДЕК · ЧТ",city:"Нара",title:"Олени и Большой Будда",line:"Парк Нара · Тодай-дзи · Касуга",km:"10–13 км",chips:[],tl:[
- ["09:00","Электричка Kintetsu от Намбы, около 40 минут."],
- ["10:00","Парк Нара и Тодай-дзи.",{g:["Будда под самой большой крышей","Бронзового Будду высотой около 15 метров открыли в 752 году. Зал Дайбуцудэн много раз горел, нынешний меньше первоначального, но всё равно один из крупнейших деревянных залов мира. Олени здесь считаются посланниками богов. Им продают печенье сика-сэмбэй, и многие олени кланяются, выпрашивая угощение."]}],
- ["13:00","Касуга-тайся и тысячи каменных фонарей."],
- ["15:30","Нигацу-до: закат над Нарой с деревянной веранды."],
- ["18:00","Обратно в Осаку, последний вечер в Намбе."]]},
-{id:"d4",n:"04",m:"ДЕК · ПТ",city:"Киото",title:"Сквозь красные тории",line:"Переезд · Фусими-Инари · Понтотё",km:"8–11 км",chips:[["Keio Prelia Kyoto Karasuma-Gojo","https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html"]],tl:[
- ["09:30","Выселение. Метро до станции Осака и JR Special Rapid до Киото, около 30 минут; затем метро одну остановку до Годзё."],
- ["11:00","Оставить чемоданы в отеле, обед."],
- ["13:00","Фусими-Инари — электричка JR Nara line от станции Киото, 5 минут.",{g:["Тысячи ворот бога риса","Это главное святилище Инари — бога урожая и торговли. Каждые красные ворота подарила компания или семья: на обороте вырезано имя дарителя и дата. Тропа уходит в гору на 2–3 часа, но самые красивые коридоры начинаются в первые 20 минут. Лисы у входов — посланники Инари, в зубах у них ключ от амбара."]}],
+{id:"d2",date:"2026-12-02",n:"02",m:"ДЕК · СР",city:"Осака",title:"Замок и огни большого города",line:"Куромон · замок Осаки · Синсэкай · Umeda Sky",km:"9–12 км",chips:[],tl:[
+ ["09:00","Рынок Куромон: завтрак морепродуктами и клубникой на палочке.",null,"Kuromon Ichiba Market"],
+ ["10:30","Замок Осаки и парк вокруг.",{g:["Замок, который строили трижды","Первый замок поставил Тоётоми Хидэёси в 1583 году как символ объединения страны. Его сожгли в 1615-м, затем отстроили и снова потеряли от пожара. Нынешняя башня — бетонная реконструкция 1931 года, внутри музей. Самое впечатляющее снаружи — гигантские камни стен и рвы."]},"Osaka Castle"],
+ ["14:00","Синсэкай и башня Цутэнкаку, обед — кусикацу. Соус общий, макать дважды нельзя.",null,"Tsutenkaku Shinsekai"],
+ ["16:15","Umeda Sky Building: закат с открытой площадки на 173 метрах.",null,"Umeda Sky Building"],
+ ["19:00","Ужин в Умэде или обратно в Намбу."]],
+ how:["Ниппомбаси → Танимати 4-тёмэ: метро с пересадкой, около 15 минут; оттуда пешком к воротам Отэмон.","Замок → Синсэкай: метро до станции Добуцуэн-маэ, около 20 минут.","Синсэкай → Умэда: линия метро Мидосудзи от Добуцуэн-маэ до Умэды, около 15 минут, затем 10 минут пешком."],
+ food:[["Kushikatsu Daruma в Синсэкае — на обед","Kushikatsu Daruma Shinsekai"],["Kiji — окономияки в подвале Umeda Sky, на ужин","Okonomiyaki Kiji Umeda Sky Building"]]},
+{id:"d3",date:"2026-12-03",n:"03",m:"ДЕК · ЧТ",city:"Нара",title:"Олени и Большой Будда",line:"Парк Нара · Тодай-дзи · Касуга",km:"10–13 км",chips:[],tl:[
+ ["09:00","Электричка Kintetsu от Намбы, около 40 минут.",null,"Kintetsu Nara Station"],
+ ["10:00","Парк Нара и Тодай-дзи.",{g:["Будда под самой большой крышей","Бронзового Будду высотой около 15 метров открыли в 752 году. Зал Дайбуцудэн много раз горел, нынешний меньше первоначального, но всё равно один из крупнейших деревянных залов мира. Олени здесь считаются посланниками богов. Им продают печенье сика-сэмбэй, и многие олени кланяются, выпрашивая угощение."]},"Todai-ji"],
+ ["13:00","Касуга-тайся и тысячи каменных фонарей.",null,"Kasuga Taisha"],
+ ["15:30","Нигацу-до: закат над Нарой с деревянной веранды.",null,"Nigatsu-do Hall"],
+ ["18:00","Обратно в Осаку, последний вечер в Намбе."]],
+ how:["От станции Osaka-Namba (или Kintetsu-Nippombashi) электричка Kintetsu Nara line до Kintetsu-Nara. Берите поезд с конечной Kintetsu-Nara, иначе может понадобиться пересадка.","От станции до Тодай-дзи около 20 минут пешком через парк.","Обратно тем же путём, ICOCA работает."],
+ food:[["Kamameshi Shizuka — рис в горшочке, у парка","Kamameshi Shizuka Nara"],["Перекус у Тодай-дзи и в торговых рядах у станции","Higashimuki Shopping Street Nara"]]},
+{id:"d4",date:"2026-12-04",n:"04",m:"ДЕК · ПТ",city:"Киото",title:"Сквозь красные тории",line:"Переезд · Фусими-Инари · Понтотё",km:"8–11 км",chips:[["Keio Prelia Kyoto","#hotels"]],tl:[
+ ["09:30","Выселение и переезд в Киото, около 1 часа с чемоданами.",null,"Kyoto Station"],
+ ["11:00","Оставить чемоданы в отеле, обед.",null,"Keio Prelia Hotel Kyoto Karasuma Gojo"],
+ ["13:00","Фусими-Инари.",{g:["Тысячи ворот бога риса","Это главное святилище Инари — бога урожая и торговли. Каждые красные ворота подарила компания или семья: на обороте вырезано имя дарителя и дата. Тропа уходит в гору на 2–3 часа, но самые красивые коридоры начинаются в первые 20 минут. Лисы у входов — посланники Инари, в зубах у них ключ от амбара."]},"Fushimi Inari Taisha"],
  ["16:30","Заселение и отдых."],
- ["18:30","Ужин в переулке Понтотё вдоль реки Камо."]]},
-{id:"d5",n:"05",m:"ДЕК · СБ",city:"Киото",title:"Старые улицы в свете фонарей",line:"Киёмидзу · Санэнзака · Гион · Эйкан-до",km:"10–13 км",chips:[],tl:[
- ["08:00","Киёмидзу-дэра до толп — в субботу особенно важно прийти рано.",{g:["Храм на деревянной сцене","Храм основан в 778 году. Его знаменитая веранда стоит на высоких деревянных опорах, собранных без единого гвоздя. Японцы говорят «прыгнуть со сцены Киёмидзу», когда решаются на что-то отчаянное. Внизу — водопад Отова: три струи, из которых пьют на здоровье, любовь и учёбу, но только из одной."]}],
- ["10:00","Санэнзака и Нинэндзака, пагода Ясака."],
- ["12:30","Обед, затем Кодай-дзи."],
- ["14:30","Нандзэн-дзи и Эйкан-до — клёны в начале декабря ещё красные."],
- ["17:30","Гион и улица Ханамикодзи в сумерках, святилище Ясака с фонарями."]]},
-{id:"d6",n:"06",m:"ДЕК · ВС",city:"Киото",title:"Бамбук и золото",line:"Арасияма · Тэнрю-дзи · Кинкаку-дзи · Нисики",km:"9–12 км",chips:[],tl:[
- ["07:30","JR Sagano line до Сага-Арасиямы."],
- ["08:15","Бамбуковая роща, сад Тэнрю-дзи, мост Тогэцукё.",{g:["Мост, по которому идёт луна","Тэнрю-дзи основан в 1339 году, его сад с прудом — один из старейших в Японии. Название моста Тогэцукё переводят как «мост, по которому переходит луна»: так его назвал император, любуясь луной над рекой. Бамбуковая роща лучше всего рано утром, пока нет людей."]}],
- ["13:00","Кинкаку-дзи, Золотой павильон — такси или автобус.",{g:["Павильон, сгоревший и вернувшийся","Это бывшая вилла сёгуна Асикаги Ёсимицу конца XIV века. В 1950 году павильон сжёг молодой монах, история легла в основу романа Мисимы. Нынешнее здание построено в 1955 году, два верхних этажа покрыты сусальным золотом."]}],
- ["14:30","Каменный сад Рёан-дзи."],
- ["17:00","Рынок Нисики, вечером собрать чемоданы для отправки в Токио."]]},
-{id:"d7",n:"07",m:"ДЕК · ПН",city:"Кавагутико",title:"Ночь с видом на Фудзи",line:"Синкансэн · Мисима · рёкан Kogetsu",km:"3–5 км",chips:[["Shuhokaku Kogetsu","https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/"]],tl:[
+ ["18:30","Ужин в переулке Понтотё вдоль реки Камо.",null,"Pontocho Alley Kyoto"]],
+ how:["Намба → станция Осака: метро Мидосудзи до Умэды, около 10 минут.","Осака → Киото: JR Special Rapid, около 30 минут, места свободные.","Киото → отель: метро Karasuma line одна остановка до Годзё, выход у отеля.","К Фусими-Инари: JR Nara line от станции Киото до Inari, 5 минут."],
+ food:[["Gyukatsu Kyoto Katsugyu — говяжья котлета, в Понтотё","Kyoto Katsugyu Pontocho"],["Любой идзакая в Понтотё с меню на английском","Pontocho Kyoto"]]},
+{id:"d5",date:"2026-12-05",n:"05",m:"ДЕК · СБ",city:"Киото",title:"Старые улицы в свете фонарей",line:"Киёмидзу · Санэнзака · Гион · Эйкан-до",km:"10–13 км",chips:[],tl:[
+ ["08:00","Киёмидзу-дэра до толп — в субботу особенно важно прийти рано.",{g:["Храм на деревянной сцене","Храм основан в 778 году. Его знаменитая веранда стоит на высоких деревянных опорах, собранных без единого гвоздя. Японцы говорят «прыгнуть со сцены Киёмидзу», когда решаются на что-то отчаянное. Внизу — водопад Отова: три струи, из которых пьют на здоровье, любовь и учёбу, но только из одной."]},"Kiyomizu-dera"],
+ ["10:00","Санэнзака и Нинэндзака, пагода Ясака.",null,"Sannenzaka Kyoto"],
+ ["12:30","Обед, затем Кодай-дзи.",null,"Kodai-ji"],
+ ["14:30","Нандзэн-дзи и Эйкан-до — клёны в начале декабря ещё красные.",null,"Eikan-do Zenrin-ji"],
+ ["17:30","Гион и улица Ханамикодзи в сумерках, святилище Ясака с фонарями.",null,"Hanamikoji Street Gion"]],
+ how:["К Киёмидзу утром проще на такси от отеля, около 10 минут; последний подъём пешком.","Между Киёмидзу, Санэнзакой, Кодай-дзи и Гионом всё пешком, вниз по склону.","От Гиона до Нандзэн-дзи и Эйкан-до около 25 минут пешком или такси 5–10 минут."],
+ food:[["Okutan — юдофу, тофу в горшочке, у Нандзэн-дзи","Okutan Nanzenji"],["Gion — ужин в любом заведении на Ханамикодзи, лучше бронировать","Hanamikoji Gion restaurants"]]},
+{id:"d6",date:"2026-12-06",n:"06",m:"ДЕК · ВС",city:"Киото",title:"Бамбук и золото",line:"Арасияма · Тэнрю-дзи · Кинкаку-дзи · Нисики",km:"9–12 км",chips:[],tl:[
+ ["07:30","JR Sagano line до Сага-Арасиямы.",null,"Saga-Arashiyama Station"],
+ ["08:15","Бамбуковая роща, сад Тэнрю-дзи, мост Тогэцукё.",{g:["Мост, по которому идёт луна","Тэнрю-дзи основан в 1339 году, его сад с прудом — один из старейших в Японии. Название моста Тогэцукё переводят как «мост, по которому переходит луна»: так его назвал император, любуясь луной над рекой. Бамбуковая роща лучше всего рано утром, пока нет людей."]},"Arashiyama Bamboo Grove"],
+ ["13:00","Кинкаку-дзи, Золотой павильон.",{g:["Павильон, сгоревший и вернувшийся","Это бывшая вилла сёгуна Асикаги Ёсимицу конца XIV века. В 1950 году павильон сжёг молодой монах, история легла в основу романа Мисимы. Нынешнее здание построено в 1955 году, два верхних этажа покрыты сусальным золотом."]},"Kinkaku-ji"],
+ ["14:30","Каменный сад Рёан-дзи.",null,"Ryoan-ji"],
+ ["17:00","Рынок Нисики, вечером собрать чемоданы для отправки в Токио.",null,"Nishiki Market"]],
+ how:["Годзё → станция Киото: метро одна остановка; оттуда JR Sagano line до Saga-Arashiyama, около 15 минут.","Арасияма → Кинкаку-дзи: такси около 20 минут — проще всего, или автобус.","Кинкаку-дзи → Рёан-дзи: 20 минут пешком или такси 5 минут.","Рёан-дзи → Нисики: такси или автобус до Shijo, около 30 минут."],
+ food:[["Yudofu Sagano — обед тофу в Арасияме","Yudofu Sagano Arashiyama"],["Нисики — перекус по рядам, вечером","Nishiki Market"]]},
+{id:"d7",date:"2026-12-07",n:"07",m:"ДЕК · ПН",city:"Кавагутико",title:"Ночь с видом на Фудзи",line:"Синкансэн · Мисима · рёкан Kogetsu",km:"3–5 км",chips:[["Shuhokaku Kogetsu","#hotels"]],tl:[
  ["08:30","Чемоданы — курьером Yamato из отеля в KOKO в Токио; с собой рюкзаки на ночь."],
- ["09:30","Синкансэн Hikari Киото → Мисима, около 2 часов."],
- ["12:00","Автобус Мисима → станция Кавагутико, около 1,5–2 часов."],
- ["14:30","Обед у станции — местная лапша хото. Затем бесплатный трансфер рёкана."],
- ["15:30","Заселение в Kogetsu, юката, онсэн.",{g:["Как вести себя в рёкане","Обувь снимают у входа, в номере ходят босиком по татами. Юкату запахивают левой полой поверх правой. В онсэн заходят после душа, без полотенца в воде. Вечером, пока вы на ужине, персонал раскладывает футоны."]}],
+ ["09:30","Синкансэн Hikari Киото → Мисима, около 2 часов.",null,"Mishima Station"],
+ ["12:00","Автобус Мисима → станция Кавагутико, около 1,5–2 часов.",null,"Kawaguchiko Station"],
+ ["14:30","Обед у станции — местная лапша хото. Затем бесплатный трансфер рёкана.",null,"Hoto Fudou Kawaguchiko"],
+ ["15:30","Заселение в Kogetsu, юката, онсэн.",{g:["Как вести себя в рёкане","Обувь снимают у входа, в номере ходят босиком по татами. Юкату запахивают левой полой поверх правой. В онсэн заходят после душа, без полотенца в воде. Вечером, пока вы на ужине, персонал раскладывает футоны."]},"Shuhokaku Kogetsu"],
  ["18:00","Ужин кайсэки — до 19:00, опаздывать нельзя."]],
+ how:["Накануне вечером: отдать чемоданы на стойку отеля для отправки Yamato в KOKO на 8.12.","Годзё → станция Киото, синкансэн Hikari до Мисимы. Не все Hikari останавливаются в Мисиме — смотрим в smartEX. Иногда удобнее Kodama.","В Мисиме: выход North Exit, автобус Fujikyu до станции Kawaguchiko. Билет лучше забронировать заранее.","От станции Кавагутико — бесплатный трансфер Kogetsu. Время подтвердить письмом в рёкан."],
+ food:[["Hoto Fudou — хото у станции Кавагутико","Hoto Fudou Kawaguchiko"],["Ужин кайсэки в рёкане включён","Shuhokaku Kogetsu"]],
  tip:"<b>Важно:</b> в Kogetsu ужин подают только до 19:00, поэтому выезжаем из Киото не позже 10 утра."},
-{id:"d8",n:"08",m:"ДЕК · ВТ",city:"Кавагутико → Токио",title:"Пагода и Фудзи на рассвете",line:"Рассвет над озером · Тюрэйто · Fuji Excursion",km:"7–10 км + 398 ступеней",chips:[["KOKO Premier Hamacho","https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html"]],tl:[
+{id:"d8",date:"2026-12-08",n:"08",m:"ДЕК · ВТ",city:"Кавагутико → Токио",title:"Пагода и Фудзи на рассвете",line:"Рассвет над озером · Тюрэйто · Fuji Excursion",km:"7–10 км + 398 ступеней",chips:[["KOKO Premier Hamacho","#hotels"]],tl:[
  ["06:30","Рассвет: Фудзи отражается в озере — в декабре гора чаще всего видна утром."],
- ["09:30","Такси до пагоды Тюрэйто в Симоёсиде.",{g:["Пятиярусная пагода над городом","Пагода стоит у святилища Аракура Сэнгэн и построена в 1963 году в память о погибших. К площадке ведут 398 ступеней. Отсюда снимают знаменитый кадр: красная пагода, город и Фудзи."]}],
- ["12:30","Поезд Fuji Excursion от станции Фудзисан до Синдзюку, около 2 часов."],
- ["15:30","Метро до Хамачё, заселение в KOKO — чемоданы уже ждут."],
- ["18:00","Синдзюку вечером: переулок Омоидэ-Ёкотё, якитори."]]},
-{id:"d9",n:"09",m:"ДЕК · СР",city:"Токио",title:"По ту сторону экрана",line:"Warner Bros. Studio Tour Tokyo · Гиндза",km:"5–8 км",chips:[["Билеты на студию","https://book.wbstudiotour.com/?event_type_id=30&journey_id=10&site_id=3&language_id=1"]],tl:[
- ["09:00","Метро до станции Тосимаэн, около 50 минут, по Tokyo Subway Ticket."],
- ["10:00","Студия «The Making of Harry Potter».",{g:["Студия на месте старого парка","Студия открылась в июне 2023 года там, где почти сто лет работал парк аттракционов Тосимаэн. Это крупнейший крытый центр, посвящённый «Гарри Поттеру». Внутри Большой зал, Косой переулок, платформа 9¾ с поездом и огромный макет Хогвартса, по которому снимали фильмы."]}],
+ ["09:30","Такси до пагоды Тюрэйто в Симоёсиде.",{g:["Пятиярусная пагода над городом","Пагода стоит у святилища Аракура Сэнгэн и построена в 1963 году в память о погибших. К площадке ведут 398 ступеней. Отсюда снимают знаменитый кадр: красная пагода, город и Фудзи."]},"Chureito Pagoda"],
+ ["12:30","Поезд Fuji Excursion от станции Фудзисан до Синдзюку, около 2 часов.",null,"Mt. Fuji Station Fujikyu"],
+ ["15:30","Метро до Хамачё, заселение в KOKO — чемоданы уже ждут.",null,"KOKO HOTEL Premier Nihonbashi Hamacho"],
+ ["18:00","Синдзюку вечером: переулок Омоидэ-Ёкотё, якитори.",null,"Omoide Yokocho Shinjuku"]],
+ how:["Рёкан → пагода: такси около 20 минут, вызвать через стойку рёкана.","Пагода → станция Фудзисан: такси около 10 минут или электричка Fujikyu от Симоёсиды одна остановка.","Fuji Excursion до Синдзюку — только по местам, билеты продаются за месяц.","Синдзюку → Хамачё: линия Toei Shinjuku без пересадок, около 20 минут."],
+ food:[["Омоидэ-Ёкотё — якитори в крошечных барах","Omoide Yokocho"],["Fuunji — цукэмэн у Синдзюку, если хочется рамена","Fuunji Shinjuku"]]},
+{id:"d9",date:"2026-12-09",n:"09",m:"ДЕК · СР",city:"Токио",title:"По ту сторону экрана",line:"Warner Bros. Studio Tour Tokyo · Гиндза",km:"5–8 км",chips:[["Билеты на студию","https://book.wbstudiotour.com/?event_type_id=30&journey_id=10&site_id=3&language_id=1"]],tl:[
+ ["09:00","Метро до станции Тосимаэн, около 50 минут.",null,"Toshimaen Station"],
+ ["10:00","Студия «The Making of Harry Potter».",{g:["Студия на месте старого парка","Студия открылась в июне 2023 года там, где почти сто лет работал парк аттракционов Тосимаэн. Это крупнейший крытый центр, посвящённый «Гарри Поттеру». Внутри Большой зал, Косой переулок, платформа 9¾ с поездом и огромный макет Хогвартса, по которому снимали фильмы."]},"Warner Bros. Studio Tour Tokyo"],
  ["14:30","Обед в кафе студии, магазин."],
- ["17:00","Гиндза: покупки и ужин."]]},
-{id:"d10",n:"10",m:"ДЕК · ЧТ",city:"Токио",title:"От древнего храма к Сибуе",line:"Асакуса · Мэйдзи · Харадзюку · Сибуя",km:"11–14 км",chips:[],tl:[
- ["08:30","Асакуса и Сэнсо-дзи до толп.",{g:["Самый старый храм Токио","По легенде, в 628 году два брата-рыбака вытащили из реки Сумида статуэтку богини Каннон. Для неё и построили храм. Огромный фонарь висит в воротах Каминаримон — Громовых воротах. Улица Накамисэ ведёт к храму и кормит сладостями уже несколько веков."]}],
+ ["17:00","Гиндза: покупки и ужин.",null,"Ginza Tokyo"]],
+ how:["Хамачё → Синдзюку: Toei Shinjuku line, около 20 минут.","Синдзюку → Тосимаэн: Toei Oedo line, около 20 минут. Студия в 2 минутах от станции.","Обратно: Oedo line до Цукисимы и Hibiya line до Гиндзы, или через Синдзюку. Всё покрывает Tokyo Subway Ticket."],
+ food:[["Кафе студии — сливочное пиво и обед","Warner Bros. Studio Tour Tokyo"],["Ginza Kagari — сливочный рамен с курицей, на ужин; бывает очередь","Ginza Kagari"]]},
+{id:"d10",date:"2026-12-10",n:"10",m:"ДЕК · ЧТ",city:"Токио",title:"От древнего храма к Сибуе",line:"Асакуса · Мэйдзи · Харадзюку · Сибуя",km:"11–14 км",chips:[],tl:[
+ ["08:30","Асакуса и Сэнсо-дзи до толп.",{g:["Самый старый храм Токио","По легенде, в 628 году два брата-рыбака вытащили из реки Сумида статуэтку богини Каннон. Для неё и построили храм. Огромный фонарь висит в воротах Каминаримон — Громовых воротах. Улица Накамисэ ведёт к храму и кормит сладостями уже несколько веков."]},"Senso-ji"],
  ["12:00","Обед: соба или тэндон."],
- ["13:30","Святилище Мэйдзи и Такэсита-дори в Харадзюку."],
- ["16:00","Shibuya Sky на закате, перекрёсток Сибуя."],
- ["20:00","В отель, собрать вещи: утром ранний выезд."]]},
-{id:"d11",n:"11",m:"ДЕК · ПТ",city:"Токио → Москва",title:"До встречи, Япония",line:"Ханэда · CZ через Гуанчжоу",km:"День вылета",chips:[],tl:[
- ["07:45","Выезд из KOKO. От Нингётё прямой поезд в Ханэду, около 40 минут."],
- ["08:45","Ханэда, терминал 3: регистрация и граница."],
+ ["13:30","Святилище Мэйдзи и Такэсита-дори в Харадзюку.",null,"Meiji Jingu"],
+ ["16:00","Shibuya Sky на закате, перекрёсток Сибуя.",null,"Shibuya Sky"],
+ ["20:00","В отель, собрать вещи: утром ранний выезд."]],
+ how:["Нингётё → Асакуса: Toei Asakusa line без пересадок, около 10 минут.","Асакуса → Харадзюку: Ginza line до Омотэсандо, около 35 минут.","Харадзюку → Сибуя: 20 минут пешком или JR одна остановка. Билеты в Shibuya Sky на закат — заранее онлайн."],
+ food:[["Daikokuya — тэндон в Асакусе","Daikokuya Tempura Asakusa"],["Ichiran Shibuya — рамен в одиночных кабинках, поздно вечером","Ichiran Shibuya"]]},
+{id:"d11",date:"2026-12-11",n:"11",m:"ДЕК · ПТ",city:"Токио → Москва",title:"До встречи, Япония",line:"Ханэда · CZ через Гуанчжоу",km:"День вылета",chips:[],tl:[
+ ["07:45","Выезд из KOKO. От Нингётё прямой поезд в Ханэду, около 40 минут.",null,"Ningyocho Station"],
+ ["08:45","Ханэда, терминал 3: регистрация и граница.",null,"Haneda Airport Terminal 3"],
  ["10:45","Вылет в Гуанчжоу, пересадка 1 час."],
- ["21:15","Прилёт в Шереметьево."]]}
+ ["21:15","Прилёт в Шереметьево."]],
+ how:["Нингётё → Ханэда: Toei Asakusa line, поезд с надписью Haneda Airport, без пересадок, около 40 минут.","Выходить на станции Haneda Airport Terminal 3.","В Гуанчжоу пересадка всего час: сразу идти по указателям International Transfer."]}
 ];
 const host=document.getElementById('days');
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
 host.innerHTML=DAYS.map(d=>`
 <details class="day" id="${d.id}">
  <summary><div class="dnum"><b>${d.n}</b><span>${d.m}</span></div>
  <div class="dmeta"><div class="dcity">${d.city}</div><div class="dtitle">${d.title}</div><div class="dline">${d.line}${d.km?' · '+d.km:''}</div></div>
  <span class="plus" aria-hidden="true">+</span></summary>
  <div class="dbody">
-  ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${c[1]}" target="_blank" rel="noopener">${c[0]} ↗</a>`).join('')}</div>`:''}
-  <ol class="tl">${d.tl.map(t=>`<li><span class="t">${t[0]}</span><p>${t[1]}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')}</ol>
+  ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${esc(c[1])}" ${c[1].startsWith('#')?'':'target="_blank" rel="noopener"'}>${c[0]} ↗</a>`).join('')}</div>`:''}
+  <ol class="tl">${d.tl.map(t=>`<li data-t="${t[0]}"><span class="t">${t[0]}</span><p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')}</ol>
+  ${d.how?`<div class="block"><h4>Как добраться</h4><ol>${d.how.map(h=>`<li>${h}</li>`).join('')}</ol></div>`:''}
+  ${d.food?`<div class="block"><h4>Где поесть</h4><div class="food">${d.food.map((f,i)=>`<div><span class="k">${i?'Запасной':'Основной'}</span><span>${f[0]} <a class="maplink" href="${esc(M(f[1]))}" target="_blank" rel="noopener">На карте ↗</a></span></div>`).join('')}</div></div>`:''}
   ${d.tip?`<div class="tip">${d.tip}</div>`:''}
  </div>
 </details>`).join('');
-host.querySelector('details').open=true;
+document.getElementById('hotel-list').innerHTML=HOTELS.map(h=>`
+<div class="hotel"><div class="src">${h.nights}</div><b>${h.name}</b><div class="jpname">${h.jp}</div>
+<div class="kv"><span>Адрес</span><span>${h.en}</span><span>Время</span><span>${h.inout}</span><span>Цена</span><span>${h.price}</span></div>
+<p class="src">${h.note}</p>
+<div class="chips"><button class="btn" type="button" data-taxi="${h.id}">Показать водителю</button><a class="chip" href="${esc(M(h.q))}" target="_blank" rel="noopener">На карте ↗</a><a class="chip" href="${esc(h.link)}" target="_blank" rel="noopener">Бронь ↗</a></div></div>`).join('');
+const taxi=document.getElementById('taxi');
+document.querySelectorAll('[data-taxi]').forEach(b=>b.addEventListener('click',()=>{const h=HOTELS.find(x=>x.id===b.dataset.taxi);document.getElementById('taxi-name').textContent=h.jp;document.getElementById('taxi-addr').textContent=h.addr;document.getElementById('taxi-ru').textContent=h.name+' · '+h.en;taxi.hidden=false;document.getElementById('taxi-close').focus();}));
+document.getElementById('taxi-close').addEventListener('click',()=>{taxi.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')taxi.hidden=true});
+// "Сегодня"
+function jpNow(){const n=new Date();return new Date(n.getTime()+(n.getTimezoneOffset()+540)*60000);}
+function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){const box=document.getElementById('today'),txt=document.getElementById('today-text'),btn=document.getElementById('today-btn');
+ const n=new Date();const start=new Date('2026-11-30T14:50:00+03:00');const end=new Date('2026-12-11T21:15:00+03:00');
+ box.hidden=false;
+ if(n<start){const days=Math.ceil((start-n)/864e5);txt.innerHTML=`До вылета <b>${days}</b> ${days%10===1&&days%100!==11?'день':(days%10>=2&&days%10<=4&&(days%100<10||days%100>=20)?'дня':'дней')}`;btn.hidden=true;return;}
+ if(n>end){txt.textContent='Путешествие завершено. Аригато!';btn.hidden=true;return;}
+ const j=jpNow();const key=ymd(n<new Date('2026-12-01T00:00:00+09:00')?new Date('2026-11-30T12:00:00'):j);
+ const d=DAYS.find(x=>x.date===key)||DAYS[0];const idx=DAYS.indexOf(d);
+ txt.innerHTML=`Сегодня <b>день ${idx+1}</b> · ${d.city}: ${d.title}`;btn.hidden=false;
+ const el=document.getElementById(d.id);el.open=true;
+ const hm=String(j.getHours()).padStart(2,'0')+':'+String(j.getMinutes()).padStart(2,'0');
+ const items=[...el.querySelectorAll('ol.tl>li')];const next=items.find(li=>li.dataset.t>=hm);if(next)next.classList.add('now');
+ btn.onclick=()=>{el.scrollIntoView({behavior:'smooth',block:'start'})};}
+host.querySelector('details').open=true;today();
 document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'});}}));
-function route(){const info=location.hash==='#info';document.getElementById('view-route').hidden=info;document.getElementById('view-info').hidden=!info;
- const r=document.getElementById('tab-route'),i=document.getElementById('tab-info');r.removeAttribute('aria-current');i.removeAttribute('aria-current');(info?i:r).setAttribute('aria-current','page');}
-window.addEventListener('hashchange',()=>{route();window.scrollTo(0,0)});route();
+function route(){const info=location.hash==='#info'||location.hash==='#hotels';document.getElementById('view-route').hidden=info;document.getElementById('view-info').hidden=!info;
+ const r=document.getElementById('tab-route'),i=document.getElementById('tab-info');r.removeAttribute('aria-current');i.removeAttribute('aria-current');(info?i:r).setAttribute('aria-current','page');
+ if(location.hash==='#hotels')setTimeout(()=>document.getElementById('hotels').scrollIntoView(),50);else window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);route();
 document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
+
 </script>
 
 <script>
