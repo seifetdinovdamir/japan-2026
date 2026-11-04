@@ -234,6 +234,20 @@ figure.ph figcaption a{color:var(--muted)}
 #lb-prev{left:6px}#lb-next{right:6px}
 @media (hover:none){.lb-nav{background:rgba(255,255,255,.06)}}
 </style>
+<style>
+.meals .meal{margin-top:10px}
+.meals h5{margin:0 0 2px;font-size:14px;font-weight:600}
+.meals h5 span{font-weight:400;color:var(--muted)}
+.mo{display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line)}
+.mo .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.mo b{font-weight:600}
+.mo .meta{font-size:12.5px;color:var(--muted);margin:2px 0;font-variant-numeric:tabular-nums}
+.mo .star{color:var(--gold);font-weight:600}
+.mo .maplink{font-size:12.5px}
+.mnote{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+.msrc{margin:10px 0 0;font-size:11.5px;color:var(--muted)}
+@media (max-width:400px){.mo{grid-template-columns:1fr;gap:0}.mo .k{padding:0}}
+</style>
 </head>
 <body>
 <header class="top"><div class="topin">
@@ -505,10 +519,10 @@ figure.ph figcaption a{color:var(--muted)}
 const PH={"Dotonbori Glico sign": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Osaka_Dotonbori_Ebisu_Bridge.jpg/960px-Osaka_Dotonbori_Ebisu_Bridge.jpg", "page": "https://commons.wikimedia.org/wiki/File:Osaka_Dotonbori_Ebisu_Bridge.jpg", "lic": "CC BY-SA 3.0", "by": "Type specimen", "cap": "Мост Эбисубаси и Дотонбори"}, "Kuromon Ichiba Market": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Kuromon-ichiba_in_201408.JPG/960px-Kuromon-ichiba_in_201408.JPG", "page": "https://commons.wikimedia.org/wiki/File:Kuromon-ichiba_in_201408.JPG", "lic": "CC BY-SA 4.0", "by": "Mc681", "cap": "Рынок Куромон"}, "Osaka Castle": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Osaka_Castle_03bs3200.jpg/960px-Osaka_Castle_03bs3200.jpg", "page": "https://commons.wikimedia.org/wiki/File:Osaka_Castle_03bs3200.jpg", "lic": "CC BY 2.5", "by": "663highland", "cap": "Замок Осаки"}, "Tsutenkaku Shinsekai": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/New_Tsutenkaku%2C_Osaka.jpg/960px-New_Tsutenkaku%2C_Osaka.jpg", "page": "https://commons.wikimedia.org/wiki/File:New_Tsutenkaku,_Osaka.jpg", "lic": "CC0", "by": "Sakai Yayoi", "cap": "Цутэнкаку и Синсэкай"}, "Umeda Sky Building": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/2018_Umeda_Sky_Building.jpg/960px-2018_Umeda_Sky_Building.jpg", "page": "https://commons.wikimedia.org/wiki/File:2018_Umeda_Sky_Building.jpg", "lic": "CC BY-SA 4.0", "by": "Kakidai", "cap": "Umeda Sky Building"}, "Todai-ji": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg", "page": "https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Kon-d%C5%8D.jpg", "lic": "CC BY-SA 3.0", "by": "Wiiii", "cap": "Зал Большого Будды, Тодай-дзи"}, "Kasuga Taisha": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Kasuga-taisha11bs3200.jpg/960px-Kasuga-taisha11bs3200.jpg", "page": "https://commons.wikimedia.org/wiki/File:Kasuga-taisha11bs3200.jpg", "lic": "CC BY 2.5", "by": "663highland", "cap": "Касуга-тайся"}, "Nigatsu-do Hall": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Nara_Park_-_panoramio_%282%29.jpg/960px-Nara_Park_-_panoramio_%282%29.jpg", "page": "https://commons.wikimedia.org/wiki/File:Nara_Park_-_panoramio_(2).jpg", "lic": "CC BY 3.0", "by": "Feri88", "cap": "Парк Нара"}, "Fushimi Inari Taisha": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg", "page": "https://commons.wikimedia.org/wiki/File:Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine,_Kyoto,_Japan.jpg", "lic": "CC BY-SA 4.0", "by": "Basile Morin", "cap": "Коридор тории, Фусими-Инари"}, "Pontocho Alley Kyoto": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg/960px-Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg", "page": "https://commons.wikimedia.org/wiki/File:Pontocho_by_Wolfiewolf_in_Nabeyacho,_Kyoto.jpg", "lic": "CC BY 2.0", "by": "Wolfiewolf", "cap": "Переулок Понтотё"}, "Kiyomizu-dera": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/960px-Kiyomizu.jpg", "page": "https://commons.wikimedia.org/wiki/File:Kiyomizu.jpg", "lic": "CC BY-SA 3.0", "by": "Jordy Meow", "cap": "Киёмидзу-дэра"}, "Sannenzaka Kyoto": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg/960px-Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg", "page": "https://commons.wikimedia.org/wiki/File:Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_(Hokan-ji_Temple),_Kyoto,_Japan.jpg", "lic": "CC BY-SA 4.0", "by": "Basile Morin", "cap": "Пагода Ясака ранним утром"}, "Eikan-do Zenrin-ji": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Eikando_Zenrinji-temple_Tahoto.JPG/960px-Eikando_Zenrinji-temple_Tahoto.JPG", "page": "https://commons.wikimedia.org/wiki/File:Eikando_Zenrinji-temple_Tahoto.JPG", "lic": "CC BY 2.5", "by": "Tomomarusan", "cap": "Эйкан-до"}, "Hanamikoji Street Gion": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/960px-150124_Gion_Kyoto_Japan01s3.jpg", "page": "https://commons.wikimedia.org/wiki/File:150124_Gion_Kyoto_Japan01s3.jpg", "lic": "CC BY 2.5", "by": "663highland", "cap": "Гион"}, "Arashiyama Bamboo Grove": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Bamboo_Grove%2C_Arashiyama%2C_Kyoto%2C_Japan.jpg/960px-Bamboo_Grove%2C_Arashiyama%2C_Kyoto%2C_Japan.jpg", "page": "https://commons.wikimedia.org/wiki/File:Bamboo_Grove,_Arashiyama,_Kyoto,_Japan.jpg", "lic": "CC BY-SA 4.0", "by": "Basile Morin", "cap": "Бамбуковая роща Арасиямы"}, "Kinkaku-ji": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg", "page": "https://commons.wikimedia.org/wiki/File:Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg", "lic": "CC BY-SA 4.0", "by": "Nacaru", "cap": "Кинкаку-дзи"}, "Ryoan-ji": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Kare-sansui_zen_garden%2C_Ry%C5%8Dan-ji%2C_Kyoto_20190416_1.jpg/960px-Kare-sansui_zen_garden%2C_Ry%C5%8Dan-ji%2C_Kyoto_20190416_1.jpg", "page": "https://commons.wikimedia.org/wiki/File:Kare-sansui_zen_garden,_Ry%C5%8Dan-ji,_Kyoto_20190416_1.jpg", "lic": "CC BY-SA 4.0", "by": "DXR", "cap": "Сад камней Рёан-дзи"}, "Nishiki Market": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/960px-Nishiki_Ichiba_by_matsuyuki.jpg", "page": "https://commons.wikimedia.org/wiki/File:Nishiki_Ichiba_by_matsuyuki.jpg", "lic": "CC BY-SA 2.0", "by": "matsuyuki", "cap": "Рынок Нисики"}, "Shuhokaku Kogetsu": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg", "page": "https://commons.wikimedia.org/wiki/File:KawaguchiKo.jpg", "lic": "CC BY-SA 3.0", "by": "BehBeh", "cap": "Озеро Кавагутико и Фудзи"}, "Chureito Pagoda": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Chureito_Pagoda_and_Mount_Fuji_20241022.jpg/960px-Chureito_Pagoda_and_Mount_Fuji_20241022.jpg", "page": "https://commons.wikimedia.org/wiki/File:Chureito_Pagoda_and_Mount_Fuji_20241022.jpg", "lic": "CC BY 4.0", "by": "Supanut Arunoprayote", "cap": "Пагода Тюрэйто и Фудзи"}, "Ginza Tokyo": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg", "page": "https://commons.wikimedia.org/wiki/File:Ginza-WAKO_at_night.jpg", "lic": "CC BY-SA 4.0", "by": "Kakidai", "cap": "Гиндза вечером"}, "Senso-ji": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg", "page": "https://commons.wikimedia.org/wiki/File:Sensoji_2023.jpg", "lic": "CC0", "by": "Akonnchiroll", "cap": "Сэнсо-дзи"}, "Meiji Jingu": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Meiji_Jingu_2023-3.jpg/960px-Meiji_Jingu_2023-3.jpg", "page": "https://commons.wikimedia.org/wiki/File:Meiji_Jingu_2023-3.jpg", "lic": "CC BY-SA 4.0", "by": "Akonnchiroll", "cap": "Святилище Мэйдзи"}, "Shibuya Sky": {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg", "page": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing,_Aerial.jpg", "lic": "CC BY 4.0", "by": "David Kernan", "cap": "Перекрёсток Сибуя"}};
 const M=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
 const HOTELS=[
- {id:"h1",nights:"1–4.12 · 3 ночи",name:"Dormy Inn Premium Namba",jp:"天然温泉 夕霧の湯 ドーミーインPREMIUMなんば",addr:"大阪府大阪市中央区島之内2-14-23",en:"2-14-23 Shimanouchi, Chuo-ku, Osaka",inout:"заезд с 15:00 · выезд до 11:00",price:"24 858 ₽",note:"Свой онсэн. Booking: бесплатная отмена до 30.11, оплата 28.11.",link:"https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html?checkin=2026-12-01&checkout=2026-12-04&group_adults=2&no_rooms=1",q:"Dormy Inn Premium Namba"},
- {id:"h2",nights:"4–7.12 · 3 ночи",name:"Keio Prelia Hotel Kyoto Karasuma-Gojo",jp:"京王プレリアホテル京都烏丸五条",addr:"京都府京都市下京区烏丸通松原下る五条烏丸町396",en:"396 Gojo Karasumacho, Shimogyo-ku, Kyoto",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 836 ₽",note:"9,1 на Booking, у станции метро Годзё. Бесплатная отмена до 2.12, оплата в отеле. Вариант ближе к Гиону — HOTEL RINGS KYOTO, 46 137 ₽.",link:"https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html?checkin=2026-12-04&checkout=2026-12-07&group_adults=2&no_rooms=1",q:"Keio Prelia Hotel Kyoto Karasuma Gojo"},
- {id:"h3",nights:"7–8.12 · 1 ночь",name:"Shuhokaku Kogetsu",jp:"秀峰閣 湖月",addr:"山梨県南都留郡富士河口湖町河口2312",en:"2312 Kawaguchi, Fujikawaguchiko",inout:"заезд 15:00–19:00 · выезд до 10:00 · ужин не позже 19:00",price:"≈ 54 000 ₽",note:"Японский номер 20 м², ужин кайсэки и завтрак, онсэн. Бесплатный трансфер от станции Кавагутико. Klook: €586, без возврата — бронировать после визы и подтвердить письмом в рёкан.",link:"https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/?room_num=1&adult_num=2&child_num=0&check_in=2026-12-07&check_out=2026-12-08",q:"Shuhokaku Kogetsu Kawaguchiko"},
- {id:"h4",nights:"8–11.12 · 3 ночи",name:"KOKO Hotel Premier Nihonbashi Hamacho",jp:"KOKO HOTEL Premier 日本橋浜町",addr:"東京都中央区日本橋浜町2-30-4",en:"2-30-4 Nihonbashi Hamacho, Chuo-ku, Tokyo",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 186 ₽",note:"Номер 17 м², 470 м до Нингётё, прямые поезда в Ханэду. Booking: бесплатная отмена до 1.12, оплата 29.11. Сюда же приедут чемоданы из Киото.",link:"https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html?checkin=2026-12-08&checkout=2026-12-11&group_adults=2&no_rooms=1",q:"KOKO HOTEL Premier Nihonbashi Hamacho"}
+ {id:"h1",nights:"1–4.12 · 3 ночи",name:"Dormy Inn Premium Namba",jp:"天然温泉 夕霧の湯 ドーミーインPREMIUMなんば",addr:"大阪府大阪市中央区島之内2-14-23",en:"2-14-23 Shimanouchi, Chuo-ku, Osaka",inout:"заезд с 15:00 · выезд до 11:00",price:"24 858 ₽",note:"Свой онсэн. Booking: бесплатная отмена до 30.11, оплата 28.11.",link:"https://www.booking.com/hotel/jp/dormy-inn-premium-namba.ru.html?checkin=2026-12-01&checkout=2026-12-04&group_adults=2&no_rooms=1",q:"Dormy Inn Premium Namba",food:"завтрак · 21:30–23:00 бесплатная лапша ёнаки-соба"},
+ {id:"h2",nights:"4–7.12 · 3 ночи",name:"Keio Prelia Hotel Kyoto Karasuma-Gojo",jp:"京王プレリアホテル京都烏丸五条",addr:"京都府京都市下京区烏丸通松原下る五条烏丸町396",en:"396 Gojo Karasumacho, Shimogyo-ku, Kyoto",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 836 ₽",note:"9,1 на Booking, у станции метро Годзё. Бесплатная отмена до 2.12, оплата в отеле. Вариант ближе к Гиону — HOTEL RINGS KYOTO, 46 137 ₽.",link:"https://www.booking.com/hotel/jp/keio-prelia-hotel-kyoto-karasuma-gojo.ru.html?checkin=2026-12-04&checkout=2026-12-07&group_adults=2&no_rooms=1",q:"Keio Prelia Hotel Kyoto Karasuma Gojo",food:"завтрак"},
+ {id:"h3",nights:"7–8.12 · 1 ночь",name:"Shuhokaku Kogetsu",jp:"秀峰閣 湖月",addr:"山梨県南都留郡富士河口湖町河口2312",en:"2312 Kawaguchi, Fujikawaguchiko",inout:"заезд 15:00–19:00 · выезд до 10:00 · ужин не позже 19:00",price:"≈ 54 000 ₽",note:"Японский номер 20 м², ужин кайсэки и завтрак, онсэн. Бесплатный трансфер от станции Кавагутико. Klook: €586, без возврата — бронировать после визы и подтвердить письмом в рёкан.",link:"https://www.klook.com/ru/hotels/detail/1059086-shuhokaku-kogetsu/?room_num=1&adult_num=2&child_num=0&check_in=2026-12-07&check_out=2026-12-08",q:"Shuhokaku Kogetsu Kawaguchiko",food:"ужин кайсэки до 19:00 и завтрак включены"},
+ {id:"h4",nights:"8–11.12 · 3 ночи",name:"KOKO Hotel Premier Nihonbashi Hamacho",jp:"KOKO HOTEL Premier 日本橋浜町",addr:"東京都中央区日本橋浜町2-30-4",en:"2-30-4 Nihonbashi Hamacho, Chuo-ku, Tokyo",inout:"заезд 15:00–00:00 · выезд до 11:00",price:"39 186 ₽",note:"Номер 17 м², 470 м до Нингётё, прямые поезда в Ханэду. Booking: бесплатная отмена до 1.12, оплата 29.11. Сюда же приедут чемоданы из Киото.",link:"https://www.booking.com/hotel/jp/hotel-trusty-premier-nihonbashihamacho.ru.html?checkin=2026-12-08&checkout=2026-12-11&group_adults=2&no_rooms=1",q:"KOKO HOTEL Premier Nihonbashi Hamacho",food:"завтрак"}
 ];
 const DAYS=[
 {id:"d30",date:"2026-11-30",n:"30",m:"НОЯ · ПН",city:"В пути",title:"Курс на восток",line:"Шереметьево · перелёт через Гуанчжоу",km:"",chips:[],tl:[
@@ -525,11 +539,11 @@ const DAYS=[
  food:[["Mizuno — окономияки на Дотонбори, бывает очередь","Mizuno Okonomiyaki Dotonbori"],["Kukuru — такояки там же, быстро и без очереди","Kukuru Takoyaki Dotonbori"]],
  tip:"День длинный: в самолёте лучше выспаться, а вечером не планировать ничего обязательного."},
 {id:"d2",date:"2026-12-02",n:"02",m:"ДЕК · СР",city:"Осака",title:"Замок и огни большого города",line:"Куромон · замок Осаки · Синсэкай · Umeda Sky",km:"9–12 км",chips:[],tl:[
- ["09:00","Рынок Куромон: завтрак морепродуктами и клубникой на палочке.",null,"Kuromon Ichiba Market"],
+ ["09:00","Рынок Куромон: перекус морепродуктами и клубника на палочке.",null,"Kuromon Ichiba Market"],
  ["10:30","Замок Осаки и парк вокруг.",{g:["Замок, который строили трижды","Первый замок поставил Тоётоми Хидэёси в 1583 году как символ объединения страны. Его сожгли в 1615-м, затем отстроили и снова потеряли от пожара. Нынешняя башня — бетонная реконструкция 1931 года, внутри музей. Самое впечатляющее снаружи — гигантские камни стен и рвы."]},"Osaka Castle"],
  ["14:00","Синсэкай и башня Цутэнкаку, обед — кусикацу. Соус общий, макать дважды нельзя.",null,"Tsutenkaku Shinsekai"],
  ["16:15","Umeda Sky Building: закат с открытой площадки на 173 метрах.",null,"Umeda Sky Building"],
- ["19:00","Ужин в Умэде или обратно в Намбу."]],
+ ["18:00","Ужин в Умэде, потом обратно в Намбу."]],
  how:["Ниппомбаси → Танимати 4-тёмэ: метро с пересадкой, около 15 минут; оттуда пешком к воротам Отэмон.","Замок → Синсэкай: метро до станции Добуцуэн-маэ, около 20 минут.","Синсэкай → Умэда: линия метро Мидосудзи от Добуцуэн-маэ до Умэды, около 15 минут, затем 10 минут пешком."],
  food:[["Kushikatsu Daruma в Синсэкае — на обед","Kushikatsu Daruma Shinsekai"],["Kiji — окономияки в подвале Umeda Sky, на ужин","Okonomiyaki Kiji Umeda Sky Building"]]},
 {id:"d3",date:"2026-12-03",n:"03",m:"ДЕК · ЧТ",city:"Нара",title:"Олени и Большой Будда",line:"Парк Нара · Тодай-дзи · Касуга",km:"10–13 км",chips:[],tl:[
@@ -604,6 +618,111 @@ const DAYS=[
  ["21:15","Прилёт в Шереметьево."]],
  how:["Нингётё → Ханэда: Toei Asakusa line, поезд с надписью Haneda Airport, без пересадок, около 40 минут.","Выходить на станции Haneda Airport Terminal 3.","В Гуанчжоу пересадка всего час: сразу идти по указателям International Transfer."]}
 ];
+// Где поесть: [название, что едим, рейтинг Google, отзывов, цена, заметка, place_id]
+const MEALS={
+d30:{b:"Обед и ужин — на борту China Southern.",note:"Перед вылетом можно перекусить в Шереметьево после досмотра."},
+d1:{b:"Завтрак — на рейсе Гуанчжоу → Осака.",
+ l:{t:"Обед",w:"в самолёте или сразу после прилёта, Кансай, терминал 1",o:[
+  ["На борту","на рейсе в Осаку кормят — этого хватит до ужина"],
+  ["Kineya Mugimaru","удон с тэмпурой, быстро и недорого, 2 этаж терминала",4.2,265,"¥","7:00–22:00","ChIJJQ143GO5AGARqAlAZwkQYq4"],
+  ["San Marco Curry","японское карри с омлетом, там же",3.9,145,"¥","7:00–22:00","ChIJab8KUei5AGARxwVM5N8eQ6Q"]]},
+ d:{t:"Ужин",w:"около 18:30, Дотонбори",o:[
+  ["Ajinoya","окономияки — главное блюдо Осаки, жарят на плите прямо у стола",4.2,4018,"¥¥","Очередь через талон в автомате у входа. Карты не берут, нужны наличные. По понедельникам закрыто.","ChIJvRX1cBPnAGARzhcHALQCKbw"],
+  ["Okonomiyaki Mizuno","окономияки с 1945 года, восемь лет подряд в гиде Мишлен Bib Gourmand",3.8,3299,"¥¥","11:00–22:00, вечером очередь 20–40 минут","ChIJp6r1whTnAGARQi9RHXsUEtA"],
+  ["Ichiran Dotonbori","рамен в одиночных кабинках — если сил уже нет",4.3,9442,"¥","Круглосуточно","ChIJK7TL6RTnAGARYiifaSOuOFM"]]},
+ note:"В Dormy Inn каждый вечер 21:30–23:00 бесплатная лапша ёнаки-соба — на случай, если ужин был лёгким."},
+d2:{b:"Завтрак — в отеле. На Куромоне — перекус: гребешки, тунец, клубника.",
+ l:{t:"Обед",w:"около 14:00, Синсэкай",o:[
+  ["Kushikatsu Daruma","кусикацу в месте, где их придумали",4.1,2182,"¥¥","Соус общий — макать только один раз","ChIJ5V4HCWDnAGARd6bIaaK91O4"],
+  ["Yaekatsu","кусикацу, которые любят местные, переулок Дзян-Дзян",4.0,3956,"¥¥","Очередь 15–30 минут. По четвергам закрыто.","ChIJve4ZtordAGARBOe37AfMfUg"],
+  ["Tengu","кусикацу и тушёные доте-яки, напротив Yaekatsu",3.9,1417,"¥¥","10:30–20:00","ChIJKbl-tordAGARw9OC3nYtJkg"]]},
+ d:{t:"Ужин",w:"около 18:00, Умэда, сразу после Umeda Sky",o:[
+  ["Okonomiyaki Kiji","окономияки и якисоба в «старой улочке» в подвале Umeda Sky",4.2,1421,"¥","До 20:00, по четвергам закрыто. Идти сразу после смотровой.","ChIJcdl47IjmAGAReFfKTi2c5uc"],
+  ["Gyukatsu Motomura","говяжья котлета, дожариваете сами на камне, ТЦ LUCUA у станции Осака",4.9,9516,"¥¥","До 23:00. В Киото в Понтотё будет похожее блюдо.","ChIJZZ6m0Y3mAGARyQBlpQIG0_8"],
+  ["Harukoma","любимые суши осакцев, огромные куски тунца",4.2,3885,"¥¥","2 станции метро от Умэды. Вечером очередь до часа. По вторникам закрыто.","ChIJW7SUt7jmAGARQ_B9JgrRYVw"]]}},
+d3:{b:"Завтрак — в отеле.",
+ l:{t:"Обед",w:"около 12:00, между Тодай-дзи и Касугой",o:[
+  ["Kamameshi Shizuka","камамэси — рис с начинкой в чугунном горшочке",4.1,1881,"¥¥","11:00–15:00, по вторникам и средам закрыто. Очередь к открытию.","ChIJfxW-0Y85AWARgYpZZjfh330"],
+  ["Mizuya Chaya","чайный домик с соломенной крышей в лесу парка: удон, онигири, моти",4.7,1298,"¥","11:00–15:30, прямо по дороге к Касуге","ChIJj9LYfJU5AWARbAtuh3oHDSc"],
+  ["Izasa Nakatani","суши в листьях хурмы — местная особенность Нары",4.2,717,"¥¥","11:00–16:00, у входа к Тодай-дзи","ChIJE1EBpZE5AWARkB2RUpwpQBk"]]},
+ d:{t:"Ужин",w:"около 19:00, Намба — последний вечер в Осаке",o:[
+  ["Matsusakagyu Yakiniku M","якинику из мраморной говядины Мацусака в переулке Ходзэндзи",4.8,3394,"¥¥¥","Лучше забронировать на сайте за несколько дней","ChIJa0f0lRTnAGARXNWOLs7nBqg"],
+  ["Daiki Suisan","суши на ленте от рыбной компании, недорого",4.0,4897,"¥¥","11:00–23:00","ChIJAQBk6xTnAGAR6RmXfp6DVSM"],
+  ["Kani Doraku","краб под гигантской движущейся вывеской: сашими, гриль, набэ",4.2,5260,"¥¥¥","Сеты от ~5 000 ¥, ужин около 1,5–2 часов","ChIJVVVFgBPnAGARLbCliBbVOI8"]]}},
+d4:{b:"Завтрак — в Dormy Inn перед выездом.",
+ l:{t:"Обед",w:"около 11:30, у вокзала Киото и отеля",o:[
+  ["Honke Daiichi-Asahi","киотский рамен на сёю, варят с 1947 года, у вокзала",4.0,9430,"¥","Очередь 20–40 минут. По четвергам закрыто.","ChIJAQDb87EIAWARi5Y4U4cs7aU"],
+  ["Menya Inoichi","рамен на рыбном бульоне даси, 10 минут пешком от отеля",4.4,4043,"¥","Выдают талон с временем — можно погулять","ChIJufyODr4IAWARNVu7xBbRG2w"],
+  ["Katsukura Kyoto Porta","тонкацу, рис, суп и капуста без ограничений, 11 этаж вокзала",4.4,1352,"¥¥","11:00–22:00","ChIJAWwhhZkIAWARBmPflL1c4yQ"]]},
+ d:{t:"Ужин",w:"около 18:30, Понтотё",o:[
+  ["Kyoto Katsugyu Pontocho","гюкацу — говяжья котлета с соусами и онсэн-яйцом",4.8,11989,"¥¥","11:00–22:30, вечером очередь","ChIJt3Q_tZQIAWARhnwJ7t1qjU0"],
+  ["Kushiyaki Manten","шашлычки кусияки на углях в самом переулке",4.1,1840,"¥¥","С 17:00","ChIJ__9jU5MIAWAR6v3rgjrGS9Q"],
+  ["Torikizoku Kiyamachi","сетевой якитори, всё меню по одной цене",4.1,525,"¥","С 17:00, рядом с Понтотё","ChIJAQD9rJQIAWARCUtghYwY1LE"]]}},
+d5:{b:"Завтрак — в отеле, лучше в 7:00: в 8:00 уже Киёмидзу.",
+ l:{t:"Обед",w:"около 12:30, у Кодай-дзи",o:[
+  ["Omen Kodaiji","удон в горячем бульоне с овощами и тэмпурой",4.2,248,"¥¥","В обед бывает очередь около 30 минут","ChIJ___PBtAIAWARxnk_BM27ftQ"],
+  ["Hisago","оякодон — курица с яйцом на рисе, классика района",4.1,1103,"¥","Очередь около 30 минут, проходит быстро","ChIJBeZqHsUIAWARTpwKQ0dirGo"],
+  ["Okutan Kiyomizu","юдофу — тофу в горшочке, татами и сад, заведению больше 300 лет",3.9,751,"¥¥","Сб 11:00–17:00, по четвергам закрыто","ChIJU7jlIdAIAWAR6rlZS3_YitI"]]},
+ d:{t:"Ужин",w:"около 19:00, Гион",o:[
+  ["Yagenbori","кайсэки и сябу-сябу в старом доме у канала Сиракава",4.6,186,"¥¥¥","Минимум 6 000 ¥ на человека. Бронь через отель. По вторникам закрыто.","ChIJV-XMnsEIAWARuRiDqf_n7sM"],
+  ["Gion Duck Noodles","рамен на утином бульоне, необычный и очень популярный",4.4,2029,"¥¥","До 21:00–22:00, вечером очередь до часа","ChIJwU8XyfUJAWARF-qBYr05Eg8"],
+  ["Gion Tanto","окономияки на берегу Сиракавы",4.4,1479,"¥¥","Сб 17:00–21:30, по четвергам закрыто","ChIJ8dlnc-oIAWARMw3PidOJz1w"]]}},
+d6:{b:"Завтрак — в отеле, рано: в 7:30 поезд в Арасияму.",
+ l:{t:"Обед",w:"около 11:30, Арасияма — до Кинкаку-дзи",o:[
+  ["Yudofu Sagano","сет из тофу во дворе с садом, рядом с Тэнрю-дзи",4.3,1249,"¥¥¥","Сет около 4 400 ¥. 11:00–17:30.","ChIJ-Q01TwCqAWARfC2BdiI9UDI"],
+  ["Arashiyama Yoshimura","соба и тэмпура с видом на мост Тогэцукё",4.2,2713,"¥¥","Вс 10:30–17:00, в обед очередь","ChIJSwnVXlUHAWARuTjqE7BrW88"],
+  ["Shoraian","тофу-кайсэки в лесном домике над рекой",4.6,761,"¥¥¥","Только с бронью, 15 минут пешком вверх по реке","ChIJzwptxgaqAWAR8i7kivaQtTU"]]},
+ d:{t:"Ужин",w:"около 18:00, у рынка Нисики",o:[
+  ["Mishima-tei","киотское сукияки, заведению больше 150 лет — главный ужин Киото",4.2,1518,"¥¥¥","Бронировать заранее через отель","ChIJrUy7vpMIAWARciV2lMassEo"],
+  ["Katsukura Sanjo","тонкацу в главном ресторане сети, кунжут трёте сами",4.5,2387,"¥¥","До 20:30, вход с маленькой двери в переулке","ChIJVVXJS5IIAWARFaVO44YN2fw"],
+  ["Ramen Sen-no-Kaze","рамен, который в отзывах называют лучшим в Киото",4.2,2833,"¥","Очередь бывает до 2 часов. Вт–ср закрыто.","ChIJxegDSJQIAWARKYgV3JBG3xk"]]}},
+d7:{b:"Завтрак — в отеле в Киото. В синкансэн можно взять экибэн — бэнто с вокзала.",
+ l:{t:"Обед",w:"около 14:30, Кавагутико",o:[
+  ["Kosaku","хото — толстая лапша с тыквой в мисо-бульоне, огромный деревянный зал",4.2,6975,"¥¥","1 км от станции, 11:00–19:30. Порцию лучше одну на двоих: впереди кайсэки.","ChIJF8U5CNVfGWARbWh06O9NtOU"],
+  ["Hoto Fudou","то же хото, прямо у станции — удобно с рюкзаками",3.8,2854,"¥¥","11:00–19:00","ChIJD9e0oIJgGWARjCiXDS-GJmA"],
+  ["Sanrokuen","гриль на углях ирори, сидишь вокруг очага",4.3,1713,"¥¥¥","До 17:30, 10 минут пешком от станции","ChIJ28eRkIRgGWAR97rxIolVHVM"]]},
+ d:{t:"Ужин",w:"18:00, рёкан Kogetsu",o:[["Кайсэки в рёкане","включён в стоимость — не позже 19:00"]]}},
+d8:{b:"Завтрак — в рёкане, включён.",
+ l:{t:"Обед",w:"около 11:30, Фудзиёсида — до поезда в 12:30",o:[
+  ["Menkyo-kaiden","ёсида-удон — местная жёсткая лапша, 10 минут от станции Фудзисан",4.3,1462,"¥","11:00–14:00","ChIJvwk8PitnGWAR2zmdVvzBBo8"],
+  ["Fuji Ramen Restaurant","рамен у подножия пагоды Тюрэйто",4.7,1517,"¥","8:00–18:00","ChIJcaybagBnGWARNspmmXY1zNA"],
+  ["Miura Udon","ёсида-удон у станции Симоёсида",3.9,1893,"¥","10:00–14:00, по средам закрыто","ChIJPfhiZTdnGWARQN7WoG3MebA"]]},
+ d:{t:"Ужин",w:"около 18:00, Синдзюку",o:[
+  ["Nogataya","якитори в Омоидэ-Ёкотё, хозяин говорит по-английски",4.1,132,"¥","Минимум 2 шашлычка и напиток на человека, плата за место 350 ¥","ChIJX6AgNjuNGGARdnKPVd6N7bU"],
+  ["Motsuyaki Ucchan","шашлычки из свинины там же, атмосфера старого Токио",4.0,626,"¥","Только наличные","ChIJn-vIENeMGGARupKqXakdVIA"],
+  ["Fuunji","цукэмэн — лапша, которую макают в густой бульон",4.3,5785,"¥","До 21:00, очередь движется быстро","ChIJ508frs-MGGARnIKrb_tkai0"]]}},
+d9:{b:"Завтрак — в отеле.",
+ l:{t:"Обед",w:"около 13:00–14:30, в студии",o:[
+  ["The Food Hall","обед в стиле Хогвартса: пастуший пирог, «Пир в Большом зале»",4.1,173,"¥¥","Внутри студии, в обед ждать еду до 30 минут","ChIJezR7cxXtGGARcRSiKxic7i0"],
+  ["Backlot Cafe","сливочное пиво, бургеры, кружку можно забрать",4.1,272,"¥¥","Середина маршрута, до 17:00","ChIJg8rXFkztGGAR0ZjktAsF_ag"],
+  ["Inosho","рамен и цукэмэн у станции Нэрима — по дороге в центр",4.1,1597,"¥","10:00–16:30, 12 мест, бывает очередь","ChIJv-gDmgntGGARmKM9OhvJKQo"]]},
+ d:{t:"Ужин",w:"около 18:00, Гиндза",o:[
+  ["Ginza Kagari","сливочный рамен на курином бульоне",4.2,4778,"¥¥","Заказ принимают в очереди, ждать 15–30 минут","ChIJjykJZCCLGGARMx5vYqRsWYI"],
+  ["Ginza Lion Beer Hall","старейший пивной зал Японии, 1934 год",4.4,5185,"¥¥","До 22:00, можно без брони","ChIJ4RGvL-aLGGARBHZ6hWmQMPk"],
+  ["Ginza Tenkuni","тэмпура в токийском стиле",4.0,1098,"¥¥","До 22:00, по воскресеньям закрыто","ChIJAQDAdeiLGGARtFxeTTOBBYo"]]}},
+d10:{b:"Завтрак — в отеле, к 8:30 уже в Асакусе.",
+ l:{t:"Обед",w:"около 12:00, Асакуса",o:[
+  ["Asakusa Amairo","тэмпура и тэндон, тэмпура из яйца с жидким желтком",4.4,1037,"¥¥","11:30–14:30, приходите к открытию","ChIJ5eRY_zyPGGAR7DGMXUxYkqU"],
+  ["Tentou","тэндон в маленькой лавке, которой больше 100 лет",4.3,472,"¥¥","10:30–16:30, только наличные","ChIJYd_TjsCOGGARQTyqbM_ailI"],
+  ["Owariya","соба и тэмпура, местные обедают здесь десятилетиями",4.0,1558,"¥¥","В четверг 11:30–16:00, наличные","ChIJnX8RpsCOGGARZnzTvrUg5HM"]]},
+ d:{t:"Ужин",w:"около 18:00, Сибуя",o:[
+  ["Sushi no Midori","суши, за которые стоят в очереди даже токийцы, Mark City",4.3,4470,"¥¥","Взять талон в очередь до подъёма на Shibuya Sky — к ужину подойдёт","ChIJu9W4zVeLGGARXn0xCjGINF8"],
+  ["Uobei","суши по планшету, прилетают на скоростной ленте",4.3,9288,"¥","До 23:00, очередь движется быстро","ChIJaTXpw6mMGGARP-d-_tbssVE"],
+  ["Ichiran Shibuya","рамен в кабинках, круглосуточно",4.4,5325,"¥","Записаться в очередь по QR и погулять","ChIJOWucdKiMGGARbppa4b4CKA8"]]}},
+d11:{b:"Завтрак — в отеле, если успеете до 7:45. Иначе — онигири в Ханэде.",
+ l:{t:"Перед вылетом",w:"Ханэда, терминал 3, до досмотра",o:[
+  ["Onigiri Konga","большие тёплые онигири с начинкой на выбор, 4 этаж",4.0,442,"¥","7:30–20:30","ChIJ3cBYSQhjGGARSi4WimbznTs"]]},
+ note:"Обед и ужин — на борту China Southern."}
+};
+const MP=(n,id)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(n)+(id?'&query_place_id='+id:'');
+const fmtR=r=>String(r.toFixed(1)).replace('.',',');
+const fmtN=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+function mealOpt(o,i){const [n,desc,r,c,p,note,id]=o;
+ return `<div class="mo"><span class="k">${i?'Запасной':'Основной'}</span><div><b>${n}</b> — ${desc}${r?`<div class="meta"><span class="star">★ ${fmtR(r)}</span> (${fmtN(c)}) · ${p}${note?' · '+note:''}</div>`:(note?`<div class="meta">${note}</div>`:'')}${id?`<a class="maplink" href="${esc(MP(n,id))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</div></div>`}
+function mealBlock(m){if(!m)return '';return `<div class="meal"><h5>${m.t} <span>· ${m.w}</span></h5>${m.o.length===1&&!m.o[0][2]?`<p class="mnote">${m.o[0][0]}: ${m.o[0][1]}.</p>`:m.o.map(mealOpt).join('')}</div>`}
+function mealsHTML(id){const m=MEALS[id];if(!m)return '';
+ return `<div class="block meals"><h4>Где поесть</h4>${m.b?`<p class="mnote">${m.b}</p>`:''}${mealBlock(m.l)}${mealBlock(m.d)}${m.note?`<p class="mnote">${m.note}</p>`:''}${m.l&&m.l.o.some(o=>o[2])?`<p class="msrc">★ рейтинг и число отзывов в Google Maps на 4 ноября 2026. ¥ — до 1 500 ¥ на человека, ¥¥ — 1 500–4 000 ¥, ¥¥¥ — дороже.</p>`:''}</div>`}
+
 const host=document.getElementById('days');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
 host.innerHTML=DAYS.map(d=>`
@@ -615,14 +734,14 @@ host.innerHTML=DAYS.map(d=>`
   ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${esc(c[1])}" ${c[1].startsWith('#')?'':'target="_blank" rel="noopener"'}>${c[0]} ↗</a>`).join('')}</div>`:''}
   <ol class="tl">${d.tl.map(t=>`<li data-t="${t[0]}"><span class="t">${t[0]}</span>${t[3]&&PH[t[3]]?`<figure class="ph"><img src="${PH[t[3]].src}" alt="${PH[t[3]].cap}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption>${PH[t[3]].cap} · <a href="${PH[t[3]].page}" target="_blank" rel="noopener">${PH[t[3]].by}, ${PH[t[3]].lic}</a></figcaption></figure>`:''}<p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')}</ol>
   ${d.how?`<div class="block"><h4>Как добраться</h4><ol>${d.how.map(h=>`<li>${h}</li>`).join('')}</ol></div>`:''}
-  ${d.food?`<div class="block"><h4>Где поесть</h4><div class="food">${d.food.map((f,i)=>`<div><span class="k">${i?'Запасной':'Основной'}</span><span>${f[0]} <a class="maplink" href="${esc(M(f[1]))}" target="_blank" rel="noopener">На карте ↗</a></span></div>`).join('')}</div></div>`:''}
+  ${mealsHTML(d.id)}
   ${d.tip?`<div class="tip">${d.tip}</div>`:''}
   <div class="block mine" data-date="${d.date}"><h4>Наши фото</h4><div class="mine-b"></div></div>
  </div>
 </details>`).join('');
 document.getElementById('hotel-list').innerHTML=HOTELS.map(h=>`
 <div class="hotel"><div class="src">${h.nights}</div><b>${h.name}</b><div class="jpname">${h.jp}</div>
-<div class="kv"><span>Адрес</span><span>${h.en}</span><span>Время</span><span>${h.inout}</span><span>Цена</span><span>${h.price}</span></div>
+<div class="kv"><span>Адрес</span><span>${h.en}</span><span>Время</span><span>${h.inout}</span><span>Цена</span><span>${h.price}</span><span>Питание</span><span>${h.food}</span></div>
 <p class="src">${h.note}</p>
 <div class="chips"><button class="btn" type="button" data-taxi="${h.id}">Показать водителю</button><a class="chip" href="${esc(M(h.q))}" target="_blank" rel="noopener">На карте ↗</a><a class="chip" href="${esc(h.link)}" target="_blank" rel="noopener">Бронь ↗</a></div></div>`).join('');
 const taxi=document.getElementById('taxi');
