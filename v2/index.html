@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Япония · по дням</title>
+<meta name="description" content="Наша Япония 30.11–11.12: маршрут по дням как схема метро">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#16191d;--muted:#666d75;--line:#e4e0d8;--soft:#efece5;--accent:#c8372d;
+--osaka:#e07a1f;--kyoto:#7d4fa8;--fuji:#138a80;--tokyo:#c8372d;--road:#7b8794;--mj:#c2451f;--mjbg:#fbe9e2;
+--f:"Golos Text",-apple-system,"Segoe UI",Roboto,sans-serif;--jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--ink:#eceae6;--muted:#9aa1a9;--line:#2b3037;--soft:#23272d;--accent:#ff6a5c;
+--osaka:#ff9a45;--kyoto:#b38ae0;--fuji:#3cc2b5;--tokyo:#ff6a5c;--road:#8d99a6;--mj:#ff9d7a;--mjbg:#3a241d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--ink:#eceae6;--muted:#9aa1a9;--line:#2b3037;--soft:#23272d;--accent:#ff6a5c;
+--osaka:#ff9a45;--kyoto:#b38ae0;--fuji:#3cc2b5;--tokyo:#ff6a5c;--road:#8d99a6;--mj:#ff9d7a;--mjbg:#3a241d;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--f);overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 8px;max-width:640px;margin:0 auto}
+.brand{font-weight:800;font-size:18px;letter-spacing:-.01em}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:0}
+.toplinks{display:flex;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap}
+/* day strip */
+.strip{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.strip ol{list-style:none;margin:0 auto;max-width:640px;padding:8px 12px 10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+.strip ol::-webkit-scrollbar{display:none}
+.strip button{flex:0 0 auto;scroll-snap-align:center;width:52px;border:0;background:var(--card);border-radius:14px;padding:6px 0 7px;cursor:pointer;display:grid;justify-items:center;gap:1px;position:relative;box-shadow:inset 0 0 0 1px var(--line)}
+.strip button b{font-size:19px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.strip button span{font-size:11px;color:var(--muted);font-weight:600}
+.strip button i{position:absolute;left:10px;right:10px;bottom:3px;height:3px;border-radius:2px;background:var(--ln)}
+.strip button[aria-current="true"]{background:var(--ln);box-shadow:none}
+.strip button[aria-current="true"] b,.strip button[aria-current="true"] span{color:#fff}
+.strip button[aria-current="true"] i{background:#fff;opacity:.6}
+.strip button .td{position:absolute;top:-3px;right:-2px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--bg)}
+/* day head */
+.dh{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:end;margin:20px 0 6px}
+.num{font-size:64px;line-height:.85;font-weight:800;letter-spacing:-.04em;color:var(--ln);font-variant-numeric:tabular-nums}
+.mo{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.city{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lnbadge{display:inline-block;padding:1px 8px;border-radius:6px;background:var(--ln);color:#fff;font-size:12px;font-weight:700}
+h1{font-size:26px;line-height:1.15;letter-spacing:-.02em;margin:10px 0 4px;font-weight:800;text-wrap:balance}
+.sub{color:var(--muted);font-size:14px;margin:0}
+.wake{display:flex;gap:10px;align-items:flex-start;margin:14px 0 6px;padding:12px 14px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);font-size:15px}
+.wake b{font-size:18px;line-height:1.2}
+/* metro timeline */
+.metro{list-style:none;margin:18px 0 8px;padding:0;position:relative}
+.metro li{position:relative;padding-left:40px}
+.metro li::before{content:"";position:absolute;left:13px;top:0;bottom:0;width:6px;background:var(--ln);opacity:.9}
+.metro li:first-child::before{top:14px}
+.metro li:last-child::before{bottom:calc(100% - 14px)}
+.metro li.seg::before{background:repeating-linear-gradient(var(--ln) 0 6px,transparent 6px 11px);opacity:.55}
+.st{padding-bottom:14px}
+.st .dot{position:absolute;left:5px;top:4px;width:22px;height:22px;border-radius:50%;background:var(--card);border:5px solid var(--ln);z-index:1}
+.st.now .dot{background:var(--ln);box-shadow:0 0 0 5px color-mix(in srgb,var(--ln) 25%,transparent)}
+.st.past{opacity:.6}
+.tm{font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:30px}
+.nowtag{font-size:11px;font-weight:700;background:var(--ln);color:#fff;border-radius:6px;padding:1px 7px}
+.mj{font-size:12px;font-weight:700;color:var(--mj);background:var(--mjbg);border-radius:999px;padding:1px 9px}
+.tx{margin:2px 0 0}
+.tx p{margin:0}
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;font-size:13px}
+.acts a{color:var(--ln);font-weight:600;text-decoration:none}
+.ph{margin:10px 0 2px;border-radius:14px;overflow:hidden;background:var(--soft);aspect-ratio:16/9}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.phc{font-size:11px;color:var(--muted);margin:4px 0 0}
+.phc a{color:inherit}
+details.g{margin-top:8px;border-radius:12px;background:var(--soft)}
+details.g summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:14px;font-weight:600}
+details.g summary::-webkit-details-marker{display:none}
+details.g summary::before{content:"語 ";font-family:var(--jp);color:var(--ln)}
+details.g p{margin:0;padding:0 12px 12px;font-size:14px;color:var(--muted)}
+.seg{padding:2px 0 14px;font-size:14px;color:var(--muted)}
+.seg .go{display:block;background:var(--card);border-radius:12px;padding:8px 12px;box-shadow:inset 0 0 0 1px var(--line)}
+.seg .go::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--road);margin-right:8px;vertical-align:1px}
+/* sections */
+.sec{margin:26px 0 0}
+.sec h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:700}
+.tabs{display:flex;background:var(--soft);border-radius:12px;padding:3px;gap:3px}
+.tabs button{flex:1;border:0;background:transparent;border-radius:9px;padding:8px 4px;font-size:14px;font-weight:600;cursor:pointer;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.meal{margin-top:10px}
+.when{font-size:13px;color:var(--muted);margin:0 0 8px}
+.card{background:var(--card);border-radius:16px;padding:14px;box-shadow:inset 0 0 0 1px var(--line)}
+.card.main{box-shadow:inset 0 0 0 2px var(--ln)}
+.on{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.on a{font-weight:700;font-size:17px;text-decoration:none}
+.tag{font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.tag.sp{background:var(--ln);color:#fff}
+.mrow{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:4px 0 6px}
+.mrow .r{color:var(--ink);font-weight:700}
+.card p{margin:6px 0 0;font-size:14px}
+.card .k{font-weight:700}
+.alts{margin-top:10px}
+.alts summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--ln);padding:6px 0;list-style:none}
+.alts summary::-webkit-details-marker{display:none}
+.alts summary::after{content:" ▾"}
+.alts[open] summary::after{content:" ▴"}
+.alt{padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.alt:first-of-type{border-top:0}
+.alt a{font-weight:700;text-decoration:none}
+.alt .mrow{margin:2px 0}
+.alt p{margin:2px 0 0;color:var(--muted)}
+.tot{margin-top:10px;font-size:13px;color:var(--muted)}
+.notes{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.notes li{background:var(--card);border-radius:14px;padding:10px 14px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px}
+.tip{border-left:4px solid var(--ln)!important}
+.hotel .hn{font-weight:800;font-size:17px}
+.hotel .hjp{font-family:var(--jp);font-size:13px;color:var(--muted);margin-top:2px}
+.hotel .hm{font-size:13px;color:var(--muted);margin-top:6px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700;background:var(--ln);color:#fff;text-decoration:none;cursor:pointer}
+.btn.ghost{background:var(--soft);color:var(--ink)}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:28px 0 10px}
+.nav button{border:0;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);border-radius:16px;padding:12px 14px;text-align:left;cursor:pointer}
+.nav button:last-child{text-align:right}
+.nav small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+.nav b{font-size:14px}
+.nav button[disabled]{visibility:hidden}
+footer{max-width:640px;margin:0 auto;padding:16px 16px 40px;color:var(--muted);font-size:12px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+/* taxi overlay */
+.taxi{position:fixed;inset:0;z-index:20;background:#fff;color:#111;display:flex;flex-direction:column;justify-content:center;padding:24px;gap:18px}
+.taxi[hidden]{display:none}
+.taxi .tj{font-family:var(--jp);font-weight:700;font-size:clamp(26px,8vw,44px);line-height:1.35}
+.taxi .ta{font-family:var(--jp);font-weight:500;font-size:clamp(20px,6vw,32px);line-height:1.4}
+.taxi .tp{font-family:var(--jp);font-size:18px;color:#444}
+.taxi .te{font-size:14px;color:#555}
+.taxi button{align-self:flex-start;border:0;background:#111;color:#fff;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}
+.fade{animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}}
+:focus-visible{outline:3px solid var(--ln,var(--accent));outline-offset:2px;border-radius:8px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Япония по дням<small>30.11–11.12 · схема маршрута</small></div>
+  <div class="toplinks"><button type="button" class="pill" id="theme" aria-label="Тема">Авто</button><a class="pill" href="../">Полная версия</a></div>
+</header>
+<nav class="strip" aria-label="Дни поездки"><ol id="strip"></ol></nav>
+<main class="wrap" id="day" tabindex="-1"></main>
+<footer>
+  <div class="links"><a class="pill" href="../#info">Билеты и чек-лист</a><a class="pill" href="../#hotels">Отели</a><a class="pill" href="../#money">Траты</a><a class="pill" href="../#words">Фразы</a><a class="pill" href="../#momiji">Момидзи</a><a class="pill" href="../#album">Наши фото</a></div>
+  Данные общие с полной версией сайта. Рейтинги — Google Maps на ноябрь 2026, цены — ориентир на двоих. Время местное.
+</footer>
+<div class="taxi" id="taxi" hidden role="dialog" aria-modal="true" aria-label="Адрес для таксиста">
+  <div class="tp">こちらまでお願いします。</div>
+  <div class="tj" id="tx-n"></div>
+  <div class="ta" id="tx-a"></div>
+  <div class="te" id="tx-e"></div>
+  <button type="button" id="tx-x">Закрыть</button>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+const {DAYS,MEALS,HOTELS,PH}=window.T;
+const $=id=>document.getElementById(id);
+const get=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}};
+const put=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const MAP=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const MP=(n,id)=>MAP(n)+(id?'&query_place_id='+id:'');
+const LN={'Осака':'osaka','Киото':'kyoto','Кавагутико':'fuji','Токио':'tokyo'};
+const lineOf=d=>{const c=d.city.split('→').pop().trim();return LN[c]||'road'};
+const LBL={osaka:'Осака',kyoto:'Киото',fuji:'Фудзи',tokyo:'Токио',road:'В пути'};
+const rate=()=>{const r=parseFloat(String(get('rate','51.76')).replace(/"/g,''));return r>10?r:51.76};
+const rub=y=>Math.round(y*2*rate()/100/100)*100;
+const fmt=n=>n.toLocaleString('ru-RU');
+// hotel for the night of a date
+const NIGHTS={h1:['2026-12-01','2026-12-02'],h2:['2026-12-03','2026-12-04','2026-12-05'],h3:['2026-12-06'],h4:['2026-12-07','2026-12-08','2026-12-09','2026-12-10']};
+const hotelOf=date=>{for(const k in NIGHTS)if(NIGHTS[k].includes(date))return HOTELS.find(h=>h.id===k);return null};
+// Japan time
+const jst=()=>{const p=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());const o={};p.forEach(x=>o[x.type]=x.value);return {date:`${o.year}-${o.month}-${o.day}`,min:(+o.hour%24)*60+(+o.minute)}};
+const toMin=t=>{const m=String(t).match(/(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null};
+const WD=['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
+
+let cur=0;const now=jst();const todayIdx=DAYS.findIndex(d=>d.date===now.date);
+const saved=DAYS.findIndex(d=>d.id===get('v2day',''));
+cur=todayIdx>=0?todayIdx:(saved>=0?saved:0);
+const fromHash=()=>{const i=DAYS.findIndex(d=>'#'+d.id===location.hash);return i};
+if(fromHash()>=0)cur=fromHash();
+
+function strip(){$('strip').innerHTML=DAYS.map((d,i)=>{const ln=lineOf(d);const wd=WD[new Date(d.date+'T12:00:00').getDay()];
+ return `<li><button type="button" data-i="${i}" style="--ln:var(--${ln})" aria-current="${i===cur}" aria-label="${+d.n} ${d.m}, ${esc(d.city)}"><b>${+d.n}</b><span>${wd}</span><i></i>${i===todayIdx?'<em class="td" aria-hidden="true"></em>':''}</button></li>`}).join('');
+ $('strip').querySelectorAll('button').forEach(b=>b.onclick=()=>show(+b.dataset.i,true));
+ const a=$('strip').querySelector('[aria-current="true"]');if(a)a.scrollIntoView({inline:'center',block:'nearest'})}
+
+function opt(o,main){if(!o)return '';
+ const name=o.id||main?`<a href="${esc(MP(o.n,o.id))}" target="_blank" rel="noopener">${esc(o.n)}</a>`:`<b>${esc(o.n)}</b>`;
+ const meta=[o.r?`<span class="r">★ ${o.r}</span>${o.c?` <span>(${fmt(o.c)})</span>`:''}`:'',o.p?`<span>${esc(o.p)}</span>`:'',o.y?`<span>≈ ${fmt(o.y)} ¥ / чел · ≈ ${fmt(rub(o.y))} ₽ на двоих</span>`:(o.pt?`<span>${esc(o.pt)}</span>`:'')].filter(Boolean).join(' · ');
+ const links=[o.m?`<a href="${esc(o.m)}" target="_blank" rel="noopener">Меню ↗</a>`:'',o.i?`<a href="${esc(o.i)}" target="_blank" rel="noopener">О зале ↗</a>`:''].filter(Boolean).join(' ');
+ if(main)return `<div class="card main"><div class="on">${name}${o.sp?'<span class="tag sp">Особый ужин</span>':o.f?`<span class="tag">${esc(o.f)}</span>`:''}</div>
+  ${meta?`<div class="mrow">${meta}</div>`:''}${o.d?`<p>${esc(o.d)}</p>`:''}${o.why?`<p><span class="k">Почему:</span> ${esc(o.why)}</p>`:''}${o.ord?`<p><span class="k">Что заказать:</span> ${esc(o.ord)}</p>`:''}${o.note?`<p class="when" style="margin-top:6px">${esc(o.note)}</p>`:''}${links?`<div class="acts">${links}</div>`:''}</div>`;
+ return `<div class="alt"><div class="on">${name}${o.sp?'<span class="tag sp">Особый</span>':''}</div>${meta?`<div class="mrow">${meta}</div>`:''}${o.why||o.d?`<p>${esc(o.why||o.d)}</p>`:''}${o.ord?`<p><b>Заказать:</b> ${esc(o.ord)}</p>`:''}${o.note?`<p>${esc(o.note)}</p>`:''}</div>`}
+function meal(m){if(!m||!m.o||!m.o.length)return '<p class="when">Без отдельного приёма пищи.</p>';
+ const [main,...rest]=m.o;const eu=m.eu||[];
+ return `${m.w?`<p class="when">${esc(m.w)}</p>`:''}${opt(main,true)}
+ ${rest.length?`<details class="alts"><summary>Ещё ${rest.length} японских варианта</summary>${rest.map(o=>opt(o)).join('')}</details>`:''}
+ ${eu.length?`<details class="alts"><summary>Европейская кухня и просто хорошие места · ${eu.length}</summary>${eu.map(o=>opt(o)).join('')}</details>`:''}`}
+
+function show(i,user){cur=Math.max(0,Math.min(DAYS.length-1,i));const d=DAYS[cur];const ln=lineOf(d);put('v2day',d.id);
+ history.replaceState(null,'','#'+d.id);document.documentElement.style.setProperty('--ln',`var(--${ln})`);
+ const isToday=cur===todayIdx;let nowIdx=-1;
+ if(isToday){d.tl.forEach((t,k)=>{const m=toMin(t[0]);if(m!==null&&m<=now.min)nowIdx=k})}
+ let tl='';d.tl.forEach((t,k)=>{const [time,text,g,q,mj,go]=t;
+  if(go)tl+=`<li class="seg"><span class="go">${esc(go)}</span></li>`;
+  const ph=q&&PH[q];
+  tl+=`<li class="st${isToday&&k===nowIdx?' now':''}${isToday&&k<nowIdx?' past':''}"><span class="dot"></span>
+   <div class="tm">${esc(time)}${isToday&&k===nowIdx?'<span class="nowtag">сейчас</span>':''}${mj?'<span class="mj">🍁 Момидзи</span>':''}</div>
+   <div class="tx"><p>${text}</p>
+   ${ph?`<figure class="ph" style="margin:10px 0 0"><img src="${esc(ph.src)}" alt="${esc(ph.cap)}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"></figure><p class="phc">${esc(ph.cap)} · <a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.by)}, ${esc(ph.lic)}</a></p>`:''}
+   ${q?`<div class="acts"><a href="${esc(MAP(q))}" target="_blank" rel="noopener">На карте ↗</a></div>`:''}
+   ${g&&g.g?`<details class="g"><summary>${esc(g.g[0])}</summary><p>${esc(g.g[1])}</p></details>`:''}</div></li>`});
+ const M=MEALS[d.id]||{};const kinds=[['b','Завтрак'],['l','Обед'],['d','Ужин']].filter(([k])=>M[k]);
+ let def='l';if(isToday){def=now.min<10*60?'b':now.min<15*60?'l':'d'}if(!M[def])def=kinds.length?kinds[0][0]:'l';
+ const tot=kinds.reduce((s,[k])=>s+((M[k].o[0]||{}).y||0)*2,0)+(M.s||0);
+ const h=hotelOf(d.date);
+ const notes=[...(d.how||[]).map(x=>`<li>${x}</li>`),d.tip?`<li class="tip">${d.tip}</li>`:''].join('');
+ const prev=DAYS[cur-1],next=DAYS[cur+1];
+ $('day').innerHTML=`<div class="fade">
+  <div class="dh"><div class="num">${esc(d.n)}</div><div><div class="mo">${esc(d.m)}</div><div class="city"><span class="lnbadge">${LBL[ln]}</span>${esc(d.city)}</div></div></div>
+  <h1>${esc(d.title)}</h1><p class="sub">${esc(d.line)}${d.km?' · '+esc(d.km):''}</p>
+  ${d.wake?`<div class="wake"><b aria-hidden="true">⏰</b><span>${esc(d.wake)}</span></div>`:''}
+  <ol class="metro">${tl}</ol>
+  ${kinds.length?`<section class="sec"><h2>Где поесть</h2><div class="tabs" role="tablist">${kinds.map(([k,l])=>`<button type="button" role="tab" data-k="${k}" aria-selected="${k===def}">${l}</button>`).join('')}</div><div class="meal" id="meal">${meal(M[def])}</div>${tot?`<p class="tot">Еда за день по основным вариантам${M.s?', с перекусами':''}: ≈ ${fmt(tot)} ¥ · ≈ ${fmt(Math.round(tot*rate()/100/100)*100)} ₽ на двоих</p>`:''}</section>`:''}
+  ${notes?`<section class="sec"><h2>Важно в дороге</h2><ul class="notes">${notes}</ul></section>`:''}
+  ${h?`<section class="sec"><h2>Ночуем</h2><div class="card hotel"><div class="hn">${esc(h.name)}</div><div class="hjp">${esc(h.jp)}</div><div class="hm">${esc(h.nights)} · ${esc(h.inout)}${h.food?' · '+esc(h.food):''}</div>
+   <div class="btns"><button type="button" class="btn" id="taxi-b">Показать таксисту</button><a class="btn ghost" href="${esc(MAP(h.q||h.name))}" target="_blank" rel="noopener">На карте ↗</a></div></div></section>`:''}
+  <div class="nav"><button type="button" id="pv" ${prev?'':'disabled'}><small>← ${prev?esc(prev.n+'.'+(prev.date.slice(5,7))):''}</small><b>${prev?esc(prev.title):''}</b></button><button type="button" id="nx" ${next?'':'disabled'}><small>${next?esc(next.n+'.'+next.date.slice(5,7)):''} →</small><b>${next?esc(next.title):''}</b></button></div>
+ </div>`;
+ $('day').querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{$('day').querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$('meal').innerHTML=meal(M[b.dataset.k])});
+ if(prev)$('pv').onclick=()=>show(cur-1,true);if(next)$('nx').onclick=()=>show(cur+1,true);
+ if(h)$('taxi-b').onclick=()=>{$('tx-n').textContent=h.jp;$('tx-a').textContent=h.addr;$('tx-e').textContent=h.name+' · '+h.en;$('taxi').hidden=false;$('tx-x').focus()};
+ strip();
+ if(user){window.scrollTo({top:0});$('day').focus({preventScroll:true})}
+ else if(isToday&&nowIdx>0){const el=$('day').querySelector('.st.now');if(el)setTimeout(()=>el.scrollIntoView({block:'center'}),50)}}
+$('tx-x').onclick=()=>{$('taxi').hidden=true;const b=$('taxi-b');if(b)b.focus()};
+document.addEventListener('keydown',e=>{if(!$('taxi').hidden){if(e.key==='Escape')$('tx-x').click();return}
+ if(e.target.closest&&e.target.closest('input,textarea'))return;if(e.key==='ArrowLeft')show(cur-1,true);if(e.key==='ArrowRight')show(cur+1,true)});
+let sx=null,sy=0;const area=$('day');
+area.addEventListener('touchstart',e=>{if(e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY}else sx=null},{passive:true});
+area.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*2)show(cur+(dx<0?1:-1),true)},{passive:true});
+window.addEventListener('hashchange',()=>{const i=fromHash();if(i>=0&&i!==cur)show(i,true)});
+// theme toggle shared with main site key 'theme' if present
+const TH=['auto','light','dark'];let th=get('v2theme','auto');const applyT=()=>{if(th==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',th);$('theme').textContent=th==='auto'?'Авто':th==='light'?'Светлая':'Тёмная';$('theme').setAttribute('aria-label','Тема: '+(th==='auto'?'как в системе':th==='light'?'светлая':'тёмная'))};
+$('theme').onclick=()=>{th=TH[(TH.indexOf(th)+1)%3];put('v2theme',th);applyT()};applyT();
+show(cur,false);
+})();
+</script>
+</body>
+</html>
