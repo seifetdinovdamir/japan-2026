@@ -191,6 +191,17 @@ li.now .t::after{content:" · сейчас";color:var(--accent)}
 .mi:last-child{border-bottom:0}
 .x{font:inherit;font-size:18px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;flex:none}
 @media (max-width:430px){nav.tabs a{padding:6px 7px;font-size:13px}.brand{font-size:18px}.brand .bn{display:none}nav.tabs{gap:2px}}
+
+#view-info .panel{padding:0}
+#view-info .panel>.ph{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px 16px;cursor:pointer}
+#view-info .panel>.ph h3{margin:0}
+#view-info .panel>.ph:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:16px}
+#view-info .panel>.ph .plus{flex:none}
+#view-info .panel.open>.ph .plus{transform:rotate(45deg);color:var(--accent);border-color:var(--accent)}
+#view-info .panel>.pb{padding:0 16px 16px}
+#view-info .panel:not(.open)>.pb{display:none}
+.badge{font-family:var(--body);vertical-align:middle}
+.ptools{display:flex;justify-content:flex-end;gap:8px;margin:-6px 0 10px}
 </style>
 <style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:19px}nav.tabs a{padding:6px 8px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
 </head>
@@ -264,6 +275,7 @@ li.now .t::after{content:" · сейчас";color:var(--accent)}
   <div class="eyebrow">Всё под рукой</div>
   <h2>Полезное</h2>
   <p class="sub">Билеты, отели, виза и бюджет. Цены на двоих, проверены 4 ноября 2026.</p>
+  <div class="ptools"><button type="button" class="btn ghost" id="p-all">Развернуть все</button></div>
 
   <div class="panel">
     <h3>Перелёт <span class="badge">China Southern · один билет</span></h3>
@@ -583,11 +595,25 @@ host.querySelector('details').open=true;today();
 document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'});}}));
 function route(){const h=location.hash;const view=(h==='#info'||h==='#hotels'||h==='#weather'||h==='#words')?'info':(h==='#money'?'money':'route');
  ['route','info','money'].forEach(v=>{document.getElementById('view-'+v).hidden=v!==view;const t=document.getElementById('tab-'+v);t.removeAttribute('aria-current');if(v===view)t.setAttribute('aria-current','page');});
- if(['#hotels','#weather','#words'].includes(h))setTimeout(()=>document.querySelector(h).scrollIntoView(),50);else window.scrollTo(0,0);}
+ if(['#hotels','#weather','#words'].includes(h))setTimeout(()=>{window.openPanel&&window.openPanel(h.slice(1));document.querySelector(h).scrollIntoView()},50);else window.scrollTo(0,0);}
 window.addEventListener('hashchange',route);route();
 document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
 
 
+
+// сворачиваемые блоки в «Полезном»
+(function(){const panels=[...document.querySelectorAll('#view-info > .panel')];let st={};try{st=JSON.parse(localStorage.getItem('panels')||'{}')}catch(e){}
+ panels.forEach((p,i)=>{const h=p.querySelector(':scope > h3');if(!h)return;const key=p.id||('p'+i);p.dataset.key=key;
+  const body=document.createElement('div');body.className='pb';[...p.childNodes].filter(n=>n!==h).forEach(n=>body.appendChild(n));
+  const btn=document.createElement('button');btn.type='button';btn.className='ph';btn.id='ph-'+key;btn.setAttribute('aria-controls','pb-'+key);body.id='pb-'+key;
+  btn.appendChild(h);const plus=document.createElement('span');plus.className='plus';plus.setAttribute('aria-hidden','true');plus.textContent='+';btn.appendChild(plus);
+  p.appendChild(btn);p.appendChild(body);const open=st[key]!==undefined?st[key]:i<1;p.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);
+  btn.addEventListener('click',()=>set(p,!p.classList.contains('open')));});
+ function save(){const o={};panels.forEach(p=>{if(p.dataset.key)o[p.dataset.key]=p.classList.contains('open')});try{localStorage.setItem('panels',JSON.stringify(o))}catch(e){}upd()}
+ function set(p,v){p.classList.toggle('open',v);const b=p.querySelector(':scope > .ph');if(b)b.setAttribute('aria-expanded',v);save()}
+ const all=document.getElementById('p-all');function upd(){all.textContent=panels.every(p=>p.classList.contains('open'))?'Свернуть все':'Развернуть все'}
+ all.addEventListener('click',()=>{const v=!panels.every(p=>p.classList.contains('open'));panels.forEach(p=>set(p,v))});upd();
+ window.openPanel=id=>{const p=document.getElementById(id);if(p&&!p.classList.contains('open'))set(p,true)};})();
 // ===== Словарик =====
 const WORDS={
 terms:[
