@@ -235,18 +235,36 @@ figure.ph figcaption a{color:var(--muted)}
 @media (hover:none){.lb-nav{background:rgba(255,255,255,.06)}}
 </style>
 <style>
-.meals .meal{margin-top:10px}
-.meals h5{margin:0 0 2px;font-size:14px;font-weight:600}
-.meals h5 span{font-weight:400;color:var(--muted)}
-.mo{display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line)}
-.mo .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.mo b{font-weight:600}
-.mo .meta{font-size:12.5px;color:var(--muted);margin:2px 0;font-variant-numeric:tabular-nums}
+.meals .meal{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px 12px;margin-top:10px}
+.meals .meal header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.meals .mk{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:13px;line-height:1;flex:none}
+.meals .meal-b .mk{background:var(--gold)}
+.meals .meal-d .mk{background:var(--mount)}
+:root[data-theme="dark"] .meals .meal-d .mk{background:var(--sky3)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .meals .meal-d .mk{background:var(--sky3)}}
+.meals .mk{color:#fff}
+.meals .mt2{font-weight:700;font-size:15px}
+.meals .mw{color:var(--muted);font-size:13px}
+.mo .tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);margin:0 8px 2px 0}
+.mo .tag.sp{color:var(--gold)}
+.mo.main{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px}
+.mo.main .mn b{font-size:15.5px}
+.mn{font-size:14px;line-height:1.45}
+.mo .meta{font-size:12.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums}
 .mo .star{color:var(--gold);font-weight:600}
-.mo .maplink{font-size:12.5px}
-.mnote{margin:4px 0 0;color:var(--muted);font-size:13.5px}
-.msrc{margin:10px 0 0;font-size:11.5px;color:var(--muted)}
-@media (max-width:400px){.mo{grid-template-columns:1fr;gap:0}.mo .k{padding:0}}
+.mo .mp,.mo .incl{color:var(--ink);font-weight:600}
+.mo .mnt{font-size:12.5px;color:var(--muted);margin-top:2px}
+.mo .ml{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
+.mo .ml .maplink{margin-left:0;font-size:12.5px}
+.alts{margin-top:8px}
+.alth{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.alts .mo{padding:7px 0 0;margin-top:7px;border-top:1px solid var(--line)}
+.alts .mo .mn b{font-weight:600}
+.mtot{display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap;align-items:baseline;margin-top:10px;padding:8px 12px;border-radius:10px;background:var(--paper);border:1px dashed var(--line);font-size:13px}
+.mtot b{font-variant-numeric:tabular-nums;font-weight:500}
+.mtot b .mp{font-weight:700}
+.mnote{margin:10px 0 0;color:var(--muted);font-size:13.5px}
+.msrc{margin:8px 0 0;font-size:11.5px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -297,7 +315,7 @@ figure.ph figcaption a{color:var(--muted)}
     <div class="stat"><b>12</b><span>дней с перелётом</span></div>
     <div class="stat"><b>4</b><span>отеля, один из них рёкан</span></div>
     <div class="stat"><b>10</b><span>ночей в Японии</span></div>
-    <div class="stat"><b>≈386</b><span>тыс. ₽ на двоих</span></div>
+    <div class="stat"><b>≈407</b><span>тыс. ₽ на двоих</span></div>
   </div>
   <p class="note">Время местное. В каждом дне — «Как добраться», «Где поесть» и ссылки на карту. Часы работы мест проверяем ближе к поездке.</p>
 
@@ -391,14 +409,14 @@ figure.ph figcaption a{color:var(--muted)}
         <tr><td>Киото, Keio Prelia, 3 ночи</td><td class="n">39 836</td></tr>
         <tr><td>Рёкан Kogetsu, ужин и завтрак</td><td class="n">≈ 54 000</td></tr>
         <tr><td>Токио, KOKO, 3 ночи</td><td class="n">39 186</td></tr>
-        <tr><td>Еда, около 72 000 ¥</td><td class="n">36 800</td></tr>
-        <tr><td>Транспорт по Японии, около 60 000 ¥</td><td class="n">30 600</td></tr>
-        <tr><td>Билеты и развлечения, около 43 000 ¥ (студия — 13 200 ¥)</td><td class="n">22 100</td></tr>
+        <tr><td>Еда по основным вариантам «Где поесть», с перекусами, около 109 000 ¥</td><td class="n">56 400</td></tr>
+        <tr><td>Транспорт по Японии, около 60 000 ¥</td><td class="n">31 100</td></tr>
+        <tr><td>Билеты и развлечения, около 43 000 ¥ (студия — 13 200 ¥)</td><td class="n">22 300</td></tr>
         <tr><td>Виза, страховка, связь</td><td class="n">7 000</td></tr>
-        <tr class="total"><td>Итого</td><td class="n">≈ 386 000</td></tr>
+        <tr class="total"><td>Итого</td><td class="n">≈ 407 000</td></tr>
       </tbody>
     </table></div>
-    <p class="src">Без покупок. Курс ЦБ около 51 ₽ за 100 ¥, евро около 92 ₽.</p>
+    <p class="src">Без покупок. Курс ЦБ на 4 ноября — 51,76 ₽ за 100 ¥, евро около 92 ₽. Особые ужины и платные бизнес-залы сюда не входят.</p>
   </div>
 
   <div class="panel">
@@ -491,7 +509,7 @@ figure.ph figcaption a{color:var(--muted)}
       <label>Курс, ₽ за 100 ¥<input id="m-rate" type="number" inputmode="decimal" step="0.01" min="1"></label>
       <label>Бюджет на месте, ₽<input id="m-budget" type="number" inputmode="numeric" step="1000" min="0"></label>
     </div>
-    <p class="src">Бюджет на месте по плану — еда, транспорт и входы, около 90 000 ₽ на двоих. Курс ЦБ на 4 ноября — около 51 ₽ за 100 ¥.</p>
+    <p class="src">Бюджет на месте по плану — еда, транспорт и входы, около 110 000 ₽ на двоих. Курс ЦБ на 4 ноября — 51,76 ₽ за 100 ¥.</p>
     <div class="mrow"><label>Конвертер<input id="m-conv" type="number" inputmode="decimal" placeholder="¥"></label><span id="m-conv-out" class="src"></span></div>
     <button class="btn ghost" type="button" id="m-clear">Удалить все записи</button>
     <span class="src" id="m-clear-msg"></span>
@@ -618,110 +636,152 @@ const DAYS=[
  ["21:15","Прилёт в Шереметьево."]],
  how:["Нингётё → Ханэда: Toei Asakusa line, поезд с надписью Haneda Airport, без пересадок, около 40 минут.","Выходить на станции Haneda Airport Terminal 3.","В Гуанчжоу пересадка всего час: сразу идти по указателям International Transfer."]}
 ];
-// Где поесть: [название, что едим, рейтинг Google, отзывов, цена, заметка, place_id]
+// ===== Где поесть =====
+// вариант: n — название, d — что едим, r/c — рейтинг и отзывы Google, p — уровень цен,
+// y — ¥ на человека (оценка), pt — текст вместо цены, note, id — place_id, m — меню, i — ссылка «О зале», sp — особый ужин
+const TB='https://tabelog.com/en/';
+const LNG={svo:'https://airport.online/moscow-sheremetyevo-airport/en/lounge',can:'https://www.prioritypass.com/de-DE/lounges/china/guangzhou-baiyun-international/can8-premium-lounge',hnd:'https://prioritypass.com/lounges/japan/tokyo-haneda-intl/hnd18-sky-lounge-south'};
+const BOARD={n:'На борту',d:'China Southern кормит на каждом рейсе',pt:'входит в билет'};
+const HOTEL=(n,x)=>({n,d:x||'завтрак в отеле',pt:'включено'});
 const MEALS={
-d30:{b:"Обед и ужин — на борту China Southern.",note:"Перед вылетом можно перекусить в Шереметьево после досмотра."},
-d1:{b:"Завтрак — на рейсе Гуанчжоу → Осака.",
- l:{t:"Обед",w:"в самолёте или сразу после прилёта, Кансай, терминал 1",o:[
-  ["На борту","на рейсе в Осаку кормят — этого хватит до ужина"],
-  ["Kineya Mugimaru","удон с тэмпурой, быстро и недорого, 2 этаж терминала",4.2,265,"¥","7:00–22:00","ChIJJQ143GO5AGARqAlAZwkQYq4"],
-  ["San Marco Curry","японское карри с омлетом, там же",3.9,145,"¥","7:00–22:00","ChIJab8KUei5AGARxwVM5N8eQ6Q"]]},
- d:{t:"Ужин",w:"около 18:30, Дотонбори",o:[
-  ["Ajinoya","окономияки — главное блюдо Осаки, жарят на плите прямо у стола",4.2,4018,"¥¥","Очередь через талон в автомате у входа. Карты не берут, нужны наличные. По понедельникам закрыто.","ChIJvRX1cBPnAGARzhcHALQCKbw"],
-  ["Okonomiyaki Mizuno","окономияки с 1945 года, восемь лет подряд в гиде Мишлен Bib Gourmand",3.8,3299,"¥¥","11:00–22:00, вечером очередь 20–40 минут","ChIJp6r1whTnAGARQi9RHXsUEtA"],
-  ["Ichiran Dotonbori","рамен в одиночных кабинках — если сил уже нет",4.3,9442,"¥","Круглосуточно","ChIJK7TL6RTnAGARYiifaSOuOFM"]]},
- note:"В Dormy Inn каждый вечер 21:30–23:00 бесплатная лапша ёнаки-соба — на случай, если ужин был лёгким."},
-d2:{b:"Завтрак — в отеле. На Куромоне — перекус: гребешки, тунец, клубника.",
- l:{t:"Обед",w:"около 14:00, Синсэкай",o:[
-  ["Kushikatsu Daruma","кусикацу в месте, где их придумали",4.1,2182,"¥¥","Соус общий — макать только один раз","ChIJ5V4HCWDnAGARd6bIaaK91O4"],
-  ["Yaekatsu","кусикацу, которые любят местные, переулок Дзян-Дзян",4.0,3956,"¥¥","Очередь 15–30 минут. По четвергам закрыто.","ChIJve4ZtordAGARBOe37AfMfUg"],
-  ["Tengu","кусикацу и тушёные доте-яки, напротив Yaekatsu",3.9,1417,"¥¥","10:30–20:00","ChIJKbl-tordAGARw9OC3nYtJkg"]]},
- d:{t:"Ужин",w:"около 18:00, Умэда, сразу после Umeda Sky",o:[
-  ["Okonomiyaki Kiji","окономияки и якисоба в «старой улочке» в подвале Umeda Sky",4.2,1421,"¥","До 20:00, по четвергам закрыто. Идти сразу после смотровой.","ChIJcdl47IjmAGAReFfKTi2c5uc"],
-  ["Gyukatsu Motomura","говяжья котлета, дожариваете сами на камне, ТЦ LUCUA у станции Осака",4.9,9516,"¥¥","До 23:00. В Киото в Понтотё будет похожее блюдо.","ChIJZZ6m0Y3mAGARyQBlpQIG0_8"],
-  ["Harukoma","любимые суши осакцев, огромные куски тунца",4.2,3885,"¥¥","2 станции метро от Умэды. Вечером очередь до часа. По вторникам закрыто.","ChIJW7SUt7jmAGARQ_B9JgrRYVw"]]}},
-d3:{b:"Завтрак — в отеле.",
- l:{t:"Обед",w:"около 12:00, между Тодай-дзи и Касугой",o:[
-  ["Kamameshi Shizuka","камамэси — рис с начинкой в чугунном горшочке",4.1,1881,"¥¥","11:00–15:00, по вторникам и средам закрыто. Очередь к открытию.","ChIJfxW-0Y85AWARgYpZZjfh330"],
-  ["Mizuya Chaya","чайный домик с соломенной крышей в лесу парка: удон, онигири, моти",4.7,1298,"¥","11:00–15:30, прямо по дороге к Касуге","ChIJj9LYfJU5AWARbAtuh3oHDSc"],
-  ["Izasa Nakatani","суши в листьях хурмы — местная особенность Нары",4.2,717,"¥¥","11:00–16:00, у входа к Тодай-дзи","ChIJE1EBpZE5AWARkB2RUpwpQBk"]]},
- d:{t:"Ужин",w:"около 19:00, Намба — последний вечер в Осаке",o:[
-  ["Matsusakagyu Yakiniku M","якинику из мраморной говядины Мацусака в переулке Ходзэндзи",4.8,3394,"¥¥¥","Лучше забронировать на сайте за несколько дней","ChIJa0f0lRTnAGARXNWOLs7nBqg"],
-  ["Daiki Suisan","суши на ленте от рыбной компании, недорого",4.0,4897,"¥¥","11:00–23:00","ChIJAQBk6xTnAGAR6RmXfp6DVSM"],
-  ["Kani Doraku","краб под гигантской движущейся вывеской: сашими, гриль, набэ",4.2,5260,"¥¥¥","Сеты от ~5 000 ¥, ужин около 1,5–2 часов","ChIJVVVFgBPnAGARLbCliBbVOI8"]]}},
-d4:{b:"Завтрак — в Dormy Inn перед выездом.",
- l:{t:"Обед",w:"около 11:30, у вокзала Киото и отеля",o:[
-  ["Honke Daiichi-Asahi","киотский рамен на сёю, варят с 1947 года, у вокзала",4.0,9430,"¥","Очередь 20–40 минут. По четвергам закрыто.","ChIJAQDb87EIAWARi5Y4U4cs7aU"],
-  ["Menya Inoichi","рамен на рыбном бульоне даси, 10 минут пешком от отеля",4.4,4043,"¥","Выдают талон с временем — можно погулять","ChIJufyODr4IAWARNVu7xBbRG2w"],
-  ["Katsukura Kyoto Porta","тонкацу, рис, суп и капуста без ограничений, 11 этаж вокзала",4.4,1352,"¥¥","11:00–22:00","ChIJAWwhhZkIAWARBmPflL1c4yQ"]]},
- d:{t:"Ужин",w:"около 18:30, Понтотё",o:[
-  ["Kyoto Katsugyu Pontocho","гюкацу — говяжья котлета с соусами и онсэн-яйцом",4.8,11989,"¥¥","11:00–22:30, вечером очередь","ChIJt3Q_tZQIAWARhnwJ7t1qjU0"],
-  ["Kushiyaki Manten","шашлычки кусияки на углях в самом переулке",4.1,1840,"¥¥","С 17:00","ChIJ__9jU5MIAWAR6v3rgjrGS9Q"],
-  ["Torikizoku Kiyamachi","сетевой якитори, всё меню по одной цене",4.1,525,"¥","С 17:00, рядом с Понтотё","ChIJAQD9rJQIAWARCUtghYwY1LE"]]}},
-d5:{b:"Завтрак — в отеле, лучше в 7:00: в 8:00 уже Киёмидзу.",
- l:{t:"Обед",w:"около 12:30, у Кодай-дзи",o:[
-  ["Omen Kodaiji","удон в горячем бульоне с овощами и тэмпурой",4.2,248,"¥¥","В обед бывает очередь около 30 минут","ChIJ___PBtAIAWARxnk_BM27ftQ"],
-  ["Hisago","оякодон — курица с яйцом на рисе, классика района",4.1,1103,"¥","Очередь около 30 минут, проходит быстро","ChIJBeZqHsUIAWARTpwKQ0dirGo"],
-  ["Okutan Kiyomizu","юдофу — тофу в горшочке, татами и сад, заведению больше 300 лет",3.9,751,"¥¥","Сб 11:00–17:00, по четвергам закрыто","ChIJU7jlIdAIAWAR6rlZS3_YitI"]]},
- d:{t:"Ужин",w:"около 19:00, Гион",o:[
-  ["Yagenbori","кайсэки и сябу-сябу в старом доме у канала Сиракава",4.6,186,"¥¥¥","Минимум 6 000 ¥ на человека. Бронь через отель. По вторникам закрыто.","ChIJV-XMnsEIAWARuRiDqf_n7sM"],
-  ["Gion Duck Noodles","рамен на утином бульоне, необычный и очень популярный",4.4,2029,"¥¥","До 21:00–22:00, вечером очередь до часа","ChIJwU8XyfUJAWARF-qBYr05Eg8"],
-  ["Gion Tanto","окономияки на берегу Сиракавы",4.4,1479,"¥¥","Сб 17:00–21:30, по четвергам закрыто","ChIJ8dlnc-oIAWARMw3PidOJz1w"]]}},
-d6:{b:"Завтрак — в отеле, рано: в 7:30 поезд в Арасияму.",
- l:{t:"Обед",w:"около 11:30, Арасияма — до Кинкаку-дзи",o:[
-  ["Yudofu Sagano","сет из тофу во дворе с садом, рядом с Тэнрю-дзи",4.3,1249,"¥¥¥","Сет около 4 400 ¥. 11:00–17:30.","ChIJ-Q01TwCqAWARfC2BdiI9UDI"],
-  ["Arashiyama Yoshimura","соба и тэмпура с видом на мост Тогэцукё",4.2,2713,"¥¥","Вс 10:30–17:00, в обед очередь","ChIJSwnVXlUHAWARuTjqE7BrW88"],
-  ["Shoraian","тофу-кайсэки в лесном домике над рекой",4.6,761,"¥¥¥","Только с бронью, 15 минут пешком вверх по реке","ChIJzwptxgaqAWAR8i7kivaQtTU"]]},
- d:{t:"Ужин",w:"около 18:00, у рынка Нисики",o:[
-  ["Mishima-tei","киотское сукияки, заведению больше 150 лет — главный ужин Киото",4.2,1518,"¥¥¥","Бронировать заранее через отель","ChIJrUy7vpMIAWARciV2lMassEo"],
-  ["Katsukura Sanjo","тонкацу в главном ресторане сети, кунжут трёте сами",4.5,2387,"¥¥","До 20:30, вход с маленькой двери в переулке","ChIJVVXJS5IIAWARFaVO44YN2fw"],
-  ["Ramen Sen-no-Kaze","рамен, который в отзывах называют лучшим в Киото",4.2,2833,"¥","Очередь бывает до 2 часов. Вт–ср закрыто.","ChIJxegDSJQIAWARKYgV3JBG3xk"]]}},
-d7:{b:"Завтрак — в отеле в Киото. В синкансэн можно взять экибэн — бэнто с вокзала.",
- l:{t:"Обед",w:"около 14:30, Кавагутико",o:[
-  ["Kosaku","хото — толстая лапша с тыквой в мисо-бульоне, огромный деревянный зал",4.2,6975,"¥¥","1 км от станции, 11:00–19:30. Порцию лучше одну на двоих: впереди кайсэки.","ChIJF8U5CNVfGWARbWh06O9NtOU"],
-  ["Hoto Fudou","то же хото, прямо у станции — удобно с рюкзаками",3.8,2854,"¥¥","11:00–19:00","ChIJD9e0oIJgGWARjCiXDS-GJmA"],
-  ["Sanrokuen","гриль на углях ирори, сидишь вокруг очага",4.3,1713,"¥¥¥","До 17:30, 10 минут пешком от станции","ChIJ28eRkIRgGWAR97rxIolVHVM"]]},
- d:{t:"Ужин",w:"18:00, рёкан Kogetsu",o:[["Кайсэки в рёкане","включён в стоимость — не позже 19:00"]]}},
-d8:{b:"Завтрак — в рёкане, включён.",
- l:{t:"Обед",w:"около 11:30, Фудзиёсида — до поезда в 12:30",o:[
-  ["Menkyo-kaiden","ёсида-удон — местная жёсткая лапша, 10 минут от станции Фудзисан",4.3,1462,"¥","11:00–14:00","ChIJvwk8PitnGWAR2zmdVvzBBo8"],
-  ["Fuji Ramen Restaurant","рамен у подножия пагоды Тюрэйто",4.7,1517,"¥","8:00–18:00","ChIJcaybagBnGWARNspmmXY1zNA"],
-  ["Miura Udon","ёсида-удон у станции Симоёсида",3.9,1893,"¥","10:00–14:00, по средам закрыто","ChIJPfhiZTdnGWARQN7WoG3MebA"]]},
- d:{t:"Ужин",w:"около 18:00, Синдзюку",o:[
-  ["Nogataya","якитори в Омоидэ-Ёкотё, хозяин говорит по-английски",4.1,132,"¥","Минимум 2 шашлычка и напиток на человека, плата за место 350 ¥","ChIJX6AgNjuNGGARdnKPVd6N7bU"],
-  ["Motsuyaki Ucchan","шашлычки из свинины там же, атмосфера старого Токио",4.0,626,"¥","Только наличные","ChIJn-vIENeMGGARupKqXakdVIA"],
-  ["Fuunji","цукэмэн — лапша, которую макают в густой бульон",4.3,5785,"¥","До 21:00, очередь движется быстро","ChIJ508frs-MGGARnIKrb_tkai0"]]}},
-d9:{b:"Завтрак — в отеле.",
- l:{t:"Обед",w:"около 13:00–14:30, в студии",o:[
-  ["The Food Hall","обед в стиле Хогвартса: пастуший пирог, «Пир в Большом зале»",4.1,173,"¥¥","Внутри студии, в обед ждать еду до 30 минут","ChIJezR7cxXtGGARcRSiKxic7i0"],
-  ["Backlot Cafe","сливочное пиво, бургеры, кружку можно забрать",4.1,272,"¥¥","Середина маршрута, до 17:00","ChIJg8rXFkztGGAR0ZjktAsF_ag"],
-  ["Inosho","рамен и цукэмэн у станции Нэрима — по дороге в центр",4.1,1597,"¥","10:00–16:30, 12 мест, бывает очередь","ChIJv-gDmgntGGARmKM9OhvJKQo"]]},
- d:{t:"Ужин",w:"около 18:00, Гиндза",o:[
-  ["Ginza Kagari","сливочный рамен на курином бульоне",4.2,4778,"¥¥","Заказ принимают в очереди, ждать 15–30 минут","ChIJjykJZCCLGGARMx5vYqRsWYI"],
-  ["Ginza Lion Beer Hall","старейший пивной зал Японии, 1934 год",4.4,5185,"¥¥","До 22:00, можно без брони","ChIJ4RGvL-aLGGARBHZ6hWmQMPk"],
-  ["Ginza Tenkuni","тэмпура в токийском стиле",4.0,1098,"¥¥","До 22:00, по воскресеньям закрыто","ChIJAQDAdeiLGGARtFxeTTOBBYo"]]}},
-d10:{b:"Завтрак — в отеле, к 8:30 уже в Асакусе.",
- l:{t:"Обед",w:"около 12:00, Асакуса",o:[
-  ["Asakusa Amairo","тэмпура и тэндон, тэмпура из яйца с жидким желтком",4.4,1037,"¥¥","11:30–14:30, приходите к открытию","ChIJ5eRY_zyPGGAR7DGMXUxYkqU"],
-  ["Tentou","тэндон в маленькой лавке, которой больше 100 лет",4.3,472,"¥¥","10:30–16:30, только наличные","ChIJYd_TjsCOGGARQTyqbM_ailI"],
-  ["Owariya","соба и тэмпура, местные обедают здесь десятилетиями",4.0,1558,"¥¥","В четверг 11:30–16:00, наличные","ChIJnX8RpsCOGGARZnzTvrUg5HM"]]},
- d:{t:"Ужин",w:"около 18:00, Сибуя",o:[
-  ["Sushi no Midori","суши, за которые стоят в очереди даже токийцы, Mark City",4.3,4470,"¥¥","Взять талон в очередь до подъёма на Shibuya Sky — к ужину подойдёт","ChIJu9W4zVeLGGARXn0xCjGINF8"],
-  ["Uobei","суши по планшету, прилетают на скоростной ленте",4.3,9288,"¥","До 23:00, очередь движется быстро","ChIJaTXpw6mMGGARP-d-_tbssVE"],
-  ["Ichiran Shibuya","рамен в кабинках, круглосуточно",4.4,5325,"¥","Записаться в очередь по QR и погулять","ChIJOWucdKiMGGARbppa4b4CKA8"]]}},
-d11:{b:"Завтрак — в отеле, если успеете до 7:45. Иначе — онигири в Ханэде.",
- l:{t:"Перед вылетом",w:"Ханэда, терминал 3, до досмотра",o:[
-  ["Onigiri Konga","большие тёплые онигири с начинкой на выбор, 4 этаж",4.0,442,"¥","7:30–20:30","ChIJ3cBYSQhjGGARSi4WimbznTs"]]},
- note:"Обед и ужин — на борту China Southern."}
+d30:{b:{w:'дома',o:[{n:'Дома',d:'до выезда в аэропорт к 11:50',pt:''}]},
+ l:{w:'около 12:30, Шереметьево, терминал C',o:[
+  {n:'Бизнес-зал «Малевич»',d:'горячий буфет и бар, 4 этаж после паспортного контроля, у выхода 143',pt:'по проходу',note:'Без прохода — около 3 500 ₽ с человека',i:LNG.svo},
+  {n:'Бизнес-зал «Шагал»',d:'буфет с выпечкой и закусками, 3 этаж за дьюти-фри, у выхода 124',pt:'по проходу',note:'Без прохода — около 3 500 ₽ с человека',i:LNG.svo},
+  BOARD]},
+ d:{w:'в самолёте до Гуанчжоу',o:[BOARD]},
+ note:'Терминал China Southern в Шереметьево — C, проверьте в посадочном. Какие залы открывает ваш проход, смотрите в приложении программы.'},
+d1:{b:{w:'около 6:00, Гуанчжоу, транзит',o:[
+  {n:'Premium Lounge',d:'зал Priority Pass в международной зоне терминала 2: 3 этаж после досмотра, направо',pt:'по проходу',note:'Круглосуточно, до 3 часов',i:LNG.can},
+  {n:'На борту',d:'на рейсе в Осаку в 9:40 тоже кормят',pt:'входит в билет'}]},
+ l:{w:'в самолёте или сразу после прилёта, Кансай',o:[
+  {n:'На борту',d:'рейс Гуанчжоу → Осака, этого хватит до ужина',pt:'входит в билет'},
+  {n:'Kineya Mugimaru',d:'удон с тэмпурой, быстро, 2 этаж терминала 1',r:4.2,c:265,p:'¥',y:1000,note:'7:00–22:00',id:'ChIJJQ143GO5AGARqAlAZwkQYq4'},
+  {n:'San Marco Curry',d:'японское карри с омлетом, там же',r:3.9,c:145,p:'¥',y:1300,note:'7:00–22:00',id:'ChIJab8KUei5AGARxwVM5N8eQ6Q'}]},
+ d:{w:'около 18:30, Дотонбори',o:[
+  {n:'Ajinoya',d:'окономияки — главное блюдо Осаки, жарят на плите у стола',r:4.2,c:4018,p:'¥¥',y:2500,note:'Талон в очередь — в автомате у входа. Только наличные.',id:'ChIJvRX1cBPnAGARzhcHALQCKbw',m:TB+'osaka/A2701/A270202/27001439/dtlmenu/'},
+  {n:'Okonomiyaki Mizuno',d:'окономияки с 1945 года, восемь лет подряд в Bib Gourmand Мишлен',r:3.8,c:3299,p:'¥¥',y:2300,note:'11:00–22:00, вечером очередь 20–40 минут',id:'ChIJp6r1whTnAGARQi9RHXsUEtA'},
+  {n:'Ichiran Dotonbori',d:'рамен в одиночных кабинках — если сил уже нет',r:4.3,c:9442,p:'¥',y:1500,note:'Круглосуточно',id:'ChIJK7TL6RTnAGARYiifaSOuOFM',m:'https://en.ichiran.com/ramen'}]},
+ s:1000,note:'В Dormy Inn с 21:30 до 23:00 бесплатная лапша ёнаки-соба.'},
+d2:{b:{w:'Dormy Inn',o:[HOTEL('Dormy Inn','завтрак-буфет; на Куромоне потом только перекус: гребешки, тунец, клубника')]},
+ l:{w:'около 14:00, Синсэкай',o:[
+  {n:'Kushikatsu Daruma',d:'кусикацу в месте, где их придумали',r:4.1,c:2182,p:'¥¥',y:2500,note:'Соус общий — макать только один раз',id:'ChIJ5V4HCWDnAGARd6bIaaK91O4'},
+  {n:'Yaekatsu',d:'кусикацу, которые любят местные, переулок Дзян-Дзян',r:4.0,c:3956,p:'¥¥',y:2500,note:'Очередь 15–30 минут',id:'ChIJve4ZtordAGARBOe37AfMfUg'},
+  {n:'Tengu',d:'кусикацу и тушёные доте-яки, напротив Yaekatsu',r:3.9,c:1417,p:'¥¥',y:2200,note:'10:30–20:00',id:'ChIJKbl-tordAGARw9OC3nYtJkg'}]},
+ d:{w:'около 18:00, Умэда, сразу после Umeda Sky',o:[
+  {n:'Okonomiyaki Kiji',d:'окономияки и якисоба в «старой улочке» в подвале Umeda Sky',r:4.2,c:1421,p:'¥',y:1800,note:'До 20:00, идти сразу после смотровой',id:'ChIJcdl47IjmAGAReFfKTi2c5uc'},
+  {n:'Gyukatsu Motomura',d:'говяжья котлета, дожариваете сами на камне, ТЦ LUCUA у станции Осака',r:4.9,c:9516,p:'¥¥',y:2500,note:'До 23:00. В Киото будет похожее блюдо.',id:'ChIJZZ6m0Y3mAGARyQBlpQIG0_8'},
+  {n:'Harukoma',d:'суши, огромные куски тунца',r:4.2,c:3885,p:'¥¥',y:3000,note:'2 станции метро от Умэды, вечером очередь до часа',id:'ChIJW7SUt7jmAGARQ_B9JgrRYVw'}]},
+ s:4000},
+d3:{b:{w:'Dormy Inn',o:[HOTEL('Dormy Inn')]},
+ l:{w:'около 12:00, между Тодай-дзи и Касугой',o:[
+  {n:'Kamameshi Shizuka',d:'камамэси — рис с начинкой в чугунном горшочке',r:4.1,c:1881,p:'¥¥',y:2000,note:'11:00–15:00, очередь к открытию',id:'ChIJfxW-0Y85AWARgYpZZjfh330',m:TB+'nara/A2901/A290101/29000714/dtlmenu/'},
+  {n:'Mizuya Chaya',d:'чайный домик с соломенной крышей в лесу: удон, онигири, моти',r:4.7,c:1298,p:'¥',y:1500,note:'11:00–15:30, по дороге к Касуге',id:'ChIJj9LYfJU5AWARbAtuh3oHDSc'},
+  {n:'Izasa Nakatani',d:'суши в листьях хурмы — особенность Нары',r:4.2,c:717,p:'¥¥',y:2000,note:'11:00–16:00, у входа к Тодай-дзи',id:'ChIJE1EBpZE5AWARkB2RUpwpQBk'}]},
+ d:{w:'около 19:00, Намба — последний вечер в Осаке',o:[
+  {n:'Daiki Suisan',d:'суши на ленте от рыбной компании',r:4.0,c:4897,p:'¥¥',y:3000,note:'11:00–23:00',id:'ChIJAQBk6xTnAGAR6RmXfp6DVSM',m:'https://gurunavi.com/en/kchn600/rst'},
+  {n:'Matsusakagyu Yakiniku M',d:'якинику из мраморной говядины Мацусака, переулок Ходзэндзи',r:4.8,c:3394,p:'¥¥¥',y:12000,sp:1,note:'Сеты от 11 880 ¥ на человека, бронь на сайте',id:'ChIJa0f0lRTnAGARXNWOLs7nBqg',m:TB+'osaka/A2701/A270202/27012741/dtlmenu/'},
+  {n:'Kani Doraku',d:'краб под гигантской движущейся вывеской: сашими, гриль, набэ',r:4.2,c:5260,p:'¥¥¥',y:7000,sp:1,note:'Сет-ужин около 1,5–2 часов',id:'ChIJVVVFgBPnAGARLbCliBbVOI8',m:'https://gurunavi.com/en/kcpd416/rst/'}]},
+ s:2000},
+d4:{b:{w:'Dormy Inn, перед выездом',o:[HOTEL('Dormy Inn')]},
+ l:{w:'около 11:30, у вокзала Киото и отеля',o:[
+  {n:'Honke Daiichi-Asahi',d:'киотский рамен на сёю, варят с 1947 года',r:4.0,c:9430,p:'¥',y:1300,note:'Очередь 20–40 минут',id:'ChIJAQDb87EIAWARi5Y4U4cs7aU',m:'https://ssl.tabelog.com/en/kyoto/A2601/A260101/26000873/dtlmenu/photo/'},
+  {n:'Menya Inoichi',d:'рамен на рыбном бульоне даси, 10 минут от отеля',r:4.4,c:4043,p:'¥',y:1800,note:'Выдают талон с временем',id:'ChIJufyODr4IAWARNVu7xBbRG2w'},
+  {n:'Katsukura Kyoto Porta',d:'тонкацу, рис, суп и капуста без ограничений, 11 этаж вокзала',r:4.4,c:1352,p:'¥¥',y:2300,note:'11:00–22:00',id:'ChIJAWwhhZkIAWARBmPflL1c4yQ'}]},
+ d:{w:'около 18:30, Понтотё',o:[
+  {n:'Kyoto Katsugyu Pontocho',d:'гюкацу — говяжья котлета с соусами и онсэн-яйцом',r:4.8,c:11989,p:'¥¥',y:2500,note:'До 22:30, вечером очередь',id:'ChIJt3Q_tZQIAWARhnwJ7t1qjU0',m:'https://ssl.tabelog.com/en/kyoto/A2601/A260301/26025193/dtlmenu/photo/'},
+  {n:'Kushiyaki Manten',d:'шашлычки кусияки на углях в самом переулке',r:4.1,c:1840,p:'¥¥',y:3500,note:'С 17:00',id:'ChIJ__9jU5MIAWAR6v3rgjrGS9Q'},
+  {n:'Torikizoku Kiyamachi',d:'сетевой якитори, всё меню по одной цене',r:4.1,c:525,p:'¥',y:2500,note:'С 17:00, рядом с Понтотё',id:'ChIJAQD9rJQIAWARCUtghYwY1LE'}]},
+ s:2000},
+d5:{b:{w:'Keio Prelia, лучше в 7:00',o:[HOTEL('Keio Prelia','завтрак в отеле — в 8:00 уже Киёмидзу')]},
+ l:{w:'около 12:30, у Кодай-дзи',o:[
+  {n:'Omen Kodaiji',d:'удон в горячем бульоне с овощами и тэмпурой',r:4.2,c:248,p:'¥¥',y:2000,note:'В обед очередь около 30 минут',id:'ChIJ___PBtAIAWARxnk_BM27ftQ'},
+  {n:'Hisago',d:'оякодон — курица с яйцом на рисе, классика района',r:4.1,c:1103,p:'¥',y:1300,note:'Очередь около 30 минут, идёт быстро',id:'ChIJBeZqHsUIAWARTpwKQ0dirGo'},
+  {n:'Okutan Kiyomizu',d:'юдофу — тофу в горшочке, татами и сад, заведению больше 300 лет',r:3.9,c:751,p:'¥¥¥',y:4000,note:'Сб 11:00–17:00',id:'ChIJU7jlIdAIAWAR6rlZS3_YitI'}]},
+ d:{w:'около 19:00, Гион',o:[
+  {n:'Gion Duck Noodles',d:'рамен на утином бульоне — необычный и очень популярный',r:4.4,c:2029,p:'¥¥',y:2000,note:'До 22:00, вечером очередь до часа',id:'ChIJwU8XyfUJAWARF-qBYr05Eg8',m:TB+'kyoto/A2601/A260301/26031755/dtlmenu/'},
+  {n:'Yagenbori',d:'кайсэки и сябу-сябу в старом доме у канала Сиракава',r:4.6,c:186,p:'¥¥¥',y:8000,sp:1,note:'Минимум 6 000 ¥ на человека, бронь через отель',id:'ChIJV-XMnsEIAWARuRiDqf_n7sM'},
+  {n:'Gion Tanto',d:'окономияки на берегу Сиракавы',r:4.4,c:1479,p:'¥¥',y:2500,note:'Сб 17:00–21:30',id:'ChIJ8dlnc-oIAWARMw3PidOJz1w'}]},
+ s:2500},
+d6:{b:{w:'Keio Prelia, рано',o:[HOTEL('Keio Prelia','завтрак в отеле — в 7:30 поезд в Арасияму')]},
+ l:{w:'около 11:30, Арасияма',o:[
+  {n:'Yudofu Sagano',d:'сет из тофу во дворе с садом, рядом с Тэнрю-дзи',r:4.3,c:1249,p:'¥¥¥',y:4400,note:'Сет около 4 400 ¥, 11:00–17:30',id:'ChIJ-Q01TwCqAWARfC2BdiI9UDI',m:TB+'kyoto/A2601/A260403/26000814/dtlmenu/'},
+  {n:'Arashiyama Yoshimura',d:'соба и тэмпура с видом на мост Тогэцукё',r:4.2,c:2713,p:'¥¥',y:2500,note:'Вс 10:30–17:00, в обед очередь',id:'ChIJSwnVXlUHAWARuTjqE7BrW88'},
+  {n:'Shoraian',d:'тофу-кайсэки в лесном домике над рекой',r:4.6,c:761,p:'¥¥¥',y:5000,note:'Только с бронью, 15 минут пешком вверх по реке',id:'ChIJzwptxgaqAWAR8i7kivaQtTU'}]},
+ d:{w:'около 18:00, у рынка Нисики',o:[
+  {n:'Katsukura Sanjo',d:'тонкацу в главном ресторане сети, кунжут трёте сами',r:4.5,c:2387,p:'¥¥',y:2300,note:'До 20:30, вход с маленькой двери в переулке',id:'ChIJVVXJS5IIAWARFaVO44YN2fw'},
+  {n:'Mishima-tei',d:'киотское сукияки, заведению больше 150 лет',r:4.2,c:1518,p:'¥¥¥',y:16000,sp:1,note:'Ужин-курс от ~16 000 ¥ на человека, бронь через отель',id:'ChIJrUy7vpMIAWARciV2lMassEo',m:TB+'kyoto/A2601/A260201/26000646/dtlmenu/'},
+  {n:'Ramen Sen-no-Kaze',d:'рамен, который в отзывах называют лучшим в Киото',r:4.2,c:2833,p:'¥',y:1500,note:'Очередь бывает до 2 часов',id:'ChIJxegDSJQIAWARKYgV3JBG3xk'}]},
+ s:3500},
+d7:{b:{w:'Keio Prelia',o:[HOTEL('Keio Prelia','завтрак в отеле; в синкансэн можно взять экибэн — бэнто с вокзала')]},
+ l:{w:'около 14:30, Кавагутико',o:[
+  {n:'Kosaku',d:'хото — толстая лапша с тыквой в мисо-бульоне, огромный деревянный зал',r:4.2,c:6975,p:'¥¥',y:1800,note:'1 км от станции, 11:00–19:30. Лучше одну порцию на двоих: впереди кайсэки.',id:'ChIJF8U5CNVfGWARbWh06O9NtOU'},
+  {n:'Hoto Fudou',d:'то же хото прямо у станции — удобно с рюкзаками',r:3.8,c:2854,p:'¥¥',y:1800,note:'11:00–19:00',id:'ChIJD9e0oIJgGWARjCiXDS-GJmA'},
+  {n:'Sanrokuen',d:'гриль на углях ирори, сидишь вокруг очага',r:4.3,c:1713,p:'¥¥¥',y:3500,note:'До 17:30, 10 минут пешком от станции',id:'ChIJ28eRkIRgGWAR97rxIolVHVM'}]},
+ d:{w:'18:00, рёкан Kogetsu',o:[{n:'Кайсэки в рёкане',d:'ужин из многих перемен — не позже 19:00',pt:'включено'}]},
+ s:3000},
+d8:{b:{w:'рёкан Kogetsu',o:[HOTEL('Kogetsu','японский завтрак в рёкане')]},
+ l:{w:'около 11:30, Фудзиёсида — до поезда в 12:30',o:[
+  {n:'Menkyo-kaiden',d:'ёсида-удон — местная плотная лапша, 10 минут от станции Фудзисан',r:4.3,c:1462,p:'¥',y:800,note:'11:00–14:00',id:'ChIJvwk8PitnGWAR2zmdVvzBBo8'},
+  {n:'Fuji Ramen Restaurant',d:'рамен у подножия пагоды Тюрэйто',r:4.7,c:1517,p:'¥',y:1500,note:'8:00–18:00',id:'ChIJcaybagBnGWARNspmmXY1zNA'},
+  {n:'Miura Udon',d:'ёсида-удон у станции Симоёсида',r:3.9,c:1893,p:'¥',y:700,note:'10:00–14:00',id:'ChIJPfhiZTdnGWARQN7WoG3MebA'}]},
+ d:{w:'около 18:00, Синдзюку',o:[
+  {n:'Nogataya',d:'якитори в Омоидэ-Ёкотё, хозяин говорит по-английски',r:4.1,c:132,p:'¥¥',y:3000,note:'Минимум 2 шашлычка и напиток на человека, плата за место 350 ¥',id:'ChIJX6AgNjuNGGARdnKPVd6N7bU'},
+  {n:'Motsuyaki Ucchan',d:'шашлычки из свинины там же, атмосфера старого Токио',r:4.0,c:626,p:'¥¥',y:3000,note:'Только наличные',id:'ChIJn-vIENeMGGARupKqXakdVIA'},
+  {n:'Fuunji',d:'цукэмэн — лапша, которую макают в густой бульон',r:4.3,c:5785,p:'¥',y:1500,note:'До 21:00, очередь движется быстро',id:'ChIJ508frs-MGGARnIKrb_tkai0'}]},
+ s:1500},
+d9:{b:{w:'KOKO',o:[HOTEL('KOKO')]},
+ l:{w:'около 13:00–14:30, в студии',o:[
+  {n:'The Food Hall',d:'обед в стиле Хогвартса: пастуший пирог, «Пир в Большом зале»',r:4.1,c:173,p:'¥¥',y:2800,note:'Внутри студии, в обед ждать еду до 30 минут',id:'ChIJezR7cxXtGGARcRSiKxic7i0',m:'https://www.wbstudiotour.jp/en/the-experience/fooddrink/'},
+  {n:'Backlot Cafe',d:'сливочное пиво и бургеры, кружку можно забрать',r:4.1,c:272,p:'¥¥',y:2500,note:'Середина маршрута, до 17:00',id:'ChIJg8rXFkztGGAR0ZjktAsF_ag',m:'https://www.wbstudiotour.jp/en/the-experience/fooddrink/'},
+  {n:'Inosho',d:'рамен и цукэмэн у станции Нэрима — по дороге в центр',r:4.1,c:1597,p:'¥',y:1300,note:'10:00–16:30, 12 мест',id:'ChIJv-gDmgntGGARmKM9OhvJKQo'}]},
+ d:{w:'около 18:00, Гиндза',o:[
+  {n:'Ginza Kagari',d:'сливочный рамен на курином бульоне',r:4.2,c:4778,p:'¥¥',y:2000,note:'Заказ принимают в очереди, ждать 15–30 минут',id:'ChIJjykJZCCLGGARMx5vYqRsWYI'},
+  {n:'Ginza Lion Beer Hall',d:'старейший пивной зал Японии, 1934 год',r:4.4,c:5185,p:'¥¥',y:4000,note:'До 22:00, можно без брони',id:'ChIJ4RGvL-aLGGARBHZ6hWmQMPk'},
+  {n:'Ginza Tenkuni',d:'тэмпура в токийском стиле',r:4.0,c:1098,p:'¥¥',y:3000,note:'До 22:00',id:'ChIJAQDAdeiLGGARtFxeTTOBBYo'}]},
+ s:3000,note:'Сливочное пиво в студии — около 1 100 ¥, с сувенирной кружкой дороже.'},
+d10:{b:{w:'KOKO, к 8:30 уже в Асакусе',o:[HOTEL('KOKO')]},
+ l:{w:'около 12:00, Асакуса',o:[
+  {n:'Asakusa Amairo',d:'тэмпура и тэндон, тэмпура из яйца с жидким желтком',r:4.4,c:1037,p:'¥¥',y:2000,note:'11:30–14:30, приходите к открытию',id:'ChIJ5eRY_zyPGGAR7DGMXUxYkqU'},
+  {n:'Tentou',d:'тэндон в лавке, которой больше 100 лет',r:4.3,c:472,p:'¥¥',y:2200,note:'10:30–16:30, только наличные',id:'ChIJYd_TjsCOGGARQTyqbM_ailI'},
+  {n:'Owariya',d:'соба и тэмпура, местные обедают здесь десятилетиями',r:4.0,c:1558,p:'¥¥',y:2000,note:'Чт 11:30–16:00, наличные',id:'ChIJnX8RpsCOGGARZnzTvrUg5HM'}]},
+ d:{w:'около 18:00, Сибуя',o:[
+  {n:'Sushi no Midori',d:'суши, за которыми стоят в очереди и токийцы, Mark City',r:4.3,c:4470,p:'¥¥',y:3500,note:'Возьмите талон в очередь до подъёма на Shibuya Sky',id:'ChIJu9W4zVeLGGARXn0xCjGINF8',m:'https://ssl.tabelog.com/en/tokyo/A1303/A130301/13004624/dtlmenu/photo/'},
+  {n:'Uobei',d:'суши по планшету, прилетают на скоростной ленте',r:4.3,c:9288,p:'¥',y:1800,note:'До 23:00, очередь движется быстро',id:'ChIJaTXpw6mMGGARP-d-_tbssVE'},
+  {n:'Ichiran Shibuya',d:'рамен в кабинках, круглосуточно',r:4.4,c:5325,p:'¥',y:1500,note:'Запишитесь в очередь по QR и погуляйте',id:'ChIJOWucdKiMGGARbppa4b4CKA8',m:'https://en.ichiran.com/ramen'}]},
+ s:2000},
+d11:{b:{w:'Ханэда, терминал 3',o:[
+  {n:'Sky Lounge South',d:'зал Priority Pass: буфет и напитки, 3 этаж после досмотра, у выхода 108',pt:'по проходу',note:'Круглосуточно, до 3 часов, бывает очередь',i:LNG.hnd},
+  {n:'Onigiri Konga',d:'большие тёплые онигири, 4 этаж до досмотра',r:4.0,c:442,p:'¥',y:1200,note:'С 7:30',id:'ChIJ3cBYSQhjGGARSi4WimbznTs'},
+  HOTEL('KOKO','если завтрак успеет до выезда в 7:45')]},
+ l:{w:'в самолётах',o:[BOARD]},
+ note:'В Гуанчжоу пересадка всего час — на зал времени не будет.'}
 };
+const MEAL_RATE=()=>{try{const v=JSON.parse(localStorage.getItem('rate'));return v>0?v:51.76}catch(e){return 51.76}};
 const MP=(n,id)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(n)+(id?'&query_place_id='+id:'');
-const fmtR=r=>String(r.toFixed(1)).replace('.',',');
-const fmtN=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
-function mealOpt(o,i){const [n,desc,r,c,p,note,id]=o;
- return `<div class="mo"><span class="k">${i?'Запасной':'Основной'}</span><div><b>${n}</b> — ${desc}${r?`<div class="meta"><span class="star">★ ${fmtR(r)}</span> (${fmtN(c)}) · ${p}${note?' · '+note:''}</div>`:(note?`<div class="meta">${note}</div>`:'')}${id?`<a class="maplink" href="${esc(MP(n,id))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</div></div>`}
-function mealBlock(m){if(!m)return '';return `<div class="meal"><h5>${m.t} <span>· ${m.w}</span></h5>${m.o.length===1&&!m.o[0][2]?`<p class="mnote">${m.o[0][0]}: ${m.o[0][1]}.</p>`:m.o.map(mealOpt).join('')}</div>`}
-function mealsHTML(id){const m=MEALS[id];if(!m)return '';
- return `<div class="block meals"><h4>Где поесть</h4>${m.b?`<p class="mnote">${m.b}</p>`:''}${mealBlock(m.l)}${mealBlock(m.d)}${m.note?`<p class="mnote">${m.note}</p>`:''}${m.l&&m.l.o.some(o=>o[2])?`<p class="msrc">★ рейтинг и число отзывов в Google Maps на 4 ноября 2026. ¥ — до 1 500 ¥ на человека, ¥¥ — 1 500–4 000 ¥, ¥¥¥ — дороже.</p>`:''}</div>`}
+const fmtR=r=>r.toFixed(1).replace('.',',');
+const fmtN=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const r100=n=>Math.round(n/100)*100, r10=n=>Math.round(n/10)*10;
+const price2=y=>`<span class="mp" data-yen="${y*2}">≈ ${fmtN(r100(y*2))} ¥ · ≈ ${fmtN(r10(y*2*MEAL_RATE()/100))} ₽</span> на двоих`;
+function mealOpt(o,main){
+ const links=[o.m?`<a class="maplink" href="${esc(o.m)}" target="_blank" rel="noopener">Меню ↗</a>`:'',o.i?`<a class="maplink" href="${esc(o.i)}" target="_blank" rel="noopener">О зале ↗</a>`:'',o.id?`<a class="maplink" href="${esc(MP(o.n,o.id))}" target="_blank" rel="noopener">На карте ↗</a>`:''].filter(Boolean).join('');
+ const meta=[o.r?`<span class="star">★ ${fmtR(o.r)}</span> (${fmtN(o.c)})`:'',o.p||''].filter(Boolean).join(' · ');
+ const cost=o.y?price2(o.y):(o.pt?`<span class="incl">${o.pt}</span>`:'');
+ return `<div class="mo${main?' main':''}">${main?'<span class="tag">Основной</span>':''}${o.sp?'<span class="tag sp">Особый ужин</span>':''}
+  <div class="mn"><b>${o.n}</b>${o.d?` — ${o.d}`:''}</div>
+  ${meta||cost?`<div class="meta">${meta}${meta&&cost?' · ':''}${cost}</div>`:''}
+  ${o.note?`<div class="mnt">${o.note}</div>`:''}${links?`<div class="ml">${links}</div>`:''}</div>`}
+function mealBlock(m,kind){if(!m)return '';const K={b:['朝','Завтрак'],l:['昼','Обед'],d:['夜','Ужин']}[kind];
+ const [main,...alts]=m.o;
+ return `<section class="meal meal-${kind}"><header><span class="mk jp" aria-hidden="true">${K[0]}</span><span class="mt2">${K[1]}</span><span class="mw">${m.w}</span></header>
+ ${mealOpt(main,m.o.length>1)}${alts.length?`<div class="alts"><div class="alth">Запасные</div>${alts.map(o=>mealOpt(o,false)).join('')}</div>`:''}</section>`}
+function dayFood(m){let y=0;['b','l','d'].forEach(k=>{if(m[k]&&m[k].o[0].y)y+=m[k].o[0].y*2});return {main:y,snack:m.s||0}}
+function mealsHTML(id){const m=MEALS[id];if(!m)return '';const t=dayFood(m),tot=t.main+t.snack;
+ return `<div class="block meals"><h4>Где поесть</h4>${mealBlock(m.b,'b')}${mealBlock(m.l,'l')}${mealBlock(m.d,'d')}
+ ${m.note?`<p class="mnote">${m.note}</p>`:''}
+ ${tot?`<div class="mtot"><span>Еда за день по основным вариантам${t.snack?', с перекусами и водой':''}</span><b>${price2(tot/2)}</b></div>`:''}
+ <p class="msrc">★ — рейтинг и число отзывов в Google Maps на 4 ноября 2026. Цены — примерная оценка. Курс — из раздела «Траты», по умолчанию ЦБ на 4 ноября: 51,76 ₽ за 100 ¥.</p></div>`}
+window.updMealRub=rate=>{document.querySelectorAll('.mp[data-yen]').forEach(s=>{const y=+s.dataset.yen;s.textContent=`≈ ${fmtN(r100(y))} ¥ · ≈ ${fmtN(r10(y*rate/100))} ₽`})};
 
 const host=document.getElementById('days');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
@@ -872,7 +932,7 @@ wxRender(null);
 // ===== Траты =====
 const CAT={food:"Еда",transport:"Транспорт",tickets:"Билеты и входы",shop:"Покупки",hotel:"Жильё",other:"Другое"};
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let exp=LS.get('exp',[]);let rate=LS.get('rate',51);let budget=LS.get('budget',90000);
+let exp=LS.get('exp',[]);let rate=LS.get('rate',51.76);let budget=LS.get('budget',110000);
 const $=id=>document.getElementById(id);const fmt=n=>Math.round(n).toLocaleString('ru-RU');
 const toYen=e=>e.cur==='JPY'?e.amt:e.amt/rate*100;const toRub=e=>e.cur==='RUB'?e.amt:e.amt*rate/100;
 function jpToday(){const n=new Date();const j=new Date(n.getTime()+(n.getTimezoneOffset()+540)*60000);return j.toISOString().slice(0,10)}
@@ -888,7 +948,7 @@ const td0=jpToday();$('m-date').value=(td0>='2026-11-30'&&td0<='2026-12-11')?td0
 $('m-form').addEventListener('submit',ev=>{ev.preventDefault();const amt=parseFloat($('m-amt').value);if(!(amt>0)){$('m-msg').textContent='Введите сумму больше нуля.';return}
  exp.push({ts:Date.now(),amt,cur:$('m-cur').value,cat:$('m-cat').value,date:$('m-date').value||jpToday(),note:$('m-note').value.trim()});LS.set('exp',exp);
  $('m-amt').value='';$('m-note').value='';$('m-msg').textContent='Записано.';setTimeout(()=>$('m-msg').textContent='',2000);mRender();});
-$('m-rate').addEventListener('change',()=>{const v=parseFloat($('m-rate').value);if(v>0){rate=v;LS.set('rate',rate);mRender();conv();}});
+$('m-rate').addEventListener('change',()=>{const v=parseFloat($('m-rate').value);if(v>0){rate=v;LS.set('rate',rate);mRender();conv();window.updMealRub&&updMealRub(rate);}});
 $('m-budget').addEventListener('change',()=>{const v=parseFloat($('m-budget').value);if(v>=0){budget=v;LS.set('budget',budget);mRender();}});
 function conv(){const v=parseFloat($('m-conv').value);$('m-conv-out').textContent=v>0?`${fmt(v)} ¥ ≈ ${fmt(v*rate/100)} ₽`:''}
 $('m-conv').addEventListener('input',conv);
