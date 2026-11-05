@@ -151,7 +151,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 <nav class="strip" aria-label="Дни поездки"><ol id="strip"></ol></nav>
 <main class="wrap" id="day" tabindex="-1"></main>
 <footer>
-  <div class="links"><a class="pill" href="../#summary">Цель поездки</a><a class="pill" href="../#info">Билеты и чек-лист</a><a class="pill" href="../#hotels">Отели</a><a class="pill" href="../#money">Траты</a><a class="pill" href="../#words">Фразы</a><a class="pill" href="../#momiji">Момидзи</a><a class="pill" href="../#album">Наши фото</a></div>
+  <div class="links"><a class="pill" href="../#summary">Цель поездки</a><a class="pill" href="../#info">Билеты и чек-лист</a><a class="pill" href="../#hotels">Отели</a><a class="pill" href="../#money">Траты</a><a class="pill" href="../#words">Фразы</a><a class="pill" href="../#momiji">Момидзи</a><a class="pill" href="../#rain">Дожди</a><a class="pill" href="../#album">Наши фото</a></div>
   Данные общие с полной версией сайта. Рейтинги — Google Maps на ноябрь 2026, цены — ориентир на двоих. Время местное.
 </footer>
 <div class="taxi" id="taxi" hidden role="dialog" aria-modal="true" aria-label="Адрес для таксиста">
@@ -234,7 +234,7 @@ function show(i,user){cur=Math.max(0,Math.min(DAYS.length-1,i));const d=DAYS[cur
   ${d.wake?`<div class="wake"><b aria-hidden="true">⏰</b><span>${esc(d.wake)}</span></div>`:''}${d.jl?`<div class="wake jl"><b aria-hidden="true">🕑</b><span>${esc(d.jl)} <a href="../#jetlag">Джетлаг</a></span></div>`:''}
   <ol class="metro">${tl}</ol>
   ${kinds.length?`<section class="sec"><h2>Где поесть</h2><div class="tabs" role="tablist">${kinds.map(([k,l])=>`<button type="button" role="tab" data-k="${k}" aria-selected="${k===def}">${l}</button>`).join('')}</div><div class="meal" id="meal">${meal(M[def])}</div>${tot?`<p class="tot">Еда за день по основным вариантам${M.s?', с перекусами':''}: ≈ ${fmt(tot)} ¥ · ≈ ${fmt(Math.round(tot*rate()/100/100)*100)} ₽ на двоих</p>`:''}</section>`:''}
-  ${notes?`<section class="sec"><h2>Важно в дороге</h2><ul class="notes">${notes}</ul></section>`:''}
+  ${d.rain?`<section class="sec"><h2>☔ Если дождь</h2><div class="card" style="font-size:14px">${d.rain}</div></section>`:''}${notes?`<section class="sec"><h2>Важно в дороге</h2><ul class="notes">${notes}</ul></section>`:''}
   ${h?`<section class="sec"><h2>Ночуем</h2><div class="card hotel"><div class="hn">${esc(h.name)}</div><div class="hjp">${esc(h.jp)}</div><div class="hm">${esc(h.nights)} · ${esc(h.inout)}${h.food?' · '+esc(h.food):''}</div>
    <div class="btns"><button type="button" class="btn" id="taxi-b">Показать таксисту</button><a class="btn ghost" href="${esc(MAP(h.q||h.name))}" target="_blank" rel="noopener">На карте ↗</a></div></div></section>`:''}
   <div class="nav"><button type="button" id="pv" ${prev?'':'disabled'}><small>← ${prev?esc(prev.n+'.'+(prev.date.slice(5,7))):''}</small><b>${prev?esc(prev.title):''}</b></button><button type="button" id="nx" ${next?'':'disabled'}><small>${next?esc(next.n+'.'+next.date.slice(5,7)):''} →</small><b>${next?esc(next.title):''}</b></button></div>
