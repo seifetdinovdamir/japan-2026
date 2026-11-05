@@ -132,6 +132,60 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
 :root[data-theme="dark"] .tl .mj{color:#f08a63;background:rgba(240,138,99,.16)}
 .wake{margin:4px 0 14px;padding:10px 12px;border-radius:12px;background:var(--card2,rgba(127,127,127,.08));font-size:15px;line-height:1.4}
 .tl .go{margin:2px 0 4px;font-size:14px;line-height:1.4;opacity:.78}
+
+/* ===== вариант 2 внутри основного: линии городов, схема метро, вкладки еды ===== */
+:root{--l-osaka:#d9741a;--l-kyoto:#7d4fa8;--l-fuji:#138a80;--l-tokyo:#c8372d;--l-road:#7b8794}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--l-osaka:#ff9a45;--l-kyoto:#b38ae0;--l-fuji:#3cc2b5;--l-tokyo:#ff6a5c;--l-road:#8d99a6}}
+:root[data-theme="dark"]{--l-osaka:#ff9a45;--l-kyoto:#b38ae0;--l-fuji:#3cc2b5;--l-tokyo:#ff6a5c;--l-road:#8d99a6}
+.dstrip{position:sticky;top:var(--hh,57px);z-index:4;background:var(--bg);margin:0 -16px 10px;padding:8px 16px 10px;border-bottom:1px solid var(--line)}
+.dstrip ol{list-style:none;margin:0;padding:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.dstrip ol::-webkit-scrollbar{display:none}
+.dstrip button{flex:0 0 auto;width:48px;border:0;background:var(--paper);border-radius:12px;padding:5px 0 8px;cursor:pointer;display:grid;justify-items:center;position:relative;box-shadow:inset 0 0 0 1px var(--line);font:inherit;color:var(--ink)}
+.dstrip button b{font-family:var(--display);font-size:20px;line-height:1.05;font-variant-numeric:tabular-nums;font-weight:600}
+.dstrip button span{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.dstrip button i{position:absolute;left:9px;right:9px;bottom:3px;height:3px;border-radius:2px;background:var(--ln)}
+.dstrip button[aria-current="true"]{background:var(--ln);box-shadow:none}
+.dstrip button[aria-current="true"] b,.dstrip button[aria-current="true"] span{color:#fff}
+.dstrip button[aria-current="true"] i{background:#fff;opacity:.55}
+.dstrip button em{position:absolute;top:-3px;right:-2px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--bg)}
+details.day{scroll-margin-top:calc(var(--hh,57px) + 78px)}
+details.day[open]{border-color:var(--ln)}
+details.day .dnum b{color:var(--ln)}
+.lnb{display:inline-block;margin-right:6px;padding:0 7px;border-radius:6px;background:var(--ln);color:#fff;font-size:11px;font-weight:700;letter-spacing:.02em;vertical-align:1px}
+details.day[open] .plus{color:var(--ln);border-color:var(--ln)}
+ol.tl{border-left:0;margin:14px 0 6px;padding:0}
+ol.tl>li{position:relative;padding:0 0 14px 38px}
+ol.tl>li::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:6px;height:auto;border:0;border-radius:0;background:var(--ln)}
+ol.tl>li:first-child::before{top:12px}
+ol.tl>li:last-child::before{bottom:calc(100% - 12px)}
+ol.tl>li.seg::before{background:repeating-linear-gradient(var(--ln) 0 6px,transparent 6px 11px);opacity:.5}
+ol.tl>li.st>.dot{position:absolute;left:4px;top:2px;width:22px;height:22px;border-radius:50%;background:var(--paper);border:5px solid var(--ln);z-index:1}
+ol.tl>li.st.now>.dot{background:var(--ln);box-shadow:0 0 0 5px color-mix(in srgb,var(--ln) 25%,transparent)}
+ol.tl>li.st.past{opacity:.62}
+ol.tl .t{font-size:15px;font-weight:700;color:var(--ink);display:inline-block;min-height:26px;line-height:26px}
+ol.tl .nowtag{display:inline-block;margin-left:8px;font-size:11px;font-weight:700;background:var(--ln);color:#fff;border-radius:6px;padding:0 7px;line-height:18px;vertical-align:2px}
+ol.tl>li.seg{padding-bottom:14px}
+ol.tl>li.seg .go{display:block;margin:0;opacity:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13.5px;color:var(--muted)}
+ol.tl>li.seg .go::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--l-road);margin-right:8px;vertical-align:1px}
+ol.tl .maplink{color:var(--ln)}
+details.guide summary .jp{color:var(--ln)}
+.mtabs{display:flex;background:var(--chip);border-radius:12px;padding:3px;gap:3px;margin:6px 0 2px}
+.mtabs button{flex:1;border:0;background:transparent;border-radius:9px;padding:7px 4px;font:inherit;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer}
+.mtabs button[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.meals .meal[hidden]{display:none}
+.night{margin-top:12px;background:var(--bg);border-radius:12px;padding:12px;border-left:4px solid var(--ln)}
+.night h4{margin:0 0 4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ln);font-weight:600}
+.night b{font-size:16px}
+.night .jpname{font-family:var(--jp);font-size:13px;color:var(--muted)}
+.night .src{margin:4px 0 8px}
+.night .chips{margin:0}
+.night .btn{background:var(--ln)}
+.dnav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.dnav button{font:inherit;color:var(--ink);border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;text-align:left;cursor:pointer}
+.dnav button:last-child{text-align:right}
+.dnav small{display:block;color:var(--muted);font-size:11px;font-weight:600}
+.dnav b{font-size:13.5px;font-weight:600}
+.dnav button[disabled]{visibility:hidden}
 </style>
 <style>:root{--sea:#dfe8e6;--land:#ece4d2;--coast:#b8a98a}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sea:#1c2a2e;--land:#26302b;--coast:#4a5a52}}
@@ -146,8 +200,6 @@ footer{margin-top:28px;font-size:12px;color:var(--muted);text-align:center}
 .today b{font-family:var(--display);font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
 .today button,.btn{font:inherit;font-size:13px;background:var(--accent);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
 .btn.ghost{background:var(--chip);color:var(--ink)}
-li.now::before{background:var(--accent)!important}
-li.now .t::after{content:" · сейчас";color:var(--accent)}
 .maplink{font-size:12px;margin-left:6px;white-space:nowrap}
 .block{margin-top:12px;background:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
 .block h4{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
@@ -335,8 +387,9 @@ details.alts .mo:first-of-type{border-top:0;margin-top:2px}
     <div class="stat"><b>10</b><span>ночей в Японии</span></div>
     <div class="stat"><b>≈428</b><span>тыс. ₽ на двоих</span></div>
   </div>
-  <p class="note">Время местное. В каждом дне — время подъёма, дорога до каждой точки, «Где поесть» и ссылки на карту. Есть и <a href="v2/">второй вариант сайта</a> — по одному дню, как схема метро. Часы работы мест проверяем ближе к поездке.</p>
+  <p class="note">Время местное. В каждом дне — время подъёма, дорога до каждой точки, «Где поесть» и ссылки на карту. Есть и <a href="v2/">компактная версия</a> — по одному дню на экране. Часы работы мест проверяем ближе к поездке.</p>
 
+  <nav class="dstrip" aria-label="Дни поездки"><ol id="dstrip"></ol></nav>
   <div id="days"></div>
 
   <div class="eyebrow">Если захочется иначе</div>
@@ -644,7 +697,8 @@ function mealBlock(m,kind){if(!m)return '';const K={b:['朝','Завтрак'],l
  ${mealOpt(main,m.o.length>1)}${altList(alts,kind==='b'||!m.eu?'Запасные':'Японская кухня','jp')}${altList(m.eu,'Европейская кухня и другое','eu')}</section>`}
 function dayFood(m){let y=0;['b','l','d'].forEach(k=>{if(m[k]&&m[k].o[0].y)y+=m[k].o[0].y*2});return {main:y,snack:m.s||0}}
 function mealsHTML(id){const m=MEALS[id];if(!m)return '';const t=dayFood(m),tot=t.main+t.snack;
- return `<div class="block meals"><h4>Где поесть</h4>${mealBlock(m.b,'b')}${mealBlock(m.l,'l')}${mealBlock(m.d,'d')}
+ const ks=[['b','Завтрак'],['l','Обед'],['d','Ужин']].filter(([k])=>m[k]);const def=m.l?'l':ks[0][0];
+ return `<div class="block meals"><h4>Где поесть</h4><div class="mtabs" role="tablist">${ks.map(([k,l])=>`<button type="button" role="tab" data-k="${k}" aria-selected="${k===def}">${l}</button>`).join('')}</div>${ks.map(([k])=>mealBlock(m[k],k).replace('<section class="meal','<section '+(k===def?'':'hidden ')+'class="meal')).join('')}
  ${m.note?`<p class="mnote">${m.note}</p>`:''}
  ${tot?`<div class="mtot"><span>Еда за день по основным вариантам${t.snack?', с перекусами и водой':''}</span><b>${price2(tot/2)}</b></div>`:''}
  <p class="msrc">★ — рейтинг и число отзывов в Google Maps на 4 ноября 2026. Острое исключено: в «Заказать» указано, что выбрать и что не добавлять. Цены — примерная оценка. Курс — из раздела «Траты», по умолчанию ЦБ на 4 ноября: 51,76 ₽ за 100 ¥.</p></div>`}
@@ -652,20 +706,44 @@ window.updMealRub=rate=>{document.querySelectorAll('.mp[data-yen]').forEach(s=>{
 
 const host=document.getElementById('days');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-host.innerHTML=DAYS.map(d=>`
-<details class="day" id="${d.id}">
+const LNM={'Осака':'osaka','Киото':'kyoto','Кавагутико':'fuji','Токио':'tokyo'};
+const lineOf=d=>LNM[d.city.split('→').pop().trim()]||'road';
+const LNL={osaka:'Осака',kyoto:'Киото',fuji:'Фудзи',tokyo:'Токио',road:'В пути'};
+const NIGHTS={h1:['2026-12-01','2026-12-02'],h2:['2026-12-03','2026-12-04','2026-12-05'],h3:['2026-12-06'],h4:['2026-12-07','2026-12-08','2026-12-09','2026-12-10']};
+const hotelOf=date=>{for(const k in NIGHTS)if(NIGHTS[k].includes(date))return HOTELS.find(h=>h.id===k);return null};
+const tlHTML=d=>d.tl.map(t=>`${t[5]?`<li class="seg"><p class="go">${t[5]}</p></li>`:''}<li class="st" data-t="${t[0]}"><span class="dot" aria-hidden="true"></span><span class="t">${t[0]}</span>${t[4]?'<span class="mj">🍁 Момидзи</span>':''}${t[3]&&PH[t[3]]?`<figure class="ph"><img src="${PH[t[3]].src}" alt="${PH[t[3]].cap}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption>${PH[t[3]].cap} · <a href="${PH[t[3]].page}" target="_blank" rel="noopener">${PH[t[3]].by}, ${PH[t[3]].lic}</a></figcaption></figure>`:''}<p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('');
+const nightHTML=d=>{const h=hotelOf(d.date);if(!h)return '';return `<div class="night"><h4>Ночуем</h4><b>${h.name}</b><div class="jpname">${h.jp}</div><p class="src">${h.nights} · ${h.inout}${h.food?' · '+h.food:''}</p><div class="chips"><button class="btn" type="button" data-taxi="${h.id}">Показать таксисту</button><a class="chip" href="${esc(M(h.q))}" target="_blank" rel="noopener">На карте ↗</a></div></div>`};
+const navHTML=i=>{const p=DAYS[i-1],n=DAYS[i+1];return `<div class="dnav"><button type="button" data-go="${p?p.id:''}" ${p?'':'disabled'}><small>← ${p?p.n+'.'+p.date.slice(5,7):''}</small><b>${p?p.title:''}</b></button><button type="button" data-go="${n?n.id:''}" ${n?'':'disabled'}><small>${n?n.n+'.'+n.date.slice(5,7):''} →</small><b>${n?n.title:''}</b></button></div>`};
+host.innerHTML=DAYS.map((d,i)=>`
+<details class="day" id="${d.id}" style="--ln:var(--l-${lineOf(d)})">
  <summary><div class="dnum"><b>${d.n}</b><span>${d.m}</span></div>
- <div class="dmeta"><div class="dcity">${d.city}</div><div class="dtitle">${d.title}</div><div class="dline">${d.line}${d.km?' · '+d.km:''}</div></div>
+ <div class="dmeta"><div class="dcity"><span class="lnb">${LNL[lineOf(d)]}</span>${d.city}</div><div class="dtitle">${d.title}</div><div class="dline">${d.line}${d.km?' · '+d.km:''}</div></div>
  <span class="plus" aria-hidden="true">+</span></summary>
  <div class="dbody">
   ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${esc(c[1])}" ${c[1].startsWith('#')?'':'target="_blank" rel="noopener"'}>${c[0]} ↗</a>`).join('')}</div>`:''}
-  ${d.wake?`<p class="wake"><b>⏰</b> ${d.wake}</p>`:''}<ol class="tl">${d.tl.map(t=>`<li data-t="${t[0]}"><span class="t">${t[0]}</span>${t[4]?'<span class="mj">🍁 Момидзи</span>':''}${t[5]?`<p class="go">🚇 ${t[5]}</p>`:''}${t[3]&&PH[t[3]]?`<figure class="ph"><img src="${PH[t[3]].src}" alt="${PH[t[3]].cap}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption>${PH[t[3]].cap} · <a href="${PH[t[3]].page}" target="_blank" rel="noopener">${PH[t[3]].by}, ${PH[t[3]].lic}</a></figcaption></figure>`:''}<p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</p>${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')}</ol>
+  ${d.wake?`<p class="wake"><b>⏰</b> ${d.wake}</p>`:''}<ol class="tl">${tlHTML(d)}</ol>
   ${d.how?`<div class="block"><h4>Важно в дороге</h4><ol>${d.how.map(h=>`<li>${h}</li>`).join('')}</ol></div>`:''}
   ${mealsHTML(d.id)}
   ${d.tip?`<div class="tip">${d.tip}</div>`:''}
+  ${nightHTML(d)}
   <div class="block mine" data-date="${d.date}"><h4>Наши фото</h4><div class="mine-b"></div></div>
+  ${navHTML(i)}
  </div>
 </details>`).join('');
+// лента дней, вкладки еды, переходы
+const WDN=['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
+const setHH=()=>{const h=document.querySelector('header.top');if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px')};setHH();window.addEventListener('resize',setHH);
+let dCur=DAYS[0].id,dToday=null;
+function dstrip(){const ol=document.getElementById('dstrip');ol.innerHTML=DAYS.map(d=>`<li><button type="button" data-d="${d.id}" style="--ln:var(--l-${lineOf(d)})" aria-current="${d.id===dCur}" aria-label="${+d.n} ${d.m}, ${d.city}"><b>${+d.n}</b><span>${WDN[new Date(d.date+'T12:00:00').getDay()]}</span><i></i>${d.id===dToday?'<em aria-hidden="true"></em>':''}</button></li>`).join('');
+ ol.querySelectorAll('button').forEach(b=>b.onclick=()=>openDay(b.dataset.d));const a=ol.querySelector('[aria-current="true"]');if(a)a.scrollIntoView({inline:'center',block:'nearest'})}
+function markDay(id){if(dCur===id)return;dCur=id;document.querySelectorAll('#dstrip button').forEach(b=>b.setAttribute('aria-current',b.dataset.d===id));const a=document.querySelector('#dstrip [aria-current="true"]');if(a)a.scrollIntoView({inline:'center',block:'nearest'})}
+function openDay(id){const el=document.getElementById(id);if(!el)return;el.open=true;markDay(id);el.scrollIntoView({behavior:'smooth',block:'start'})}
+window.openDay=openDay;
+host.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{if(b.dataset.go)openDay(b.dataset.go)});
+host.querySelectorAll('details.day').forEach(el=>el.addEventListener('toggle',()=>{if(el.open)markDay(el.id)}));
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)markDay(e.target.id)})},{rootMargin:'-45% 0px -50% 0px'});host.querySelectorAll('details.day').forEach(el=>io.observe(el))}
+host.addEventListener('click',e=>{const b=e.target.closest('.mtabs button');if(!b)return;const box=b.closest('.meals');box.querySelectorAll('.mtabs button').forEach(x=>x.setAttribute('aria-selected',x===b));box.querySelectorAll('.meal').forEach(m=>m.hidden=!m.classList.contains('meal-'+b.dataset.k))});
+function mealTab(dayEl,k){const t=dayEl.querySelector(`.mtabs button[data-k="${k}"]`);if(t)t.click()}
 document.getElementById('hotel-list').innerHTML=HOTELS.map(h=>`
 <div class="hotel"><div class="src">${h.nights}</div><b>${h.name}</b><div class="jpname">${h.jp}</div>
 <div class="kv"><span>Адрес</span><span>${h.en}</span><span>Время</span><span>${h.inout}</span><span>Цена</span><span>${h.price}</span><span>Питание</span><span>${h.food}</span></div>
@@ -688,13 +766,14 @@ function today(){const box=document.getElementById('today'),txt=document.getElem
  txt.innerHTML=`Сегодня <b>день ${idx+1}</b> · ${d.city}: ${d.title}`;btn.hidden=false;
  const el=document.getElementById(d.id);el.open=true;
  const hm=String(j.getHours()).padStart(2,'0')+':'+String(j.getMinutes()).padStart(2,'0');
- const items=[...el.querySelectorAll('ol.tl>li')];const next=items.find(li=>li.dataset.t>=hm);if(next)next.classList.add('now');
+ const items=[...el.querySelectorAll('ol.tl>li.st')];let ci=-1;items.forEach((li,k)=>{if(li.dataset.t<=hm)ci=k});if(ci<0)ci=0;items.forEach((li,k)=>{if(k<ci)li.classList.add('past')});items[ci].classList.add('now');items[ci].querySelector('.t').insertAdjacentHTML('afterend','<span class="nowtag">сейчас</span>');
+ dToday=d.id;dCur=d.id;dstrip();mealTab(el,hm<'10:00'?'b':hm<'15:00'?'l':'d');
  btn.onclick=()=>{el.scrollIntoView({behavior:'smooth',block:'start'})};}
-host.querySelector('details').open=true;today();
-document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'});}}));
+host.querySelector('details').open=true;dstrip();today();
+document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openDay(a.getAttribute('href').slice(1))}));
 function route(){const h=location.hash;const view=(h==='#info'||h==='#hotels'||h==='#weather'||h==='#words'||h==='#album'||h==='#momiji')?'info':(h==='#money'?'money':'route');
  ['route','info','money'].forEach(v=>{document.getElementById('view-'+v).hidden=v!==view;const t=document.getElementById('tab-'+v);t.removeAttribute('aria-current');if(v===view)t.setAttribute('aria-current','page');});
- if(['#hotels','#weather','#words','#album','#momiji'].includes(h))setTimeout(()=>{window.openPanel&&window.openPanel(h.slice(1));document.querySelector(h).scrollIntoView()},50);else window.scrollTo(0,0);}
+ if(['#hotels','#weather','#words','#album','#momiji'].includes(h))setTimeout(()=>{window.openPanel&&window.openPanel(h.slice(1));document.querySelector(h).scrollIntoView()},50);else if(/^#d\d+$/.test(h)&&window.openDay)setTimeout(()=>window.openDay(h.slice(1)),50);else window.scrollTo(0,0);}
 window.addEventListener('hashchange',route);route();
 document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
 
