@@ -186,6 +186,24 @@ details.guide summary .jp{color:var(--ln)}
 .dnav small{display:block;color:var(--muted);font-size:11px;font-weight:600}
 .dnav b{font-size:13.5px;font-weight:600}
 .dnav button[disabled]{visibility:hidden}
+
+.hls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.hl{display:flex;flex-direction:column;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;text-decoration:none;color:var(--ink)}
+.hl small{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent)}
+.hl b{font-family:var(--display);font-size:19px;line-height:1.15;font-weight:600}
+.hl span{font-size:13px;color:var(--muted);line-height:1.4}
+.sumcity{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--ln);border-radius:14px;padding:12px 14px;margin-top:10px}
+.sch{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.sch b{font-family:var(--display);font-size:24px;font-weight:600;color:var(--ln)}
+.sch .jp{color:var(--muted);font-size:14px}
+.scd{margin-left:auto;font-size:12px;color:var(--muted)}
+.pls{display:flex;flex-wrap:wrap;gap:6px}
+.pl{display:inline-flex;align-items:baseline;gap:6px;font-size:13.5px;background:var(--bg);border-radius:999px;padding:5px 11px;text-decoration:none;color:var(--ink);border:1px solid var(--line)}
+.pl small{font-size:11px;color:var(--ln);font-weight:700;font-variant-numeric:tabular-nums}
+.sumgrid{display:grid;gap:10px;margin-top:12px}
+@media (min-width:700px){.sumgrid{grid-template-columns:repeat(3,1fr)}.hls{grid-template-columns:repeat(4,1fr)}}
+.sumlist{margin:6px 0 0;padding-left:18px}
+.sumlist li{margin:4px 0}
 </style>
 <style>:root{--sea:#dfe8e6;--land:#ece4d2;--coast:#b8a98a}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sea:#1c2a2e;--land:#26302b;--coast:#4a5a52}}
@@ -248,6 +266,8 @@ details.guide summary .jp{color:var(--ln)}
 .mi:last-child{border-bottom:0}
 .x{font:inherit;font-size:18px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;flex:none}
 @media (max-width:430px){nav.tabs a{padding:6px 7px;font-size:13px}.brand{font-size:18px}.brand .bn{display:none}nav.tabs{gap:2px}}
+@media (max-width:430px){.topin{gap:8px}.brand{gap:7px}.brand .jp{display:none}nav.tabs a{padding:6px 6px}}
+@media (max-width:430px){.brand{font-size:0;gap:0}.brand .dot{width:14px;height:14px}}
 
 #view-info .panel{padding:0}
 #view-info .panel>.ph{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px 16px;cursor:pointer}
@@ -265,7 +285,7 @@ figure.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;max-w
 figure.ph figcaption{font-size:11px;color:var(--muted);padding:5px 8px}
 figure.ph figcaption a{color:var(--muted)}
 </style>
-<style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:19px}nav.tabs a{padding:6px 8px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
+<style>[hidden]{display:none!important} @media (max-width:430px){.brand .jp{display:none}.brand{font-size:0;gap:0}nav.tabs a{padding:6px 7px}.topin{gap:8px}} img{max-width:100%} :root{padding-top:env(safe-area-inset-top,0px)}</style>
 <style>
 .mine .mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:4px 0 8px}
 @media (min-width:560px){.mine .mgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -340,7 +360,7 @@ details.alts .mo:first-of-type{border-top:0;margin-top:2px}
 <body>
 <header class="top"><div class="topin">
   <a class="brand" href="#route"><span class="dot"></span><span class="bn">Наша </span>Япония <span class="jp">日本</span></a>
-  <nav class="tabs" aria-label="Разделы"><a href="#route" id="tab-route">Маршрут</a><a href="#info" id="tab-info">Полезное</a><a href="#money" id="tab-money">Траты</a></nav>
+  <nav class="tabs" aria-label="Разделы"><a href="#summary" id="tab-summary">Итоги</a><a href="#route" id="tab-route">Маршрут</a><a href="#info" id="tab-info">Полезное</a><a href="#money" id="tab-money">Траты</a></nav>
 </div></header>
 
 <div class="wrap">
@@ -402,6 +422,54 @@ details.alts .mo:first-of-type{border-top:0;margin-top:2px}
       <li><b>Хаконэ</b> вместо Кавагутико: онсэны и рёканы вроде Mizunoto, но Фудзи видна хуже.</li>
     </ul>
   </div>
+</section>
+
+<section id="view-summary" hidden>
+  <div class="eyebrow">Коротко о главном</div>
+  <h2>Итоги поездки</h2>
+  <p class="sub">12 дней, пять мест на Хонсю: Осака, Нара, Киото, Фудзи и Токио. Всё, что увидим, попробуем и привезём, — на одной странице. Нажмите на место, чтобы открыть его день.</p>
+  <div class="stats">
+    <div class="stat"><b id="sum-n">43</b><span>мест в плане</span></div>
+    <div class="stat"><b>5</b><span>городов и районов</span></div>
+    <div class="stat"><b>≈90</b><span>км пешком за поездку</span></div>
+    <div class="stat"><b>≈428</b><span>тыс. ₽ на двоих</span></div>
+  </div>
+
+  <div class="eyebrow">Восемь моментов</div>
+  <h2>Ради чего едем</h2>
+  <div class="hls"><a class="hl" href="#d6"><small>6.12</small><b>Фусими-Инари на рассвете</b><span>Тысячи красных ворот почти без людей, в 7 утра.</span></a><a class="hl" href="#d5"><small>5.12</small><b>Киото на пике клёнов</b><span>Эйкан-до, Тофуку-дзи, Дзёдзякко-дзи — прогноз пика как раз на наши даты.</span></a><a class="hl" href="#d6"><small>6.12</small><b>Ночь в рёкане у Фудзи</b><span>Юката, онсэн, ужин кайсэки и рассвет над озером.</span></a><a class="hl" href="#d7"><small>7.12</small><b>Пагода Тюрэйто</b><span>Та самая открытка: пагода, клёны и Фудзи.</span></a><a class="hl" href="#d3"><small>3.12</small><b>Олени и Большой Будда</b><span>Нара по пути в Киото, налегке.</span></a><a class="hl" href="#d9"><small>9.12</small><b>Студия «Гарри Поттер»</b><span>Декорации, Большой зал и Косой переулок.</span></a><a class="hl" href="#d10"><small>10.12</small><b>Токио на закате</b><span>Shibuya Sky над самым известным перекрёстком мира.</span></a><a class="hl" href="#d8"><small>8.12</small><b>Вечер в театре кабуки</b><span>Один акт с верхнего яруса — коротко и очень по-японски.</span></a></div>
+
+  <div class="eyebrow">По городам</div>
+  <h2>Где побываем</h2>
+  <div class="sumcity" style="--ln:var(--l-osaka)"><div class="sch"><b>Осака</b><span class="jp">大阪</span><span class="scd">1–3 декабря</span></div><div class="pls"><a class="pl" href="#d1">Дотонбори и бегущий человек Glico<small>1.12</small></a><a class="pl" href="#d1">Синсайбаси<small>1.12</small></a><a class="pl" href="#d2">Рынок Куромон<small>2.12</small></a><a class="pl" href="#d2">Замок Осаки 🍁<small>2.12</small></a><a class="pl" href="#d2">Синсэкай и башня Цутэнкаку<small>2.12</small></a><a class="pl" href="#d2">Umeda Sky на закате<small>2.12</small></a></div></div><div class="sumcity" style="--ln:var(--l-kyoto)"><div class="sch"><b>Нара</b><span class="jp">奈良</span><span class="scd">3 декабря, по пути в Киото</span></div><div class="pls"><a class="pl" href="#d3">Пагода Кофуку-дзи<small>3.12</small></a><a class="pl" href="#d3">Парк с оленями 🍁<small>3.12</small></a><a class="pl" href="#d3">Тодай-дзи и Большой Будда<small>3.12</small></a><a class="pl" href="#d3">Касуга-тайся и фонари<small>3.12</small></a><a class="pl" href="#d3">Нигацу-до<small>3.12</small></a></div></div><div class="sumcity" style="--ln:var(--l-kyoto)"><div class="sch"><b>Киото</b><span class="jp">京都</span><span class="scd">3–6 декабря</span></div><div class="pls"><a class="pl" href="#d4">Бамбуковая роща Арасиямы<small>4.12</small></a><a class="pl" href="#d4">Сад Тэнрю-дзи и мост Тогэцукё<small>4.12</small></a><a class="pl" href="#d4">Дзёдзякко-дзи 🍁<small>4.12</small></a><a class="pl" href="#d4">Кинкаку-дзи, Золотой павильон<small>4.12</small></a><a class="pl" href="#d4">Каменный сад Рёан-дзи<small>4.12</small></a><a class="pl" href="#d4">Рынок Нисики<small>4.12</small></a><a class="pl" href="#d4">Переулок Понтотё<small>4.12</small></a><a class="pl" href="#d5">Киёмидзу-дэра 🍁<small>5.12</small></a><a class="pl" href="#d5">Санэнзака и Нинэндзака<small>5.12</small></a><a class="pl" href="#d5">Пагода Ясака и Кодай-дзи<small>5.12</small></a><a class="pl" href="#d5">Нандзэн-дзи и Эйкан-до 🍁<small>5.12</small></a><a class="pl" href="#d5">Тропа философа 🍁<small>5.12</small></a><a class="pl" href="#d5">Гион и Ханамикодзи<small>5.12</small></a><a class="pl" href="#d6">Фусими-Инари на рассвете<small>6.12</small></a><a class="pl" href="#d6">Тофуку-дзи 🍁<small>6.12</small></a></div></div><div class="sumcity" style="--ln:var(--l-fuji)"><div class="sch"><b>Фудзи</b><span class="jp">富士山</span><span class="scd">6–7 декабря</span></div><div class="pls"><a class="pl" href="#d6">Рёкан Kogetsu: онсэн и кайсэки<small>6.12</small></a><a class="pl" href="#d7">Рассвет над озером Кавагутико<small>7.12</small></a><a class="pl" href="#d7">Пагода Тюрэйто с видом на Фудзи<small>7.12</small></a><a class="pl" href="#d7">Поезд Fuji Excursion<small>7.12</small></a></div></div><div class="sumcity" style="--ln:var(--l-tokyo)"><div class="sch"><b>Токио</b><span class="jp">東京</span><span class="scd">7–11 декабря</span></div><div class="pls"><a class="pl" href="#d7">teamLab Planets<small>7.12</small></a><a class="pl" href="#d7">Тоёсу у рыбного рынка<small>7.12</small></a><a class="pl" href="#d8">Акихабара<small>8.12</small></a><a class="pl" href="#d8">Гиндза<small>8.12</small></a><a class="pl" href="#d8">Рынок Цукидзи<small>8.12</small></a><a class="pl" href="#d8">Кабуки в Кабуки-дза<small>8.12</small></a><a class="pl" href="#d9">Студия «Гарри Поттер»<small>9.12</small></a><a class="pl" href="#d9">Синдзюку и Омоидэ-Ёкотё<small>9.12</small></a><a class="pl" href="#d10">Асакуса и Сэнсо-дзи<small>10.12</small></a><a class="pl" href="#d10">Святилище Мэйдзи<small>10.12</small></a><a class="pl" href="#d10">Харадзюку и Омотэсандо<small>10.12</small></a><a class="pl" href="#d10">Shibuya Sky и перекрёсток<small>10.12</small></a><a class="pl" href="#d10">Токийская башня<small>10.12</small></a></div></div>
+  <p class="note">🍁 — места, где в наши даты ждём красные клёны. Подробнее — в разделе <a href="#momiji">«Момидзи»</a>.</p>
+
+  <div class="eyebrow">Впечатления</div>
+  <h2>Что попробуем</h2>
+  <div class="sumgrid">
+    <div class="panel"><h3>Японский опыт</h3><ul class="sumlist"><li>Синкансэн из Киото к Фудзи</li><li>Онсэн в Dormy Inn и в рёкане</li><li>Ночь в японском номере на футонах</li><li>Ужин кайсэки из многих перемен</li><li>Кабуки</li><li>teamLab — босиком по воде</li><li>Tax-free покупки</li><li>Момидзи — сезон клёнов</li></ul></div>
+    <div class="panel"><h3>Еда</h3><ul class="sumlist"><li>Такояки и окономияки в Осаке</li><li>Кусикацу в Синсэкае</li><li>Юдофу и угорь в Киото</li><li>Хото у Кавагутико</li><li>Суши у рынков Тоёсу и Цукидзи</li><li>Тэмпура и сукияки на Гиндзе</li><li>Якитори в Омоидэ-Ёкотё</li><li>Соба и тэндон в Асакусе</li><li>Онигири и десерты из конбини</li></ul><p class="src">Без острого. Где и что заказать — в каждом дне, блок «Где поесть».</p></div>
+    <div class="panel"><h3>Покупки</h3><ul class="sumlist"><li><a href="#d8">Акихабара: электроника, игры, умные очки</a></li><li><a href="#d8">Гиндза: Uniqlo, Muji, Itoya, Ginza Six</a></li><li><a href="#d9">Синдзюку: Isetan, Bic Camera, Don Quijote</a></li><li><a href="#d10">Харадзюку и Омотэсандо</a></li><li><a href="#d10">Сибуя: Nintendo, Pokémon Center, Ray-Ban</a></li></ul><p class="src">Главный день покупок — 8.12, без спешки и с перерывом в отеле.</p></div>
+  </div>
+
+  <div class="eyebrow">Честно</div>
+  <h2>Что не вошло</h2>
+  <div class="panel"><ul>
+    <li><b>Замок Химэдзи</b> — полдня из Осаки, а там у нас всего две ночи.</li>
+    <li><b>Хиросима и Миядзима</b> — слишком далеко для 11 дней.</li>
+    <li><b>Хаконэ и Никко</b> — вместо них Фудзи и рёкан у озера.</li>
+    <li><b>Сумо</b> — в декабре турниров нет.</li>
+    <li><b>Клёны в Токио</b> — к нашим датам в основном отойдут, поэтому момидзи смотрим в Киото и Наре.</li>
+  </ul></div>
+
+  <div class="eyebrow">Осталось сделать</div>
+  <h2>До вылета</h2>
+  <div class="panel"><ul>
+    <li><b>7.11 в 4:00 по Москве</b> — билеты Fuji Excursion на 7.12.</li>
+    <li>Рёкан Kogetsu на 6–7.12 — такой номер остался последний.</li>
+    <li>Перенести брони: Dormy Inn на 1–3.12, Keio Prelia на 3–6.12, KOKO на 7–11.12.</li>
+    <li>Билеты на время: студия, teamLab, кабуки, Shibuya Sky, автобус Мисима → Кавагутико.</li>
+  </ul><p class="src">Полный список с отметками — в <a href="#info">«Полезном»</a>, бюджет и траты — во вкладке <a href="#money">«Траты»</a>.</p></div>
 </section>
 
 <section id="view-info" hidden>
@@ -771,9 +839,10 @@ function today(){const box=document.getElementById('today'),txt=document.getElem
  btn.onclick=()=>{el.scrollIntoView({behavior:'smooth',block:'start'})};}
 host.querySelector('details').open=true;dstrip();today();
 document.querySelectorAll('.stops a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openDay(a.getAttribute('href').slice(1))}));
-function route(){const h=location.hash;const view=(h==='#info'||h==='#hotels'||h==='#weather'||h==='#words'||h==='#album'||h==='#momiji')?'info':(h==='#money'?'money':'route');
- ['route','info','money'].forEach(v=>{document.getElementById('view-'+v).hidden=v!==view;const t=document.getElementById('tab-'+v);t.removeAttribute('aria-current');if(v===view)t.setAttribute('aria-current','page');});
+function route(){const h=location.hash;const view=(h==='#info'||h==='#hotels'||h==='#weather'||h==='#words'||h==='#album'||h==='#momiji')?'info':(h==='#money'?'money':(h==='#summary'?'summary':'route'));
+ ['summary','route','info','money'].forEach(v=>{document.getElementById('view-'+v).hidden=v!==view;const t=document.getElementById('tab-'+v);t.removeAttribute('aria-current');if(v===view)t.setAttribute('aria-current','page');});
  if(['#hotels','#weather','#words','#album','#momiji'].includes(h))setTimeout(()=>{window.openPanel&&window.openPanel(h.slice(1));document.querySelector(h).scrollIntoView()},50);else if(/^#d\d+$/.test(h)&&window.openDay)setTimeout(()=>window.openDay(h.slice(1)),50);else window.scrollTo(0,0);}
+document.getElementById('sum-n').textContent=document.querySelectorAll('#view-summary .pl').length;
 window.addEventListener('hashchange',route);route();
 document.querySelectorAll('#todo input').forEach(cb=>{try{cb.checked=localStorage.getItem('todo-'+cb.id)==='1'}catch(e){}cb.addEventListener('change',()=>{try{localStorage.setItem('todo-'+cb.id,cb.checked?'1':'0')}catch(e){}})});
 
