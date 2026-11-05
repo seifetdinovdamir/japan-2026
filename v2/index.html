@@ -51,6 +51,8 @@ h1{font-size:26px;line-height:1.15;letter-spacing:-.02em;margin:10px 0 4px;font-
 .sub{color:var(--muted);font-size:14px;margin:0}
 .wake{display:flex;gap:10px;align-items:flex-start;margin:14px 0 6px;padding:12px 14px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);font-size:15px}
 .wake b{font-size:18px;line-height:1.2}
+.wake.jl{margin-top:-2px;font-size:13.5px;color:var(--muted);background:var(--soft);box-shadow:none}
+.wake.jl a{color:var(--ln)}
 /* metro timeline */
 .metro{list-style:none;margin:18px 0 8px;padding:0;position:relative}
 .metro li{position:relative;padding-left:40px}
@@ -229,7 +231,7 @@ function show(i,user){cur=Math.max(0,Math.min(DAYS.length-1,i));const d=DAYS[cur
  $('day').innerHTML=`<div class="fade">
   <div class="dh"><div class="num">${esc(d.n)}</div><div><div class="mo">${esc(d.m)}</div><div class="city"><span class="lnbadge">${LBL[ln]}</span>${esc(d.city)}</div></div></div>
   <h1>${esc(d.title)}</h1><p class="sub">${esc(d.line)}${d.km?' · '+esc(d.km):''}</p>
-  ${d.wake?`<div class="wake"><b aria-hidden="true">⏰</b><span>${esc(d.wake)}</span></div>`:''}
+  ${d.wake?`<div class="wake"><b aria-hidden="true">⏰</b><span>${esc(d.wake)}</span></div>`:''}${d.jl?`<div class="wake jl"><b aria-hidden="true">🕑</b><span>${esc(d.jl)} <a href="../#jetlag">Джетлаг</a></span></div>`:''}
   <ol class="metro">${tl}</ol>
   ${kinds.length?`<section class="sec"><h2>Где поесть</h2><div class="tabs" role="tablist">${kinds.map(([k,l])=>`<button type="button" role="tab" data-k="${k}" aria-selected="${k===def}">${l}</button>`).join('')}</div><div class="meal" id="meal">${meal(M[def])}</div>${tot?`<p class="tot">Еда за день по основным вариантам${M.s?', с перекусами':''}: ≈ ${fmt(tot)} ¥ · ≈ ${fmt(Math.round(tot*rate()/100/100)*100)} ₽ на двоих</p>`:''}</section>`:''}
   ${notes?`<section class="sec"><h2>Важно в дороге</h2><ul class="notes">${notes}</ul></section>`:''}
