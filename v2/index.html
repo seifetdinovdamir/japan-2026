@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Япония · по дням</title>
-<meta name="description" content="Наша Япония 30.11–11.12: маршрут по дням как схема метро">
+<meta name="description" content="Наша Япония 29.11–10.12: маршрут по дням как схема метро">
 <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../icon.svg">
@@ -145,7 +145,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 </head>
 <body>
 <header class="top">
-  <div class="brand">Япония по дням<small>30.11–11.12 · схема маршрута</small></div>
+  <div class="brand">Япония по дням<small>29.11–10.12 · схема маршрута</small></div>
   <div class="toplinks"><button type="button" class="pill" id="theme" aria-label="Тема">Авто</button><a class="pill" href="../">Полная версия</a></div>
 </header>
 <nav class="strip" aria-label="Дни поездки"><ol id="strip"></ol></nav>
@@ -178,7 +178,7 @@ const rate=()=>{const r=parseFloat(String(get('rate','51.76')).replace(/"/g,''))
 const rub=y=>Math.round(y*2*rate()/100/100)*100;
 const fmt=n=>n.toLocaleString('ru-RU');
 // hotel for the night of a date
-const NIGHTS={h1:['2026-12-01','2026-12-02'],h2:['2026-12-03','2026-12-04','2026-12-05'],h3:['2026-12-06'],h4:['2026-12-07','2026-12-08','2026-12-09','2026-12-10']};
+const NIGHTS={h1:['2026-11-30','2026-12-01'],h2:['2026-12-02','2026-12-03','2026-12-04'],h3:['2026-12-05'],h4:['2026-12-06','2026-12-07','2026-12-08','2026-12-09']};
 const hotelOf=date=>{for(const k in NIGHTS)if(NIGHTS[k].includes(date))return HOTELS.find(h=>h.id===k);return null};
 // Japan time
 const jst=()=>{const p=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());const o={};p.forEach(x=>o[x.type]=x.value);return {date:`${o.year}-${o.month}-${o.day}`,min:(+o.hour%24)*60+(+o.minute)}};
