@@ -66,6 +66,9 @@ h1{font-size:26px;line-height:1.15;letter-spacing:-.02em;margin:10px 0 4px;font-
 .st.past{opacity:.6}
 .tm{font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:30px}
 .nowtag{font-size:11px;font-weight:700;background:var(--ln);color:#fff;border-radius:6px;padding:1px 7px}
+.ic{font-size:12px;font-weight:700;color:#8a6400;background:#fbf1d3;border-radius:999px;padding:1px 9px;margin-left:6px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ic{color:#f2c94c;background:#3a3218}}
+:root[data-theme="dark"] .ic{color:#f2c94c;background:#3a3218}
 .mj{font-size:12px;font-weight:700;color:var(--mj);background:var(--mjbg);border-radius:999px;padding:1px 9px}
 .tx{margin:2px 0 0}
 .tx p{margin:0}
@@ -213,11 +216,11 @@ function show(i,user){cur=Math.max(0,Math.min(DAYS.length-1,i));const d=DAYS[cur
  history.replaceState(null,'','#'+d.id);document.documentElement.style.setProperty('--ln',`var(--${ln})`);
  const isToday=cur===todayIdx;let nowIdx=-1;
  if(isToday){d.tl.forEach((t,k)=>{const m=toMin(t[0]);if(m!==null&&m<=now.min)nowIdx=k})}
- let tl='';d.tl.forEach((t,k)=>{const [time,text,g,q,mj,go]=t;
+ let tl='';d.tl.forEach((t,k)=>{const [time,text,g,q,mj,go,ic]=t;
   if(go)tl+=`<li class="seg"><span class="go">${esc(go)}</span></li>`;
   const ph=q&&PH[q];
   tl+=`<li class="st${isToday&&k===nowIdx?' now':''}${isToday&&k<nowIdx?' past':''}"><span class="dot"></span>
-   <div class="tm">${esc(time)}${isToday&&k===nowIdx?'<span class="nowtag">сейчас</span>':''}${mj?'<span class="mj">🍁 Момидзи</span>':''}</div>
+   <div class="tm">${esc(time)}${isToday&&k===nowIdx?'<span class="nowtag">сейчас</span>':''}${ic?'<span class="ic">⭐ Визитная карточка</span>':''}${mj?'<span class="mj">🍁 Момидзи</span>':''}</div>
    <div class="tx"><p>${text}</p>
    ${ph?`<figure class="ph" style="margin:10px 0 0"><img src="${esc(ph.src)}" alt="${esc(ph.cap)}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"></figure><p class="phc">${esc(ph.cap)} · <a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.by)}, ${esc(ph.lic)}</a></p>`:''}
    ${q?`<div class="acts"><a href="${esc(MAP(q))}" target="_blank" rel="noopener">На карте ↗</a></div>`:''}
