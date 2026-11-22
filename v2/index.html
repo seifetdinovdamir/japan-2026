@@ -172,6 +172,7 @@ const $=id=>document.getElementById(id);
 const get=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}};
 const put=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const IG=t=>'https://www.instagram.com/explore/tags/'+encodeURIComponent(t)+'/';
 const MAP=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
 const MP=(n,id)=>MAP(n)+(id?'&query_place_id='+id:'');
 const LN={'Осака':'osaka','Киото':'kyoto','Кавагутико':'fuji','Токио':'tokyo'};
@@ -223,7 +224,7 @@ function show(i,user){cur=Math.max(0,Math.min(DAYS.length-1,i));const d=DAYS[cur
    <div class="tm">${esc(time)}${isToday&&k===nowIdx?'<span class="nowtag">сейчас</span>':''}${ic?'<span class="ic">⭐ Визитная карточка</span>':''}${mj?'<span class="mj">🍁 Момидзи</span>':''}</div>
    <div class="tx"><p>${text}</p>
    ${ph?`<figure class="ph" style="margin:10px 0 0"><img src="${esc(ph.src)}" alt="${esc(ph.cap)}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"></figure><p class="phc">${esc(ph.cap)} · <a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.by)}, ${esc(ph.lic)}</a></p>`:''}
-   ${q?`<div class="acts"><a href="${esc(MAP(q))}" target="_blank" rel="noopener">На карте ↗</a></div>`:''}
+   ${q?`<div class="acts"><a href="${esc(MAP(q))}" target="_blank" rel="noopener">На карте ↗</a>${T.REF&&T.REF[q]?`<a href="${IG(T.REF[q].tag)}" target="_blank" rel="noopener">📸 #${esc(T.REF[q].tag)}</a>${T.REF[q].jp?`<a href="${IG(T.REF[q].jp)}" target="_blank" rel="noopener">📸 #${esc(T.REF[q].jp)}</a>`:''}`:''}</div>`:''}
    ${g&&g.g?`<details class="g"><summary>${esc(g.g[0])}</summary><p>${esc(g.g[1])}</p></details>`:''}</div></li>`});
  const M=MEALS[d.id]||{};const kinds=[['b','Завтрак'],['l','Обед'],['d','Ужин']].filter(([k])=>M[k]);
  let def='l';if(isToday){def=now.min<10*60?'b':now.min<15*60?'l':'d'}if(!M[def])def=kinds.length?kinds[0][0]:'l';
