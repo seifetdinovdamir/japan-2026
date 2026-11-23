@@ -229,6 +229,7 @@ table.phr{table-layout:fixed;width:100%}table.phr td,table.phr th{padding:7px 5p
 .today button,.btn{font:inherit;font-size:13px;background:var(--accent);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
 .btn.ghost{background:var(--chip);color:var(--ink)}
 .maplink{font-size:12px;margin-left:6px;white-space:nowrap}
+.droute{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}.droute .rt{font-weight:600}
 .block{margin-top:12px;background:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
 .block h4{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
 .block ol{margin:0;padding-left:20px}.block ol li{margin:3px 0}
@@ -982,7 +983,16 @@ const hotelOf=date=>{for(const k in NIGHTS)if(NIGHTS[k].includes(date))return HO
 const igURL=t=>"https://www.instagram.com/explore/tags/"+encodeURIComponent(t)+"/";
 const igLine=r=>`<p class="igl">📸 Instagram: <a href="${igURL(r.tag)}" target="_blank" rel="noopener">#${r.tag}</a>${r.jp?` · <a href="${igURL(r.jp)}" target="_blank" rel="noopener">#${r.jp}</a>`:""}</p>`;
 const refHTML=r=>igLine(r)+`<details class="refs"><summary>📸 Референсы для фото</summary>${r.ph?`<div class="rg">${r.ph.map(p=>`<figure><img src="${p.src}" alt="" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption><a href="${p.page}" target="_blank" rel="noopener">${p.by}, ${p.lic}</a></figcaption></figure>`).join('')}</div>`:''}<p>${r.tip}</p></details>`;
-const tlHTML=d=>d.tl.map(t=>`${t[5]?`<li class="seg"><p class="go">${t[5]}</p></li>`:''}<li class="st" data-t="${t[0]}"><span class="dot" aria-hidden="true"></span><span class="t">${t[0]}</span>${t[6]?'<span class="ic">⭐ Визитная карточка</span>':''}${t[4]?'<span class="mj">🍁 Момидзи</span>':''}${t[3]&&PH[t[3]]?`<figure class="ph"><img src="${PH[t[3]].src}" alt="${PH[t[3]].cap}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption>${PH[t[3]].cap} · <a href="${PH[t[3]].page}" target="_blank" rel="noopener">${PH[t[3]].by}, ${PH[t[3]].lic}</a></figcaption></figure>`:''}<p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}</p>${t[3]&&REF[t[3]]?refHTML(REF[t[3]]):''}${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('');
+const DIR=(a,b,m)=>'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(a)+'&destination='+encodeURIComponent(b)+'&travelmode='+m;
+const modeOf=t=>{const s=(t[5]||t[1]||'').toLowerCase();const pub=/метро|поезд|электрич|автобус|синкансэн|линии|линия|jr|keihan|kintetsu|nankai|hankyu|toei|yamanote|ginza line/.test(s);if(!pub&&/такси/.test(s))return 'driving';if(!pub&&/пешком|пешая|прогулк/.test(s))return 'walking';return 'transit'};
+const prevDate=ds=>{const x=new Date(ds+'T12:00:00Z');x.setUTCDate(x.getUTCDate()-1);return x.toISOString().slice(0,10)};
+const routeOf=d=>{const h0=hotelOf(prevDate(d.date));let last=h0?(h0.q||h0.name):null;const seg=[],pts=last?[last]:[];
+ d.tl.forEach((t,k)=>{const q=t[3];if(!q){seg[k]=null;return}seg[k]=last&&!(last.includes(q)||q.includes(last))?DIR(last,q,modeOf(t)):null;if(pts[pts.length-1]!==q)pts.push(q);last=q});
+ const h1=hotelOf(d.date);if(h1){const q=h1.q||h1.name,l=pts[pts.length-1]||'';if(!(l.includes(q)||q.includes(l)))pts.push(q)}
+ const parts=[];if(pts.length>1)for(let i=0;i<pts.length-1;i+=9)parts.push({u:'https://www.google.com/maps/dir/'+pts.slice(i,i+10).map(encodeURIComponent).join('/'),n:Math.min(10,pts.length-i)});
+ return{seg,parts}};
+const dayRouteHTML=r=>r.parts.length?`<div class="droute">${r.parts.map((p,i)=>`<a class="chip rt" href="${esc(p.u)}" target="_blank" rel="noopener">🗺 ${r.parts.length>1?'Маршрут дня, часть '+(i+1):'Весь маршрут дня'} в Google Картах ↗</a>`).join('')}</div>`:'';
+const tlHTML=d=>{const RT=routeOf(d);return d.tl.map((t,k)=>`${t[5]?`<li class="seg"><p class="go">${t[5]}</p></li>`:''}<li class="st" data-t="${t[0]}"><span class="dot" aria-hidden="true"></span><span class="t">${t[0]}</span>${t[6]?'<span class="ic">⭐ Визитная карточка</span>':''}${t[4]?'<span class="mj">🍁 Момидзи</span>':''}${t[3]&&PH[t[3]]?`<figure class="ph"><img src="${PH[t[3]].src}" alt="${PH[t[3]].cap}" loading="lazy" decoding="async" onerror="this.closest('figure').remove()"><figcaption>${PH[t[3]].cap} · <a href="${PH[t[3]].page}" target="_blank" rel="noopener">${PH[t[3]].by}, ${PH[t[3]].lic}</a></figcaption></figure>`:''}<p>${t[1]}${t[3]?` <a class="maplink" href="${esc(M(t[3]))}" target="_blank" rel="noopener">На карте ↗</a>`:''}${RT.seg[k]?` <a class="maplink" href="${esc(RT.seg[k])}" target="_blank" rel="noopener">Маршрут ↗</a>`:''}</p>${t[3]&&REF[t[3]]?refHTML(REF[t[3]]):''}${t[2]?`<details class="guide"><summary><span class="jp">語</span>Рассказ гида<b>${t[2].g[0]}</b></summary><p>${t[2].g[1]}</p></details>`:''}</li>`).join('')};
 const nightHTML=d=>{const h=hotelOf(d.date);if(!h)return '';return `<div class="night"><h4>Ночуем</h4><b>${h.name}</b><div class="jpname">${h.jp}</div><p class="src">${h.nights} · ${h.inout}${h.food?' · '+h.food:''}</p><div class="chips"><button class="btn" type="button" data-taxi="${h.id}">Показать таксисту</button><a class="chip" href="${esc(M(h.q))}" target="_blank" rel="noopener">На карте ↗</a></div></div>`};
 const navHTML=i=>{const p=DAYS[i-1],n=DAYS[i+1];return `<div class="dnav"><button type="button" data-go="${p?p.id:''}" ${p?'':'disabled'}><small>← ${p?p.n+'.'+p.date.slice(5,7):''}</small><b>${p?p.title:''}</b></button><button type="button" data-go="${n?n.id:''}" ${n?'':'disabled'}><small>${n?n.n+'.'+n.date.slice(5,7):''} →</small><b>${n?n.title:''}</b></button></div>`};
 host.innerHTML=DAYS.map((d,i)=>`
@@ -992,7 +1002,7 @@ host.innerHTML=DAYS.map((d,i)=>`
  <span class="plus" aria-hidden="true">+</span></summary>
  <div class="dbody">
   ${d.chips.length?`<div class="chips">${d.chips.map(c=>`<a class="chip" href="${esc(c[1])}" ${c[1].startsWith('#')?'':'target="_blank" rel="noopener"'}>${c[0]} ↗</a>`).join('')}</div>`:''}
-  ${d.wake||d.jl?`<div class="wake">${d.wake?`<p><b>⏰</b> ${d.wake}</p>`:''}${d.jl?`<p class="jl"><b>🕑</b> ${d.jl} <a href="#jetlag">Джетлаг</a></p>`:''}</div>`:''}<ol class="tl">${tlHTML(d)}</ol>
+  ${d.wake||d.jl?`<div class="wake">${d.wake?`<p><b>⏰</b> ${d.wake}</p>`:''}${d.jl?`<p class="jl"><b>🕑</b> ${d.jl} <a href="#jetlag">Джетлаг</a></p>`:''}</div>`:''}${dayRouteHTML(routeOf(d))}<ol class="tl">${tlHTML(d)}</ol>
   ${d.rain?`<div class="block rain"><h4>☔ Если дождь</h4><p>${d.rain}</p></div>`:''}${d.how?`<div class="block"><h4>Важно в дороге</h4><ol>${d.how.map(h=>`<li>${h}</li>`).join('')}</ol></div>`:''}
   ${mealsHTML(d.id)}
   ${d.tip?`<div class="tip">${d.tip}</div>`:''}
